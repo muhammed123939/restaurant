@@ -1,0 +1,27 @@
+@use "../variables" as *;
+
+html {
+
+  .mdc-list-item__primary-text,
+  .mat-drawer-container,
+  .mat-drawer,
+  .text-body {
+    color: #222222;
+  }
+
+  /* Secondary muted text (Talabat-style soft gray) */
+  .text-muted {
+    color: #6b6b6b;
+  }
+
+  /* Sidebar / drawer text polish */
+  .mat-drawer {
+    color: #222222;
+    background: #ffffff;
+  }
+
+  /* Better list readability */
+  .mdc-list-item__primary-text {
+    font-weight: 500;
+  }
+}

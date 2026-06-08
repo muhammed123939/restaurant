@@ -1,0 +1,78 @@
+<div class="talabat-cart-dialog">
+
+  <!-- Header -->
+  <div class="cart-header">
+
+    <div class="cart-icon">
+      <mat-icon>shopping_cart</mat-icon>
+    </div>
+
+    <div class="cart-header-text">
+      <h2>{{ 'CART.TITLE' | translate }}</h2>
+      <p>{{ 'CART.SUBTITLE' | translate }}</p>
+    </div>
+
+  </div>
+
+  <!-- Content -->
+  <mat-dialog-content class="cart-content">
+
+    <!-- Empty -->
+    <div *ngIf="!cart || cart.length === 0" class="empty-cart">
+      <mat-icon>remove_shopping_cart</mat-icon>
+      <h3>{{ 'CART.EMPTY_TITLE' | translate }}</h3>
+      <p>{{ 'CART.EMPTY_DESC' | translate }}</p>
+    </div>
+
+    <!-- Items -->
+    <div *ngFor="let item of cart; let i = index" class="cart-item">
+
+      <div class="item-left">
+
+        <div class="item-avatar">
+          <mat-icon>fastfood</mat-icon>
+        </div>
+
+        <div class="item-info">
+          <div class="item-name">{{ item.name }}</div>
+
+          <div class="item-details">
+            {{ item.quantity }} × {{ item.price }} EGP
+          </div>
+        </div>
+
+      </div>
+
+      <div class="item-right">
+
+        <div class="item-total">
+          {{ item.quantity * item.price }} EGP
+        </div>
+
+        <button mat-icon-button class="delete-btn" (click)="removeItem(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Total -->
+    <div *ngIf="cart && cart.length > 0" class="cart-total">
+      <span>{{ 'CART.TOTAL' | translate }}</span>
+      <span>{{ getTotal() }} EGP</span>
+    </div>
+
+  </mat-dialog-content>
+
+  <!-- Actions -->
+  <mat-dialog-actions class="cart-actions">
+
+    <button mat-stroked-button mat-dialog-close class="btn-close">
+      <mat-icon>close</mat-icon>
+      {{ 'CART.CLOSE' | translate }}
+    </button>
+
+  </mat-dialog-actions>
+
+</div>

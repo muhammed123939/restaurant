@@ -1,0 +1,111 @@
+<div class="talabat-address-dialog">
+
+  <!-- Header -->
+  <div class="dialog-header">
+
+    <div class="header-icon">
+      <mat-icon>location_on</mat-icon>
+    </div>
+
+    <div class="header-content">
+      <h2>{{ 'ADDRESS.TITLE' | translate }}</h2>
+      <p>{{ 'ADDRESS.SUBTITLE' | translate }}</p>
+    </div>
+
+  </div>
+
+  <!-- Content -->
+  <mat-dialog-content class="address-content">
+
+    <form class="address-form">
+
+      <div class="form-grid">
+
+        <!-- Building -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'ADDRESS.BUILDING' | translate }}</mat-label>
+          <mat-icon matPrefix>apartment</mat-icon>
+          <input matInput type="number"
+                 [(ngModel)]="address.building"
+                 name="building">
+        </mat-form-field>
+
+        <!-- Floor -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'ADDRESS.FLOOR' | translate }}</mat-label>
+          <mat-icon matPrefix>stairs</mat-icon>
+          <input matInput type="number"
+                 [(ngModel)]="address.floor"
+                 name="floor">
+        </mat-form-field>
+
+        <!-- Apartment -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'ADDRESS.APARTMENT' | translate }}</mat-label>
+          <mat-icon matPrefix>meeting_room</mat-icon>
+          <input matInput type="number"
+                 [(ngModel)]="address.appartment"
+                 name="apartment">
+        </mat-form-field>
+
+        <!-- City -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'ADDRESS.CITY' | translate }}</mat-label>
+          <mat-icon matPrefix>location_city</mat-icon>
+          <input matInput [(ngModel)]="address.city"
+                 name="city">
+        </mat-form-field>
+
+      </div>
+
+      <!-- Street -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'ADDRESS.STREET' | translate }}</mat-label>
+        <mat-icon matPrefix>road</mat-icon>
+        <input matInput [(ngModel)]="address.street"
+               name="street">
+      </mat-form-field>
+
+      <!-- Details -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-icon matPrefix>notes</mat-icon>
+
+        <textarea matInput rows="4" maxlength="300"
+                  [placeholder]="'ADDRESS.DETAILS_PLACEHOLDER' | translate"
+                  [(ngModel)]="address.details"
+                  name="details">
+        </textarea>
+
+        <mat-hint align="end">
+          {{ address.details?.length || 0 }}/300
+        </mat-hint>
+      </mat-form-field>
+
+    </form>
+
+  </mat-dialog-content>
+
+  <!-- Footer -->
+  <mat-dialog-actions class="dialog-actions">
+
+    <button mat-stroked-button class="btn-cancel" (click)="cancel()">
+      <mat-icon>close</mat-icon>
+      {{ 'ADDRESS.CANCEL' | translate }}
+    </button>
+
+    <button mat-flat-button class="btn-save"
+            (click)="saveAddress()"
+            [disabled]="isSaving">
+
+      <mat-icon>
+        {{ isSaving ? 'hourglass_top' : 'save' }}
+      </mat-icon>
+
+      {{ isSaving ? ('ADDRESS.SAVING' | translate) : ('ADDRESS.SAVE' | translate) }}
+
+    </button>
+
+  </mat-dialog-actions>
+
+</div>

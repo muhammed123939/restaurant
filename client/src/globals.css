@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+:root {
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+
+    /* Talabat Brand Colors */
+    --talabat-orange: #ff6b00;
+    --talabat-orange-light: #fff0e6;
+    --talabat-orange-hover: #e85f00;
+
+    /* Status Colors */
+    --info-color: #3b82f6;
+    --warning-color: #f59e0b;
+    --success-color: #22c55e;
+
+    /* Light Status Colors */
+    --lightsuccess-color: rgba(34, 197, 94, 0.15);
+    --lightinfo-color: rgba(59, 130, 246, 0.15);
+    --lightwarning-color: rgba(245, 158, 11, 0.15);
+}
+
+/* Tailwind theme extension */
+@theme {
+
+    /* Main Colors (FIXED - no Sass usage here) */
+    --color-primary: var(--talabat-orange);
+    --color-secondary: #555555;
+    --color-error: #ef4444;
+    --color-info: var(--info-color);
+    --color-warning: var(--warning-color);
+    --color-success: var(--success-color);
+
+    /* Text */
+    --color-dark: #222222;
+    --color-light: #ffffff;
+
+    /* Light Colors */
+    --color-lightprimary: rgba(255, 107, 0, 0.15);
+    --color-lightsecondary: rgba(85, 85, 85, 0.15);
+    --color-lighterror: rgba(239, 68, 68, 0.15);
+    --color-lightsuccess: var(--lightsuccess-color);
+    --color-lightinfo: var(--lightinfo-color);
+    --color-lightwarning: var(--lightwarning-color);
+
+    /* Borders */
+    --color-border: #eeeeee;
+
+    /* Radius */
+    --radius-sm: 10px;
+    --radius-md: 20px;
+
+    /* Talabat-like Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    --shadow-md:
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+@layer base {
+
+    html {
+        background: #fafafa;
+    }
+
+    body {
+        font-family: var(--font-body);
+        background: #fafafa;
+        color: #222222;
+    }
+
+    img,
+    video {
+        max-width: inherit;
+        height: revert-layer;
+    }
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        margin: revert-layer;
+    }
+
+    ol,
+    ul,
+    menu {
+        list-style-type: disc;
+        padding-inline-start: 40px;
+    }
+
+    /* Smooth UI */
+    button,
+    a,
+    input,
+    textarea,
+    select {
+        transition: all .2s ease;
+    }
+}

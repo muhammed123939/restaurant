@@ -1,0 +1,132 @@
+<mat-card class="branch-card theme-card" *ngIf="selectedbranch">
+
+  <!-- Header -->
+  <div class="branch-header">
+
+    <div class="branch-avatar">
+      <mat-icon>storefront</mat-icon>
+    </div>
+
+    <div class="branch-info">
+      <h2>{{ 'BRANCH_EDIT.TITLE' | translate }}</h2>
+      <p>{{ 'BRANCH_EDIT.SUBTITLE' | translate }}</p>
+    </div>
+
+    <div class="branch-badge">
+      #{{ selectedbranch.branchID }}
+    </div>
+
+  </div>
+
+  <mat-card-content>
+
+    <form #editForm="ngForm" (ngSubmit)="edit()">
+
+      <!-- Unsaved Changes -->
+      <div class="unsaved-banner" *ngIf="editForm.dirty">
+        <mat-icon>edit</mat-icon>
+        {{ 'BRANCH_EDIT.UNSAVED' | translate }}
+      </div>
+
+      <div class="grid">
+
+        <!-- Branch ID -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'BRANCH_EDIT.ID' | translate }}</mat-label>
+          <mat-icon matPrefix>badge</mat-icon>
+
+          <input matInput
+                 [value]="selectedbranch.branchID"
+                 readonly>
+        </mat-form-field>
+
+        <!-- Name -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'BRANCH_EDIT.NAME' | translate }}</mat-label>
+          <mat-icon matPrefix>store</mat-icon>
+
+          <input matInput
+                 required
+                 name="name"
+                 [(ngModel)]="selectedbranch.name"
+                 #name="ngModel">
+
+          <mat-error *ngIf="name.invalid && name.touched">
+            {{ 'BRANCH_EDIT.NAME_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Phone -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'BRANCH_EDIT.PHONE' | translate }}</mat-label>
+          <mat-icon matPrefix>phone</mat-icon>
+
+          <input matInput
+                 required
+                 name="phone"
+                 [(ngModel)]="selectedbranch.phone"
+                 #phone="ngModel">
+
+          <mat-error *ngIf="phone.invalid && phone.touched">
+            {{ 'BRANCH_EDIT.PHONE_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Location -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'BRANCH_EDIT.LOCATION' | translate }}</mat-label>
+          <mat-icon matPrefix>location_on</mat-icon>
+
+          <input matInput
+                 required
+                 name="location"
+                 [(ngModel)]="selectedbranch.location"
+                 #location="ngModel">
+
+          <mat-error *ngIf="location.invalid && location.touched">
+            {{ 'BRANCH_EDIT.LOCATION_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <!-- Success -->
+      <div *ngIf="successMessage" class="alert success">
+        <mat-icon>check_circle</mat-icon>
+        {{ successMessage }}
+      </div>
+
+      <!-- Error -->
+      <div *ngIf="errorMessage" class="alert error">
+        <mat-icon>error</mat-icon>
+        {{ errorMessage }}
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+
+        <button mat-flat-button
+                type="submit"
+                class="btn-save"
+                [disabled]="!editForm.valid || !editForm.dirty">
+
+          <mat-icon>save</mat-icon>
+          {{ 'BRANCH_EDIT.SAVE' | translate }}
+        </button>
+
+        <button mat-stroked-button
+                type="button"
+                class="btn-cancel"
+                (click)="resetForm(editForm)">
+
+          <mat-icon>refresh</mat-icon>
+          {{ 'BRANCH_EDIT.RESET' | translate }}
+        </button>
+
+      </div>
+
+    </form>
+
+  </mat-card-content>
+
+</mat-card>

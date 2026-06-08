@@ -1,0 +1,96 @@
+<mat-card *ngIf="customer" class="customer-card">
+
+  <!-- HEADER -->
+  <div class="customer-header">
+
+    <mat-icon class="header-icon">person</mat-icon>
+
+    <div>
+      <h2>{{ 'CUSTOMER.TITLE' | translate }}</h2>
+      <p>{{ 'CUSTOMER.SUBTITLE' | translate }}</p>
+    </div>
+
+  </div>
+
+  <mat-card-content>
+
+    <!-- CUSTOMER INFO -->
+    <div class="info-grid">
+
+      <div class="info-item">
+        <mat-icon>person</mat-icon>
+        <div>
+          <span class="label">{{ 'CUSTOMER.NAME' | translate }}</span>
+          <span class="value">{{ customer.name }}</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <mat-icon>phone</mat-icon>
+        <div>
+          <span class="label">{{ 'CUSTOMER.PHONE' | translate }}</span>
+          <span class="value">{{ customer.phone }}</span>
+        </div>
+      </div>
+
+      <div class="info-item full">
+        <mat-icon>email</mat-icon>
+        <div>
+          <span class="label">{{ 'CUSTOMER.EMAIL' | translate }}</span>
+          <span class="value">{{ customer.email }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ADDRESSES -->
+    <div *ngIf="addresses.length > 0" class="addresses-grid">
+
+      <div class="address-card" *ngFor="let addr of addresses">
+
+        <div class="address-header">
+          <mat-icon>home</mat-icon>
+          <span>{{ 'CUSTOMER.ADDRESS' | translate }}</span>
+        </div>
+
+        <div class="address-grid">
+
+          <div class="field">
+            <span class="label">{{ 'CUSTOMER.CITY' | translate }}</span>
+            <span class="value">{{ addr.city }}</span>
+          </div>
+
+          <div class="field">
+            <span class="label">{{ 'CUSTOMER.STREET' | translate }}</span>
+            <span class="value">{{ addr.street }}</span>
+          </div>
+
+          <div class="field">
+            <span class="label">{{ 'CUSTOMER.BUILDING' | translate }}</span>
+            <span class="value">{{ addr.building }}</span>
+          </div>
+
+          <div class="field">
+            <span class="label">{{ 'CUSTOMER.FLOOR' | translate }}</span>
+            <span class="value">{{ addr.floor }}</span>
+          </div>
+
+          <div class="field">
+            <span class="label">{{ 'CUSTOMER.APARTMENT' | translate }}</span>
+            <span class="value">{{ addr.appartment }}</span>
+          </div>
+
+          <div class="field full">
+            <span class="label">{{ 'CUSTOMER.DETAILS' | translate }}</span>
+            <span class="value">{{ addr.details || '-' }}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-card-content>
+
+</mat-card>

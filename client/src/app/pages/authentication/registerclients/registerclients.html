@@ -1,0 +1,135 @@
+<div class="auth-page">
+
+  <div class="auth-wrapper">
+
+    <mat-card class="auth-card">
+
+      <mat-card-content class="auth-content">
+
+        <!-- Logo -->
+        <div class="logo-box">
+          <a [routerLink]="['/dashboard']">
+            <img src="./assets/images/logos/dark-logo.svg" class="logo" alt="logo" />
+          </a>
+        </div>
+
+        <!-- Title -->
+        <h2 class="title">
+          {{ 'REGISTER.TITLE' | translate }}
+        </h2>
+
+        <p class="subtitle">
+          {{ 'REGISTER.SUBTITLE' | translate }}
+        </p>
+
+        <form *ngIf="registerForm"
+              [formGroup]="registerForm"
+              (ngSubmit)="submit()"
+              class="form">
+
+          <!-- Name -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'REGISTER.NAME' | translate }}</mat-label>
+            <input matInput formControlName="name"
+                   [placeholder]="'REGISTER.ENTER_NAME' | translate" />
+
+            <mat-error *ngIf="f['name'].touched && f['name'].errors?.['required']">
+              {{ 'REGISTER.NAME_REQUIRED' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Email -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'REGISTER.EMAIL' | translate }}</mat-label>
+            <input matInput type="email" formControlName="email"
+                   [placeholder]="'REGISTER.ENTER_EMAIL' | translate" />
+          </mat-form-field>
+
+          <!-- Phone -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'REGISTER.PHONE' | translate }}</mat-label>
+            <input matInput type="text" formControlName="phone"
+                   maxlength="11" inputmode="numeric"
+                   (input)="onPhoneInput()"
+                   [placeholder]="'REGISTER.ENTER_PHONE' | translate" />
+          </mat-form-field>
+
+          <!-- Branch -->
+          <mat-form-field appearance="outline"
+                          class="field"
+                          *ngIf="branches.length > 1">
+
+            <mat-label>{{ 'REGISTER.BRANCH' | translate }}</mat-label>
+
+            <mat-select formControlName="branchID">
+              <mat-option *ngFor="let b of branches" [value]="b.branchID">
+                {{ b.name }}
+              </mat-option>
+            </mat-select>
+
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'REGISTER.PASSWORD' | translate }}</mat-label>
+
+            <input matInput
+                   [type]="hidePassword ? 'password' : 'text'"
+                   formControlName="password" />
+
+            <button mat-icon-button matSuffix type="button"
+                    (click)="hidePassword = !hidePassword">
+              👁️
+            </button>
+
+          </mat-form-field>
+
+          <!-- Confirm Password -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</mat-label>
+
+            <input matInput
+                   [type]="hideConfirmPassword ? 'password' : 'text'"
+                   formControlName="confirmPassword" />
+
+            <button mat-icon-button matSuffix type="button"
+                    (click)="hideConfirmPassword = !hideConfirmPassword">
+              👁️
+            </button>
+
+          </mat-form-field>
+
+          <!-- Error -->
+          <div *ngIf="errorMessage" class="error-box">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Buttons -->
+          <button mat-flat-button class="register-btn" type="submit">
+            {{ 'REGISTER.SUBMIT' | translate }}
+          </button>
+
+          <button mat-stroked-button
+                  class="cancel-btn"
+                  type="button"
+                  (click)="registerForm.reset()">
+            {{ 'REGISTER.CANCEL' | translate }}
+          </button>
+
+        </form>
+
+        <!-- Login link -->
+        <div class="footer">
+          {{ 'REGISTER.ALREADY_ACCOUNT' | translate }}
+          <a [routerLink]="['/authentication/loginClient']">
+            {{ 'REGISTER.SIGN_IN' | translate }}
+          </a>
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</div>

@@ -1,0 +1,158 @@
+/* Dialog */
+
+.talabat-dialog {
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* Header */
+
+.dialog-header {
+  background: linear-gradient(135deg, #ff5a00, #ff7a00);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 24px;
+}
+
+.header-icon {
+  width: 60px;
+  height: 60px;
+
+  border-radius: 16px;
+
+  background: rgba(255,255,255,.18);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-icon mat-icon {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+
+.header-content h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.header-content p {
+  margin: 4px 0 0;
+  opacity: .9;
+  font-size: 14px;
+}
+
+/* Content */
+
+.dialog-content {
+  padding: 24px !important;
+  background: #fafafa;
+}
+
+/* Section Title */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 12px;
+
+  color: #444;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.section-title mat-icon {
+  color: #ff5a00;
+}
+
+/* Fields */
+
+.talabat-field {
+  width: 100%;
+}
+
+.talabat-field textarea {
+  resize: none;
+  line-height: 1.6;
+}
+
+.talabat-field .mat-mdc-form-field-focus-overlay {
+  border-radius: 12px;
+}
+
+/* Actions */
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  padding: 20px 24px !important;
+
+  background: white;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Save Button */
+
+.btn-save {
+  background: #ff5a00 !important;
+  color: white !important;
+
+  min-width: 170px;
+  height: 46px;
+
+  border-radius: 12px !important;
+  font-weight: 600;
+}
+
+.btn-save:hover {
+  background: #e65100 !important;
+}
+
+/* Cancel Button */
+
+.btn-cancel {
+  min-width: 130px;
+  height: 46px;
+
+  border-radius: 12px !important;
+}
+
+/* Scroll */
+
+.mat-mdc-dialog-content {
+  max-height: 65vh;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .dialog-header {
+    padding: 18px;
+  }
+
+  .header-content h2 {
+    font-size: 20px;
+  }
+
+  .dialog-actions {
+    flex-direction: column;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    width: 100%;
+  }
+}

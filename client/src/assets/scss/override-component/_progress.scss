@@ -1,0 +1,43 @@
+@use "../variables" as *;
+
+html {
+
+  /* Secondary progress (use soft gray/neutral instead of blue) */
+  .mat-secondary {
+    .mdc-linear-progress__bar-inner {
+      border-color: #555555;
+    }
+  }
+
+  /* Warning (food-related warm tone) */
+  .mat-warning {
+    .mdc-linear-progress__bar-inner {
+      border-color: #f59e0b;
+    }
+  }
+
+  /* Error */
+  .mat-error {
+    .mdc-linear-progress__bar-inner {
+      border-color: #ef4444;
+    }
+  }
+
+  /* Primary (Talabat orange) */
+  .mat-primary {
+    .mdc-linear-progress__bar-inner {
+      border-color: #ff6b00;
+    }
+  }
+
+  /* Progress bar base style */
+  .mat-mdc-progress-bar {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  /* Track background (softer UI like Talabat apps) */
+  .mdc-linear-progress__buffer-bar {
+    background-color: #f2f2f2;
+  }
+}

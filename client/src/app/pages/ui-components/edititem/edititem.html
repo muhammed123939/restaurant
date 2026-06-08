@@ -1,0 +1,125 @@
+<mat-card class="menu-card" *ngIf="selected">
+
+  <!-- HEADER -->
+  <div class="menu-header">
+    <mat-icon>restaurant_menu</mat-icon>
+    <div>
+      <h2>{{ 'MENU_EDIT.TITLE' | translate }}</h2>
+      <p>{{ 'MENU_EDIT.SUBTITLE' | translate }}</p>
+    </div>
+  </div>
+
+  <mat-card-content>
+
+    <form #editForm="ngForm" (ngSubmit)="edit()" class="menu-form">
+
+      <input type="hidden"
+             [(ngModel)]="selected.menuItemID"
+             name="menuItemID" />
+
+      <!-- GRID -->
+      <div class="form-grid">
+
+        <!-- Name -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'MENU_EDIT.NAME' | translate }}</mat-label>
+          <input matInput
+                 [(ngModel)]="selected.name"
+                 name="name"
+                 required />
+        </mat-form-field>
+
+        <!-- Branch -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'MENU_EDIT.BRANCH' | translate }}</mat-label>
+
+          <mat-select [(ngModel)]="selected.branchID" name="branchID">
+            <mat-option *ngFor="let branch of branches" [value]="branch.branchID">
+              {{ branch.name }}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+
+        <!-- Category -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'MENU_EDIT.CATEGORY' | translate }}</mat-label>
+
+          <mat-select [(ngModel)]="selected.categoryID" name="categoryID">
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+
+        <!-- Quantity -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'MENU_EDIT.QUANTITY' | translate }}</mat-label>
+          <input matInput type="number"
+                 [(ngModel)]="selected.quantity"
+                 name="quantity" />
+        </mat-form-field>
+
+        <!-- Sell Price -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'MENU_EDIT.SELL_PRICE' | translate }}</mat-label>
+          <input matInput type="number"
+                 [(ngModel)]="selected.sell_price"
+                 name="sell_price" />
+        </mat-form-field>
+
+        <!-- Buy Price -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'MENU_EDIT.BUY_PRICE' | translate }}</mat-label>
+          <input matInput type="number"
+                 [(ngModel)]="selected.buy_price"
+                 name="buy_price" />
+        </mat-form-field>
+
+      </div>
+
+      <!-- IMAGE -->
+      <div *ngIf="myphotos?.length" class="image-preview">
+        <img [src]="myphotos[0].url" />
+      </div>
+
+      <!-- PHOTO EDITOR -->
+      <div class="photo-section">
+        <app-photoeditor></app-photoeditor>
+      </div>
+
+      <!-- MESSAGES -->
+      <div *ngIf="errorMessage" class="msg error">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="msg success">
+        {{ successMessage }}
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="actions">
+
+        <button mat-flat-button
+                class="btn-save"
+                type="submit"
+                [disabled]="!editForm.dirty">
+
+          {{ 'MENU_EDIT.SAVE' | translate }}
+        </button>
+
+        <button mat-stroked-button
+                class="btn-cancel"
+                type="button"
+                (click)="resetForm(editForm)">
+
+          {{ 'MENU_EDIT.CANCEL' | translate }}
+        </button>
+
+      </div>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>

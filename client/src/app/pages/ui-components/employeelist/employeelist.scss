@@ -1,0 +1,125 @@
+/* =========================
+   CARD
+========================= */
+.employees-card {
+  border-radius: 22px;
+  overflow: hidden;
+
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* =========================
+   HEADER
+========================= */
+.employees-header {
+  background: linear-gradient(135deg, #ff5a00, #ff7a00);
+  color: #fff;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px;
+}
+
+.employees-header h2 {
+  margin: 0;
+}
+
+.employees-header p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* ADD BUTTON */
+.btn-add {
+  background: #fff !important;
+  color: #ff5a00 !important;
+
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* =========================
+   MESSAGE BOX
+========================= */
+.message-box {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+
+  margin-top: 15px;
+}
+
+.msg-input {
+  flex: 1;
+}
+
+.btn-send {
+  background: #ff5a00 !important;
+  color: #fff !important;
+  border-radius: 10px;
+}
+
+/* =========================
+   ALERTS
+========================= */
+.alerts {
+  margin-top: 10px;
+}
+
+.success {
+  background: #e7f7ec;
+  color: #2e7d32;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.error {
+  background: #ffe5e5;
+  color: #d32f2f;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* =========================
+   TABLE
+========================= */
+.table-wrapper {
+  margin-top: 15px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+/* header style */
+th {
+  background: #fff3e6;
+  color: #ff5a00;
+  font-weight: 600;
+}
+
+/* row hover */
+tr:hover {
+  background: #fafafa;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+.empty {
+  margin-top: 15px;
+  text-align: center;
+
+  padding: 12px;
+  background: #fff3e6;
+  border-radius: 10px;
+
+  color: #ff5a00;
+  font-weight: 600;
+}

@@ -1,0 +1,68 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+/* Talabat-style form field overrides */
+@include mat.form-field-overrides((
+  container-height: 44px,
+  outlined-container-shape: 14px,
+  container-vertical-padding: 10px,
+));
+
+/* =========================
+   TALABAT FORM STYLES
+========================= */
+html {
+
+  /* Hide hint (same behavior) */
+  .hide-hint {
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+  }
+
+  /* Clean white input style */
+  .mat-mdc-text-field-wrapper {
+    background: #ffffff;
+    border-radius: 14px !important;
+  }
+
+  /* Outlined border */
+  .mdc-text-field--outlined {
+    border: 1px solid #eeeeee;
+    transition: all 0.2s ease;
+  }
+
+  /* Focus state (Talabat orange glow) */
+  .mdc-text-field--focused {
+    border-color: #ff6b00 !important;
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.12);
+  }
+
+  /* Floating label alignment (clean centered feel) */
+  .mat-mdc-text-field-wrapper
+    .mat-mdc-form-field-flex
+    .mat-mdc-floating-label {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Input text */
+  .mat-mdc-input-element {
+    color: #222;
+    font-weight: 500;
+  }
+
+  /* Hover effect */
+  .mat-mdc-form-field:hover .mdc-text-field--outlined {
+    border-color: #ff6b00;
+  }
+
+  /* Calendar card (modern card style) */
+  .demo-inline-calendar-card {
+    width: 320px;
+    border-radius: 14px;
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.06),
+      0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+}

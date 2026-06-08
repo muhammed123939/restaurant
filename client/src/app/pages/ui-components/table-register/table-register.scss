@@ -1,0 +1,120 @@
+/* Page background */
+.page {
+  min-height: 100vh;
+  background: #f6f7fb;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px 16px;
+}
+
+/* Main card */
+.form-card {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  border: none;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: center;
+  padding-top: 18px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ff5a00; /* Talabat orange */
+}
+
+/* Content */
+.content {
+  padding: 16px 20px 22px;
+}
+
+/* Form layout */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Fields */
+.field {
+  width: 100%;
+}
+
+/* Error box */
+.error-box {
+  background: #ffe9e5;
+  color: #d32f2f;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Success box */
+.success-box {
+  background: #e8f5e9;
+  color: #1b5e20;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Buttons layout */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* Save button (Talabat orange) */
+.save-btn {
+  flex: 1;
+  background: #ff5a00 !important;
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(255, 90, 0, 0.25);
+}
+
+/* Hover effect */
+.save-btn:hover {
+  background: #ff6a1a !important;
+  transform: translateY(-1px);
+  transition: 0.2s ease;
+}
+
+/* Cancel button */
+.cancel-btn {
+  flex: 1;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #777;
+}
+
+/* Material outline focus override */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: #ff5a00 !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .actions {
+    flex-direction: column;
+  }
+
+  .save-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+}

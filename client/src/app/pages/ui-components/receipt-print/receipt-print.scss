@@ -1,0 +1,129 @@
+/* =========================
+   TALABAT RECEIPT STYLE
+   ========================= */
+
+.receipt {
+  width: 360px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  font-family: Arial, sans-serif;
+  color: #222;
+}
+
+/* HEADER */
+.header h3 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: #ff5a00;
+  margin-bottom: 10px;
+}
+
+.header p {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #444;
+}
+
+/* HR */
+hr {
+  border: none;
+  border-top: 1px dashed #ddd;
+  margin: 10px 0;
+}
+
+/* ITEMS */
+.items {
+  margin-top: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 40px 70px;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.row.title {
+  font-weight: 700;
+  color: #999;
+  border-bottom: 1px dashed #ddd;
+}
+
+.row .name {
+  font-weight: 600;
+  color: #222;
+}
+
+/* ALIGN */
+.row span:nth-child(2),
+.row span:nth-child(3) {
+  text-align: right;
+}
+
+/* SUMMARY */
+.summary {
+  margin-top: 10px;
+}
+
+.summary p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin: 4px 0;
+  color: #444;
+}
+
+.summary h3 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 800;
+  color: #ff5a00;
+  margin-top: 8px;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+  margin-top: 10px;
+}
+
+/* PRINT BUTTON */
+button {
+  display: block;
+  margin: 15px auto;
+  background: #ff5a00;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e14e00;
+}
+
+/* PRINT MODE */
+@media print {
+  button {
+    display: none;
+  }
+
+  body {
+    background: white;
+  }
+
+  .receipt {
+    box-shadow: none;
+    width: 100%;
+    margin: 0;
+  }
+}

@@ -1,0 +1,70 @@
+<div class="auth-page">
+
+  <div class="auth-container">
+
+    <mat-card class="auth-card">
+
+      <mat-card-content class="auth-content">
+
+        <!-- Logo -->
+        <div class="logo-box">
+          <img src="./assets/images/logos/dark-logo.svg" class="logo" alt="logo" />
+        </div>
+
+        <!-- Title -->
+        <h2 class="title">
+          {{ 'LOGIN.WELCOME_BACK' | translate }}
+        </h2>
+
+        <!-- Form -->
+        <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+
+          <!-- Username -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'LOGIN.USERNAME' | translate }}</mat-label>
+            <input matInput formControlName="name"
+                   [placeholder]="'LOGIN.ENTER_USERNAME' | translate" />
+
+            <mat-error *ngIf="form.get('name')?.hasError('required')">
+              {{ 'LOGIN.USERNAME_REQUIRED' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'LOGIN.PASSWORD' | translate }}</mat-label>
+            <input matInput type="password" formControlName="password"
+                   [placeholder]="'LOGIN.ENTER_PASSWORD' | translate" />
+
+            <mat-error *ngIf="form.get('password')?.hasError('required')">
+              {{ 'LOGIN.PASSWORD_REQUIRED' | translate }}
+            </mat-error>
+
+            <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+              {{ 'LOGIN.PASSWORD_MIN' | translate }}
+            </mat-error>
+
+            <mat-error *ngIf="form.get('password')?.hasError('maxlength')">
+              {{ 'LOGIN.PASSWORD_MAX' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Error -->
+          <div *ngIf="errorMessage" class="error-box">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Submit -->
+          <button mat-flat-button class="login-btn" type="submit">
+            {{ 'LOGIN.SIGN_IN' | translate }}
+          </button>
+
+        </form>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</div>

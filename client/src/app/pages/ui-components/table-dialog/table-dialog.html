@@ -1,0 +1,57 @@
+<h2 mat-dialog-title class="dialog-title">
+  {{ 'TABLE_DIALOG.TITLE' | translate }}
+</h2>
+
+<mat-dialog-content class="dialog-content">
+  <div class="tables-grid">
+
+    <div *ngFor="let table of tables"
+         class="table-card"
+         (click)="selectTable(table)"
+         [ngClass]="{
+           'available': !table.status,
+           'occupied': table.status,
+           'selected': selectedTable?.tableNo === table.tableNo
+         }"
+         [style.pointer-events]="table.status ? 'none' : 'auto'"
+         [style.opacity]="table.status ? 0.6 : 1"
+         [style.cursor]="table.status ? 'not-allowed' : 'pointer'">
+
+      <div class="table-number">
+        {{ 'TABLE_DIALOG.TABLE' | translate }} {{ table.tableNo }}
+      </div>
+
+      <span class="status">
+        {{
+          table.status
+            ? ('TABLE_DIALOG.OCCUPIED' | translate)
+            : ('TABLE_DIALOG.AVAILABLE' | translate)
+        }}
+      </span>
+
+    </div>
+
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+
+  <button
+    mat-button
+    (click)="cancel()"
+    class="cancel-btn">
+    {{ 'TABLE_DIALOG.CANCEL' | translate }}
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="confirm()"
+    [disabled]="!selectedTable"
+    class="confirm-btn">
+
+    {{ 'TABLE_DIALOG.SELECT' | translate }}
+
+  </button>
+
+</mat-dialog-actions>

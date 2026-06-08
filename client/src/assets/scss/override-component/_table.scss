@@ -1,0 +1,11 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@include mat.table-overrides(
+  (
+    background-color: #ffffff,
+    row-item-outline-color: #eeeeee,
+    header-headline-color: #222222,
+    row-item-label-text-color: #444444,
+  )
+);

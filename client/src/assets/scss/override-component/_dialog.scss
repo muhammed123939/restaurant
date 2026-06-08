@@ -1,0 +1,24 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@include mat.dialog-overrides(
+  (
+    /* Talabat-style rounded modal */
+    container-shape: 20px,
+
+    /* Typography */
+    subhead-size: 20px,
+    subhead-weight: 700,
+
+    /* Content spacing (more breathing room like Talabat) */
+    content-padding: 24px,
+    actions-padding: 20px 24px,
+
+    /* Width (slightly wider modern modal) */
+    container-min-width: 340px,
+
+    /* Clean text spacing */
+    subhead-tracking: 0,
+    supporting-text-tracking: 0,
+  )
+);

@@ -1,0 +1,134 @@
+<mat-card class="employee-card" *ngIf="selecteduser">
+
+  <!-- HEADER -->
+  <div class="employee-header">
+
+    <mat-icon class="avatar">badge</mat-icon>
+
+    <div>
+      <h2>{{ 'EMPLOYEE_EDIT.TITLE' | translate }}</h2>
+      <p>{{ 'EMPLOYEE_EDIT.SUBTITLE' | translate }}</p>
+    </div>
+
+  </div>
+
+  <mat-card-content>
+
+    <form #editForm="ngForm"
+          (ngSubmit)="edit(editForm)"
+          class="employee-form">
+
+      <input type="hidden"
+             [(ngModel)]="selecteduser.employeeID"
+             name="employeeID" />
+
+      <input type="hidden"
+             name="name"
+             *ngIf="selecteduser.user"
+             [(ngModel)]="selecteduser.user.name" />
+
+      <!-- GRID -->
+      <div class="form-grid">
+
+        <!-- Branch -->
+        <mat-form-field appearance="outline"
+                        *ngIf="branches.length > 1 && selecteduser.user">
+
+          <mat-label>{{ 'EMPLOYEE_EDIT.BRANCH' | translate }}</mat-label>
+
+          <mat-select [(ngModel)]="selecteduser.user.branchID"
+                      name="branchID">
+
+            <mat-option *ngFor="let branch of branches"
+                        [value]="branch.branchID">
+
+              {{ branch.name }}
+
+            </mat-option>
+
+          </mat-select>
+
+        </mat-form-field>
+
+        <!-- Position -->
+        <mat-form-field appearance="outline">
+
+          <mat-label>{{ 'EMPLOYEE_EDIT.POSITION' | translate }}</mat-label>
+
+          <mat-select [(ngModel)]="selecteduser.position"
+                      name="position">
+
+            <mat-option value="Cashier">
+              {{ 'EMPLOYEE_EDIT.CASHIER' | translate }}
+            </mat-option>
+
+            <mat-option value="HeadCashier">
+              {{ 'EMPLOYEE_EDIT.HEAD_CASHIER' | translate }}
+            </mat-option>
+
+            <mat-option value="Driver">
+              {{ 'EMPLOYEE_EDIT.DRIVER' | translate }}
+            </mat-option>
+
+          </mat-select>
+
+        </mat-form-field>
+
+        <!-- Salary -->
+        <mat-form-field appearance="outline">
+
+          <mat-label>{{ 'EMPLOYEE_EDIT.SALARY' | translate }}</mat-label>
+
+          <input matInput
+                 type="number"
+                 [(ngModel)]="selecteduser.salary"
+                 name="salary" />
+
+        </mat-form-field>
+
+      </div>
+
+      <!-- MESSAGES -->
+      <div class="messages">
+
+        <div class="error" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <div class="success" *ngIf="successMessage">
+          {{ successMessage }}
+        </div>
+
+        <div class="info" *ngIf="infoMessage">
+          {{ infoMessage }}
+        </div>
+
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="actions">
+
+        <button mat-flat-button
+                class="btn-save"
+                type="submit"
+                [disabled]="!editForm.dirty">
+
+          {{ 'EMPLOYEE_EDIT.SAVE' | translate }}
+
+        </button>
+
+        <button mat-stroked-button
+                class="btn-cancel"
+                type="button"
+                (click)="editForm.resetForm(selecteduser)">
+
+          {{ 'EMPLOYEE_EDIT.CANCEL' | translate }}
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>

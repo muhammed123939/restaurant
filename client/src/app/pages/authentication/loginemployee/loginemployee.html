@@ -1,0 +1,74 @@
+<div class="auth-page">
+
+  <div class="auth-wrapper">
+
+    <mat-card class="auth-card">
+
+      <mat-card-content class="auth-content">
+
+        <!-- Logo -->
+        <div class="logo-box">
+          <img src="./assets/images/logos/dark-logo.svg" class="logo" alt="logo" />
+        </div>
+
+        <!-- Title -->
+        <h2 class="title">
+          {{ 'EMP_LOGIN.TITLE' | translate }}
+        </h2>
+
+        <p class="subtitle">
+          {{ 'EMP_LOGIN.SUBTITLE' | translate }}
+        </p>
+
+        <!-- Form -->
+        <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+
+          <!-- Employee Name -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'EMP_LOGIN.NAME' | translate }}</mat-label>
+            <input matInput formControlName="Name"
+                   [placeholder]="'EMP_LOGIN.ENTER_NAME' | translate" />
+
+            <mat-error *ngIf="form.get('Name')?.hasError('required')">
+              {{ 'EMP_LOGIN.NAME_REQUIRED' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'EMP_LOGIN.PASSWORD' | translate }}</mat-label>
+            <input matInput type="password" formControlName="Password"
+                   [placeholder]="'EMP_LOGIN.ENTER_PASSWORD' | translate" />
+
+            <mat-error *ngIf="form.get('Password')?.hasError('required')">
+              {{ 'EMP_LOGIN.PASSWORD_REQUIRED' | translate }}
+            </mat-error>
+
+            <mat-error *ngIf="form.get('Password')?.hasError('minlength')">
+              {{ 'EMP_LOGIN.PASSWORD_MIN' | translate }}
+            </mat-error>
+
+            <mat-error *ngIf="form.get('Password')?.hasError('maxlength')">
+              {{ 'EMP_LOGIN.PASSWORD_MAX' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Error -->
+          <div *ngIf="errorMessage" class="error-box">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Submit -->
+          <button mat-flat-button class="login-btn" type="submit">
+            {{ 'EMP_LOGIN.SIGN_IN' | translate }}
+          </button>
+
+        </form>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</div>

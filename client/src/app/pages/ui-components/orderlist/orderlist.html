@@ -1,0 +1,187 @@
+<mat-card class="talabat-card">
+  <mat-card-content>
+
+    <!-- Header -->
+    <div class="page-header">
+      <mat-icon>receipt_long</mat-icon>
+      <h2>{{ 'ORDERS.TITLE' | translate }}</h2>
+      <span class="count">({{ filteredOrders?.length || 0 }})</span>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+
+      <!-- Order ID -->
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'ORDERS.SEARCH_ORDER_ID' | translate }}</mat-label>
+        <input matInput type="number"
+               [(ngModel)]="orderIdSearch"
+               (input)="filterOrders()">
+      </mat-form-field>
+
+      <!-- Customer ID -->
+      <mat-form-field appearance="outline"
+        *ngIf="authService.isAdminwithPermissionLoggedIn 
+        || authService.isOwnerLoggedIn 
+        || authService.isDeveloperLoggedIn 
+        || authService.isNormalAdminLoggedIn">
+
+        <mat-label>{{ 'ORDERS.CUSTOMER_ID' | translate }}</mat-label>
+
+        <input matInput type="number"
+               [(ngModel)]="customerIdSearch"
+               (ngModelChange)="filterOrders()">
+
+      </mat-form-field>
+
+      <!-- Start Date -->
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'ORDERS.START_DATE' | translate }}</mat-label>
+        <input matInput [matDatepicker]="startPicker"
+               [(ngModel)]="startDate"
+               (dateChange)="filterOrders()">
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- End Date -->
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'ORDERS.END_DATE' | translate }}</mat-label>
+        <input matInput [matDatepicker]="endPicker"
+               [(ngModel)]="endDate"
+               (dateChange)="filterOrders()">
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrapper">
+
+      <table mat-table [dataSource]="pagedOrders" class="talabat-table">
+
+        <!-- No -->
+        <ng-container matColumnDef="orderNo">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let order; let i = index">
+            {{ currentPage * pageSize + i + 1 }}
+          </td>
+        </ng-container>
+
+        <!-- Order ID -->
+        <ng-container matColumnDef="orderID">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.ORDER_ID' | translate }}</th>
+          <td mat-cell *matCellDef="let order">
+            <span class="order-id">#{{ order.orderID }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Customer -->
+        <ng-container matColumnDef="customerID">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.CUSTOMER' | translate }}</th>
+          <td mat-cell *matCellDef="let order">
+
+            <span *ngIf="order.customerID; else guest">
+              {{ order.customerID }}
+
+              <button mat-icon-button
+                      (click)="openCustomerDetails(order.customerID)">
+                <mat-icon>person</mat-icon>
+              </button>
+
+            </span>
+
+            <ng-template #guest>
+              <span class="badge gray">{{ 'ORDERS.GUEST' | translate }}</span>
+            </ng-template>
+
+          </td>
+        </ng-container>
+
+        <!-- Date -->
+        <ng-container matColumnDef="orderDate">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.DATE' | translate }}</th>
+          <td mat-cell *matCellDef="let order">
+            {{ order.orderDate | date:'yyyy-MM-dd HH:mm' }}
+          </td>
+        </ng-container>
+
+        <!-- Total -->
+        <ng-container matColumnDef="totalAmount">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.TOTAL' | translate }}</th>
+          <td mat-cell *matCellDef="let order">
+            <span class="price">{{ order.totalAmount }} {{ 'COMMON.CURRENCY' | translate }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Details -->
+        <ng-container matColumnDef="details">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.DETAILS' | translate }}</th>
+          <td mat-cell *matCellDef="let order">
+            <button mat-icon-button (click)="openDetails(order)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.ACTIONS' | translate }}</th>
+          <td mat-cell *matCellDef="let order">
+
+            <button mat-icon-button (click)="editorder(order)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn"
+                    (click)="deleteOrder(order.orderID)">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </td>
+        </ng-container>
+
+        <!-- Type -->
+        <ng-container matColumnDef="orderPosition">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.TYPE' | translate }}</th>
+          <td mat-cell *matCellDef="let order">
+            <span class="badge orange">{{ order.orderPosition }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Table -->
+        <ng-container matColumnDef="tableNo">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.TABLE' | translate }}</th>
+          <td mat-cell *matCellDef="let order">
+            <span class="badge red">{{ order.tableNo || '-' }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Status -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.STATUS' | translate }}</th>
+          <td mat-cell *matCellDef="let order">
+            <span class="badge green">{{ order.status }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Comment -->
+        <ng-container matColumnDef="comment">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.COMMENT' | translate }}</th>
+          <td mat-cell *matCellDef="let order">
+            <button *ngIf="order.comment" (click)="viewComment(order.comment)">
+              💬
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      </table>
+
+    </div>
+
+  </mat-card-content>
+</mat-card>

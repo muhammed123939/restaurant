@@ -1,0 +1,9 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@include mat.badge-overrides(
+  (
+    background-color: #ff6b00,
+    text-color: #ffffff
+  )
+);

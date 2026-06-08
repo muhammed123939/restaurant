@@ -1,0 +1,147 @@
+<div class="auth-page">
+
+  <div class="auth-wrapper">
+
+    <mat-card class="auth-card">
+
+      <mat-card-content class="auth-content">
+
+        <!-- Logo -->
+        <div class="logo-box">
+          <a [routerLink]="['/dashboard']">
+            <img src="./assets/images/logos/dark-logo.svg" class="logo" alt="logo" />
+          </a>
+        </div>
+
+        <!-- Title -->
+        <h2 class="title">
+          {{ 'EMP_REGISTER.TITLE' | translate }}
+        </h2>
+
+        <p class="subtitle">
+          {{ 'EMP_REGISTER.SUBTITLE' | translate }}
+        </p>
+
+        <form [formGroup]="registerForm" (ngSubmit)="submit()" class="form">
+
+          <!-- Name -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'EMP_REGISTER.NAME' | translate }}</mat-label>
+            <input matInput formControlName="name"
+                   [placeholder]="'EMP_REGISTER.ENTER_NAME' | translate" />
+
+            <mat-error *ngIf="f['name'].touched && f['name'].errors?.['required']">
+              {{ 'EMP_REGISTER.NAME_REQUIRED' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Email -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'EMP_REGISTER.EMAIL' | translate }}</mat-label>
+            <input matInput type="email" formControlName="email" />
+
+            <mat-error *ngIf="f['email'].touched && f['email'].errors">
+              {{ 'EMP_REGISTER.EMAIL_INVALID' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Phone -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'EMP_REGISTER.PHONE' | translate }}</mat-label>
+            <input matInput formControlName="phone"
+                   maxlength="11"
+                   (input)="onPhoneInput()" />
+          </mat-form-field>
+
+          <!-- Branch -->
+          @if(branches.length > 1)
+          {
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'EMP_REGISTER.BRANCH' | translate }}</mat-label>
+
+            <mat-select formControlName="branchID">
+              <mat-option *ngFor="let b of branches" [value]="b.branchID">
+                {{ b.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          }
+
+          <!-- Position -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'EMP_REGISTER.POSITION' | translate }}</mat-label>
+
+            <mat-select formControlName="position">
+              <mat-option value="Cashier">{{ 'EMP_REGISTER.CASHIER' | translate }}</mat-option>
+              <mat-option value="HeadCashier">{{ 'EMP_REGISTER.HEAD_CASHIER' | translate }}</mat-option>
+              <mat-option value="Driver">{{ 'EMP_REGISTER.DRIVER' | translate }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Salary -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'EMP_REGISTER.SALARY' | translate }}</mat-label>
+            <input matInput type="number" formControlName="salary" />
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'EMP_REGISTER.PASSWORD' | translate }}</mat-label>
+
+            <input matInput
+                   [type]="hidePassword ? 'password' : 'text'"
+                   formControlName="password" />
+
+            <button mat-icon-button matSuffix type="button"
+                    (click)="hidePassword = !hidePassword">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- Confirm Password -->
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>{{ 'EMP_REGISTER.CONFIRM_PASSWORD' | translate }}</mat-label>
+
+            <input matInput
+                   [type]="hideConfirmPassword ? 'password' : 'text'"
+                   formControlName="confirmPassword" />
+
+            <button mat-icon-button matSuffix type="button"
+                    (click)="hideConfirmPassword = !hideConfirmPassword">
+              <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- Error -->
+          <div *ngIf="errorMessage" class="error-box">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Buttons -->
+          <button mat-flat-button class="register-btn" type="submit">
+            {{ 'EMP_REGISTER.SUBMIT' | translate }}
+          </button>
+
+          <button mat-stroked-button class="cancel-btn"
+                  type="button"
+                  (click)="registerForm.reset()">
+            {{ 'EMP_REGISTER.CANCEL' | translate }}
+          </button>
+
+        </form>
+
+        <!-- Footer -->
+        <div class="footer">
+          {{ 'EMP_REGISTER.FOOTER_TEXT' | translate }}
+          <a [routerLink]="['/dashboard']">
+            {{ 'EMP_REGISTER.DASHBOARD' | translate }}
+          </a>
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</div>

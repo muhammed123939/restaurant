@@ -1,0 +1,114 @@
+<mat-card class="branch-register-card">
+
+  <!-- Header -->
+  <div class="register-header">
+
+    <div class="header-icon">
+      <mat-icon>storefront</mat-icon>
+    </div>
+
+    <div class="header-content">
+      <h2>{{ 'BRANCH_REGISTER.TITLE' | translate }}</h2>
+      <p>{{ 'BRANCH_REGISTER.SUBTITLE' | translate }}</p>
+    </div>
+
+  </div>
+
+  <mat-card-content>
+
+    <!-- Error -->
+    <div *ngIf="errorMessage" class="alert error">
+      <mat-icon>error</mat-icon>
+      {{ errorMessage }}
+    </div>
+
+    <!-- Success -->
+    <div *ngIf="successMessage" class="alert success">
+      <mat-icon>check_circle</mat-icon>
+      {{ successMessage }}
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
+
+      <div class="form-grid">
+
+        <!-- Name -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'BRANCH_REGISTER.NAME' | translate }}</mat-label>
+
+          <mat-icon matPrefix>store</mat-icon>
+
+          <input matInput
+                 formControlName="name"
+                 [placeholder]="'BRANCH_REGISTER.NAME_PLACEHOLDER' | translate">
+
+          <mat-error *ngIf="registerForm.get('name')?.hasError('required')">
+            {{ 'BRANCH_REGISTER.NAME_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Phone -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'BRANCH_REGISTER.PHONE' | translate }}</mat-label>
+
+          <mat-icon matPrefix>phone</mat-icon>
+
+          <input matInput
+                 formControlName="phone"
+                 [placeholder]="'BRANCH_REGISTER.PHONE_PLACEHOLDER' | translate">
+
+          <mat-error *ngIf="registerForm.get('phone')?.hasError('required')">
+            {{ 'BRANCH_REGISTER.PHONE_REQUIRED' | translate }}
+          </mat-error>
+
+          <mat-error *ngIf="registerForm.get('phone')?.hasError('minlength') ||
+                            registerForm.get('phone')?.hasError('maxlength')">
+            {{ 'BRANCH_REGISTER.PHONE_INVALID' | translate }}
+          </mat-error>
+
+        </mat-form-field>
+
+        <!-- Location -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'BRANCH_REGISTER.LOCATION' | translate }}</mat-label>
+
+          <mat-icon matPrefix>location_on</mat-icon>
+
+          <input matInput
+                 formControlName="location"
+                 [placeholder]="'BRANCH_REGISTER.LOCATION_PLACEHOLDER' | translate">
+
+          <mat-error *ngIf="registerForm.get('location')?.hasError('required')">
+            {{ 'BRANCH_REGISTER.LOCATION_REQUIRED' | translate }}
+          </mat-error>
+
+        </mat-form-field>
+
+      </div>
+
+      <!-- Buttons -->
+      <div class="actions">
+
+        <button mat-flat-button type="submit"
+                class="btn-save"
+                [disabled]="registerForm.invalid">
+
+          <mat-icon>add_business</mat-icon>
+          {{ 'BRANCH_REGISTER.SUBMIT' | translate }}
+        </button>
+
+        <button mat-stroked-button type="button"
+                class="btn-cancel"
+                (click)="registerForm.reset()">
+
+          <mat-icon>refresh</mat-icon>
+          {{ 'BRANCH_REGISTER.RESET' | translate }}
+        </button>
+
+      </div>
+
+    </form>
+
+  </mat-card-content>
+
+</mat-card>

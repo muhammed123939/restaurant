@@ -1,0 +1,162 @@
+<mat-card class="user-card" *ngIf="selecteduser">
+
+  <!-- HEADER -->
+  <div class="user-header">
+
+    <div class="avatar">
+      {{ selecteduser.name?.charAt(0) || 'U' }}
+    </div>
+
+    <div>
+      <h2>{{ 'USER_EDIT.TITLE' | translate }}</h2>
+      <p>{{ 'USER_EDIT.SUBTITLE' | translate }}</p>
+    </div>
+
+  </div>
+
+  <mat-card-content>
+
+    <form #editForm="ngForm" (ngSubmit)="edit()" class="user-form">
+
+      <input type="hidden"
+             [(ngModel)]="selecteduser.userID"
+             name="id" />
+
+      <!-- GRID -->
+      <div class="form-grid">
+
+        <!-- Name -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'USER_EDIT.NAME' | translate }}</mat-label>
+          <input matInput
+                 name="name"
+                 required
+                 [(ngModel)]="selecteduser.name" />
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'USER_EDIT.EMAIL' | translate }}</mat-label>
+          <input matInput
+                 type="email"
+                 name="email"
+                 [(ngModel)]="selecteduser.email" />
+        </mat-form-field>
+
+        <!-- Branch -->
+        <mat-form-field appearance="outline"
+                        *ngIf="branches.length !== 1">
+
+          <mat-label>{{ 'USER_EDIT.BRANCH' | translate }}</mat-label>
+
+          <mat-select name="branchID"
+                      [(ngModel)]="selecteduser.branchID"
+                      required>
+
+            <mat-option *ngFor="let b of branches"
+                        [value]="b.branchID">
+              {{ b.name }}
+            </mat-option>
+
+          </mat-select>
+
+        </mat-form-field>
+
+        <!-- Phone -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'USER_EDIT.PHONE' | translate }}</mat-label>
+
+          <input matInput
+                 name="phone"
+                 required
+                 maxlength="14"
+                 [(ngModel)]="selecteduser.phone"
+                 (keypress)="allowOnlyNumbers($event)" />
+
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'USER_EDIT.PASSWORD' | translate }}</mat-label>
+
+          <input matInput
+                 type="password"
+                 name="password"
+                 [(ngModel)]="selecteduser.password"
+                 (ngModelChange)="passwordTouched = true" />
+
+        </mat-form-field>
+
+        <!-- Confirm Password -->
+        <mat-form-field appearance="outline"
+                        *ngIf="passwordTouched">
+
+          <mat-label>{{ 'USER_EDIT.CONFIRM_PASSWORD' | translate }}</mat-label>
+
+          <input matInput
+                 type="password"
+                 name="confirmPassword"
+                 [(ngModel)]="confirmPassword" />
+
+          <mat-error *ngIf="selecteduser.password !== confirmPassword && confirmPassword">
+            {{ 'USER_EDIT.PASSWORD_MISMATCH' | translate }}
+          </mat-error>
+
+        </mat-form-field>
+
+      </div>
+
+      <!-- MESSAGES -->
+      <div class="messages">
+
+        <div class="error" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <div class="info" *ngIf="infoMessage">
+          {{ infoMessage }}
+        </div>
+
+        <div class="success" *ngIf="successMessage">
+          {{ successMessage }}
+        </div>
+
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="actions">
+
+        <button mat-flat-button
+                class="btn-save"
+                type="submit"
+                [disabled]="!editForm.dirty ||
+                (passwordTouched && selecteduser.password !== confirmPassword)">
+
+          {{ 'USER_EDIT.SAVE' | translate }}
+        </button>
+
+        <button mat-stroked-button
+                class="btn-address"
+                type="button"
+                *ngIf="selecteduser?.role === 'Client'"
+                (click)="editAddress()">
+
+          {{ 'USER_EDIT.ADDRESSES' | translate }}
+
+        </button>
+
+        <button mat-stroked-button
+                class="btn-cancel"
+                type="button"
+                (click)="resetForm(editForm)">
+
+          {{ 'USER_EDIT.CANCEL' | translate }}
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>

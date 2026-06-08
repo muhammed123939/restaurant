@@ -1,0 +1,76 @@
+<div class="branches-page">
+
+  <!-- Add Branch Button -->
+  <div *ngIf="authService.isDeveloperLoggedIn" class="header-section">
+    <button mat-raised-button class="add-btn" (click)="signup()">
+      <mat-icon>add</mat-icon>
+      {{ 'BRANCHES.ADD' | translate }}
+    </button>
+  </div>
+
+  <!-- Branch Cards -->
+  <div class="branches-grid" *ngIf="branches.length > 0">
+
+    <mat-card class="branch-card" *ngFor="let branch of branches">
+
+      <div class="card-header">
+        <div>
+          <h3>{{ branch.name }}</h3>
+          <span class="branch-id">#{{ branch.branchID }}</span>
+        </div>
+
+        <div class="actions">
+          <button mat-icon-button color="primary"
+                  (click)="edititem(branch)">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn"
+                  (click)="deleteitem(branch)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="card-body">
+
+        <div class="info-row">
+          <mat-icon>badge</mat-icon>
+          <span>{{ 'BRANCHES.ID' | translate }}:</span>
+          <strong>{{ branch.branchID }}</strong>
+        </div>
+
+        <div class="info-row">
+          <mat-icon>store</mat-icon>
+          <span>{{ 'BRANCHES.NAME' | translate }}:</span>
+          <strong>{{ branch.name }}</strong>
+        </div>
+
+        <div class="info-row">
+          <mat-icon>phone</mat-icon>
+          <span>{{ 'BRANCHES.MOBILE' | translate }}:</span>
+          <strong>{{ branch.phone }}</strong>
+        </div>
+
+        <div class="info-row">
+          <mat-icon>location_on</mat-icon>
+          <span>{{ 'BRANCHES.LOCATION' | translate }}:</span>
+          <strong>{{ branch.location }}</strong>
+        </div>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+  <!-- Empty State -->
+  <mat-card *ngIf="branches.length === 0" class="empty-card">
+    <mat-icon>storefront</mat-icon>
+    <h3>{{ 'BRANCHES.EMPTY_TITLE' | translate }}</h3>
+    <p>{{ 'BRANCHES.EMPTY_DESC' | translate }}</p>
+  </mat-card>
+
+</div>

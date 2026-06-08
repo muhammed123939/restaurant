@@ -1,0 +1,52 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../variables" as *;
+
+@include mat.card-overrides((
+  elevated-container-color: #ffffff,
+
+  title-text-size: 18px,
+  subtitle-text-size: 14px,
+  title-text-weight: 600,
+  subtitle-text-weight: 400,
+
+  /* SAFE SHAPE VALUES */
+  elevated-container-shape: 16px,
+  outlined-container-shape: 16px,
+));
+
+html {
+
+  .mat-mdc-card {
+    margin-bottom: 24px;
+    border-radius: 16px !important;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+  }
+
+  /* Hover effect (Talabat style lift) */
+  .card-hover {
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  /* Header spacing */
+  .mat-mdc-card-header {
+    padding: 16px 20px !important;
+  }
+
+  /* Content spacing */
+  .mat-mdc-card-content {
+    padding: 20px !important;
+  }
+
+  /* Actions spacing */
+  .mdc-card__actions {
+    padding: 16px 20px !important;
+  }
+}

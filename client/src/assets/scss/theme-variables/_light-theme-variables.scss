@@ -1,0 +1,70 @@
+// html .light-theme {
+//   color-scheme: light;
+//   --mat-sys-corner-small: 7px;
+//   --mat-sys-corner-medium: 20px;
+//   --mat-sys-background: #fafafa;
+//   --mat-sys-surface-bright: #f2f6fa;
+//   --mat-sys-surface: #fff;
+//   --mat-sys-surface-container: #fff;
+//   --mat-sys-surface-container-low: #fff;
+//   --mat-sys-on-background: #2a3547;
+//   --mat-sys-outline: #d7dde2;
+//   --mat-sys-outline-variant: #d7dde2;
+//   --mdc-outlined-text-field-hover-outline-color: #d7dde2;
+//   --mdc-checkbox-unselected-hover-state-layer-color: #d7dde2;
+//   --mat-menu-item-hover-state-layer-color: #f6f9fc;
+//   --mat-standard-button-toggle-state-layer-color: #f6f9fc;
+// }
+
+
+
+html .light-theme {
+  color-scheme: light;
+
+  /* Border Radius */
+  --mat-sys-corner-small: 10px;
+  --mat-sys-corner-medium: 20px;
+
+  /* Backgrounds */
+  --mat-sys-background: #fafafa;
+  --mat-sys-surface-bright: #ffffff;
+  --mat-sys-surface: #ffffff;
+  --mat-sys-surface-container: #ffffff;
+  --mat-sys-surface-container-low: #ffffff;
+
+  /* Text */
+  --mat-sys-on-background: #222222;
+
+  /* Borders */
+  --mat-sys-outline: #eeeeee;
+  --mat-sys-outline-variant: #eeeeee;
+
+  /* Inputs */
+  --mdc-outlined-text-field-hover-outline-color: #ffb87a;
+  --mdc-checkbox-unselected-hover-state-layer-color: #fff2e8;
+
+  /* Hover States */
+  --mat-menu-item-hover-state-layer-color: #fff5ee;
+  --mat-standard-button-toggle-state-layer-color: #fff5ee;
+  --mat-option-focus-state-layer-color: #fff5ee;
+  --mat-option-hover-state-layer-color: #fff5ee;
+  --mat-stepper-header-focus-state-layer-color: #fff5ee;
+  --mat-stepper-header-hover-state-layer-color: #fff5ee;
+  --mat-expansion-header-hover-state-layer-color: #fff5ee;
+
+  /* Switches */
+  --mdc-switch-unselected-track-color: #ffe6d4;
+
+  /* Dialog */
+  --mdc-dialog-supporting-text-color: var(--mat-sys-on-background);
+
+  /* Custom Talabat Colors */
+  --app-primary: #ff6b00;
+  --app-primary-hover: #e85f00;
+  --app-primary-light: #fff0e6;
+
+  /* Shadows */
+  --app-card-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}

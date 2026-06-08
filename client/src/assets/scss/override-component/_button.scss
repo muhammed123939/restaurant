@@ -1,0 +1,89 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../variables" as *;
+
+/* BUTTON CORE STYLE (Talabat-like) */
+@include mat.button-overrides(
+  (
+    protected-hover-container-elevation-shadow: var(--mat-sys-level1),
+
+    filled-horizontal-padding: 16px,
+    outlined-horizontal-padding: 16px,
+    protected-horizontal-padding: 16px,
+    text-horizontal-padding: 16px,
+
+    /* pill shape like Talabat */
+    filled-container-shape: 999px,
+    outlined-container-shape: 999px,
+    protected-container-shape: 999px,
+    text-container-shape: 999px,
+  )
+);
+
+/* ICON BUTTONS */
+@include mat.icon-button-overrides(
+  (
+    icon-color: #444444,
+  )
+);
+
+/* =========================
+   TALABAT BUTTON STYLES
+========================= */
+html {
+
+  /* Light hover buttons */
+  .mat-mdc-button-base.bg-light-primary:hover,
+  .mat-mdc-button-base.bg-light-secondary:hover,
+  .mat-mdc-button-base.bg-light-error:hover,
+  .mat-mdc-button-base.bg-light-warning:hover,
+  .mat-mdc-button-base.bg-light-success:hover {
+    color: #ffffff !important;
+  }
+
+  /* PRIMARY (Talabat Orange) */
+  .mat-mdc-button-base.bg-light-primary {
+    &:hover {
+      background-color: #ff6b00 !important;
+    }
+  }
+
+  /* SECONDARY */
+  .mat-mdc-button-base.bg-light-secondary {
+    &:hover {
+      background-color: #555555 !important;
+    }
+  }
+
+  /* ERROR */
+  .mat-mdc-button-base.bg-light-error {
+    &:hover {
+      background-color: #ef4444 !important;
+    }
+  }
+
+  /* WARNING (warm food-like tone) */
+  .mat-mdc-button-base.bg-light-warning {
+    &:hover {
+      background-color: #f59e0b !important;
+    }
+  }
+
+  /* SUCCESS */
+  .mat-mdc-button-base.bg-light-success {
+    &:hover {
+      background-color: #22c55e !important;
+    }
+  }
+
+  /* OUTLINE BUTTONS */
+  .mat-mdc-outlined-button:not(:disabled) {
+    border-color: #eeeeee !important;
+  }
+
+  /* TALABAT FEEL ON HOVER */
+  .mat-mdc-button-base:hover {
+    transition: all 0.2s ease;
+    transform: translateY(-1px);
+  }
+}

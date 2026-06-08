@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+/* Talabat-style chips (compatible with your Material version) */
+@include mat.chips-overrides(
+  (
+    focus-state-layer-color: rgba(255, 107, 0, 0.15),
+    hover-state-layer-color: rgba(255, 107, 0, 0.10),
+
+    selected-label-text-color: #ffffff,
+    selected-hover-state-layer-color: #e85f00,
+    selected-focus-state-layer-color: #e85f00,
+    selected-trailing-icon-color: #ffffff,
+
+    label-text-color: #444,
+    outline-color: #eeeeee,
+  )
+);

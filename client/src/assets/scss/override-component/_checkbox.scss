@@ -1,0 +1,54 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+/* Angular Material checkbox overrides */
+@include mat.checkbox-overrides(
+  (
+    unselected-focus-icon-color: #ff6b00,
+    selected-icon-color: #ff6b00,
+    selected-focus-icon-color: #ff6b00,
+    selected-hover-icon-color: #ff6b00,
+  )
+);
+
+/* =========================
+   TALABAT STYLE CHECKBOX
+========================= */
+html {
+
+  /* Checkbox box */
+  .mdc-checkbox__background {
+    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+
+    border: 1px solid #e5e5e5;
+    background-color: #ffffff;
+  }
+
+  /* Checked state background */
+  .mdc-checkbox--selected .mdc-checkbox__background {
+    background-color: #ff6b00 !important;
+    border-color: #ff6b00 !important;
+  }
+
+  /* Checkmark color */
+  .mdc-checkbox__checkmark {
+    color: #ffffff !important;
+  }
+
+  /* Hover ripple (Talabat soft orange glow) */
+  .mdc-checkbox .mdc-checkbox__native-control:focus ~ .mdc-checkbox__ripple {
+    background-color: rgba(255, 107, 0, 0.15);
+  }
+
+  /* Hover effect */
+  .mdc-checkbox:hover .mdc-checkbox__background {
+    border-color: #ff6b00;
+  }
+
+  /* Smooth animation */
+  .mdc-checkbox {
+    transition: all 0.2s ease;
+  }
+}

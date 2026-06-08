@@ -1,0 +1,273 @@
+/* ===========================
+   TALABAT STYLE MENU PAGE
+   =========================== */
+
+.cardWithShadow {
+  border-radius: 20px;
+  border: none;
+  background: #fff;
+  padding: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.mat-mdc-card-title,
+mat-card-title {
+  font-size: 28px !important;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+/* ===========================
+   BUTTONS
+   =========================== */
+
+button[mat-raised-button] {
+  border-radius: 12px !important;
+  font-weight: 600;
+  height: 46px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  transition: all 0.25s ease;
+}
+
+button[mat-raised-button]:hover {
+  transform: translateY(-2px);
+}
+
+/* Primary Buttons */
+.mat-mdc-raised-button.mat-primary {
+  background: #ff5a00 !important;
+  color: white !important;
+}
+
+/* Accent Buttons */
+.mat-mdc-raised-button.mat-accent {
+  background: #00b14f !important;
+  color: white !important;
+}
+
+/* Warn Buttons */
+.mat-mdc-raised-button.mat-warn {
+  background: #d32f2f !important;
+  color: white !important;
+}
+
+/* ===========================
+   EDIT ORDER ALERT
+   =========================== */
+
+.edit-mode-alert {
+  background: #fff4eb;
+  border: 1px solid #ffd4b3;
+  border-radius: 14px;
+}
+
+.text-purple {
+  color: #ff5a00;
+}
+
+.edit-text {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* ===========================
+   FORM FIELDS
+   =========================== */
+
+mat-form-field {
+  margin-right: 12px;
+}
+
+.w-250 {
+  width: 260px;
+}
+
+/* IMPORTANT FIX */
+.mat-mdc-form-field {
+  background: transparent !important;
+}
+
+/* Search & Select styling */
+.mat-mdc-text-field-wrapper {
+  background: #fff !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+}
+
+.mdc-text-field {
+  padding: 0 !important;
+}
+
+.mat-mdc-form-field-focus-overlay {
+  display: none !important;
+}
+
+/* ===========================
+   TABLE
+   =========================== */
+
+.table-responsive {
+  margin-top: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mat-mdc-header-row {
+  background: #fff8f3;
+}
+
+.mat-mdc-header-cell {
+  color: #444 !important;
+  font-size: 15px;
+  font-weight: 700;
+  border-bottom: 2px solid #f3f3f3;
+}
+
+.mat-mdc-row {
+  transition: all 0.2s ease;
+}
+
+.mat-mdc-row:hover {
+  background: #fafafa;
+}
+
+.mat-mdc-cell {
+  border-bottom: 1px solid #f1f1f1;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+/* ===========================
+   PRODUCT
+   =========================== */
+
+.mat-mdc-cell img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid #eee;
+}
+
+.mat-mdc-cell h4 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #222;
+}
+
+.mat-mdc-cell small {
+  color: #777;
+  font-size: 13px;
+}
+
+.mat-column-sell_price {
+  font-weight: 700;
+  color: #00b14f;
+}
+
+.mat-column-buy_price {
+  color: #777;
+}
+
+.mat-column-quantity {
+  font-weight: 700;
+}
+
+/* ===========================
+   ACTIONS
+   =========================== */
+
+.mat-column-actions button[mat-raised-button] {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  padding: 0;
+  border-radius: 50% !important;
+  background: #ff5a00 !important;
+  color: white !important;
+}
+
+.mat-column-actions button[mat-icon-button] {
+  margin-left: 5px;
+}
+
+
+/* ===========================
+   MENU
+   =========================== */
+
+.mat-mdc-menu-panel {
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+.mat-mdc-menu-content {
+  padding: 12px !important;
+}
+
+/* ===========================
+   CART BUTTON
+   =========================== */
+
+button[color="accent"] {
+  background: #00b14f !important;
+  color: white !important;
+  font-weight: 700;
+}
+
+/* ===========================
+   SELECTED TABLE
+   =========================== */
+
+.selected-table,
+span[style*="color: #d32f2f"] {
+  background: #fff4eb;
+  color: #ff5a00 !important;
+  padding: 8px 14px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+/* ===========================
+   MOBILE
+   =========================== */
+
+@media (max-width: 768px) {
+
+  .w-250 {
+    width: 100%;
+  }
+
+  mat-form-field {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .mat-mdc-cell img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .mat-mdc-cell h4 {
+    font-size: 14px;
+  }
+
+  .edit-text {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

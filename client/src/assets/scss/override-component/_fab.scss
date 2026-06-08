@@ -1,0 +1,26 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@include mat.fab-overrides(
+  (
+    /* Talabat-style shape */
+    container-shape: 999px,
+    small-container-shape: 999px,
+    extended-container-shape: 999px,
+
+    /* Remove heavy Material elevation */
+    container-elevation-shadow: none,
+    small-container-elevation-shadow: none,
+    extended-container-elevation-shadow: none,
+
+    /* Soft hover elevation (Talabat feel) */
+    hover-container-elevation-shadow:
+      0 6px 18px rgba(0, 0, 0, 0.12),
+
+    small-hover-container-elevation-shadow:
+      0 6px 18px rgba(0, 0, 0, 0.12),
+
+    extended-hover-container-elevation-shadow:
+      0 6px 18px rgba(0, 0, 0, 0.12),
+  )
+);

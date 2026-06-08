@@ -1,0 +1,10 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@include mat.list-overrides(
+  (
+    list-item-hover-state-layer-color: rgba(255, 107, 0, 0.08),
+    list-item-container-shape: 12px,
+    active-indicator-shape: 12px,
+  )
+);

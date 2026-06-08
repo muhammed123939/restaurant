@@ -1,0 +1,10 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@include mat.menu-overrides(
+  (
+    container-shape: 14px,
+    container-elevation-shadow:
+      0 6px 18px rgba(0, 0, 0, 0.08),
+  )
+);

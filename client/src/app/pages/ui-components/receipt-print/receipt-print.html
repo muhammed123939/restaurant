@@ -1,0 +1,143 @@
+<div class="receipt" id="receipt" *ngIf="receipt">
+
+  <!-- HEADER -->
+  <div class="header">
+
+    <h3>{{ 'RECEIPT.RESTAURANT_NAME' | translate }}</h3>
+
+    <p>
+      {{ 'RECEIPT.ORDER_NUMBER' | translate }}: {{ receipt.orderNumber }}
+    </p>
+
+    <p>{{ receipt.date | date:'short' }}</p>
+
+    <p>
+      {{ 'RECEIPT.CASHIER' | translate }}:
+      {{ employee?.name || ('RECEIPT.NOT_AVAILABLE' | translate) }}
+    </p>
+
+    <p>
+      {{ 'RECEIPT.ORDER_TYPE' | translate }} :
+      {{ receipt.orderPosition }}
+    </p>
+
+    <ng-container *ngIf="receipt.tableNo">
+      <p>
+        <strong>{{ 'RECEIPT.TABLE_NO' | translate }}:</strong>
+        {{ receipt.tableNo }}
+      </p>
+    </ng-container>
+
+    <ng-container *ngIf="receipt.customerName">
+
+      <p>
+        <strong>{{ 'RECEIPT.CUSTOMER' | translate }}:</strong>
+        {{ receipt.customerName }}
+      </p>
+
+      <p>
+        <strong>{{ 'RECEIPT.PHONE' | translate }}:</strong>
+        {{ receipt.customerPhone }}
+      </p>
+
+    </ng-container>
+
+    <ng-container *ngIf="receipt.orderComment">
+
+      <p>
+        <strong>{{ 'RECEIPT.ORDER_COMMENT' | translate }}:</strong>
+        {{ receipt.orderComment }}
+      </p>
+
+    </ng-container>
+
+    <ng-container *ngIf="receipt.deliveryComment">
+
+      <p>
+        <strong>{{ 'RECEIPT.DELIVERY_COMMENT' | translate }}:</strong>
+        {{ receipt.deliveryComment }}
+      </p>
+
+    </ng-container>
+
+    <ng-container *ngIf="receipt.building">
+
+      <p>
+        <strong>{{ 'RECEIPT.ADDRESS' | translate }}:</strong>
+      </p>
+
+      <p>
+        {{ 'RECEIPT.STREET' | translate }}: {{ receipt.street }}
+        -
+        {{ 'RECEIPT.BUILDING' | translate }}: {{ receipt.building }}
+        -
+        {{ 'RECEIPT.APARTMENT' | translate }}: {{ receipt.appartment }}
+        -
+        {{ 'RECEIPT.FLOOR' | translate }}: {{ receipt.floor }}
+        -
+        {{ 'RECEIPT.CITY' | translate }}: {{ receipt.city }}
+      </p>
+
+    </ng-container>
+
+  </div>
+
+  <hr />
+
+  <!-- ITEMS -->
+  <div class="items">
+
+    <div class="row title">
+      <span>{{ 'RECEIPT.ITEM' | translate }}</span>
+      <span>{{ 'RECEIPT.QTY' | translate }}</span>
+      <span>{{ 'RECEIPT.TOTAL_COLUMN' | translate }}</span>
+    </div>
+
+    <div class="row" *ngFor="let item of receipt.items">
+      <span class="name">{{ item.name }}</span>
+      <span>{{ item.quantity }}</span>
+      <span>{{ (item.quantity * item.price) | number:'1.2-2' }}</span>
+    </div>
+
+  </div>
+
+  <hr />
+
+  <!-- SUMMARY -->
+  <div class="summary">
+
+    <p>
+      {{ 'RECEIPT.ORDER_COMMENT_LABEL' | translate }}:
+      {{ receipt.ordercomment }}
+    </p>
+
+    <p>
+      {{ 'RECEIPT.SUBTOTAL' | translate }}:
+      {{ receipt.subTotal }}
+    </p>
+
+    <p>
+      {{ 'RECEIPT.TAX' | translate }}:
+      {{ receipt.tax }}
+    </p>
+
+    <h3>
+      {{ 'RECEIPT.TOTAL' | translate }}:
+      {{ receipt.total }}
+    </h3>
+
+  </div>
+
+  <hr />
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>{{ 'RECEIPT.THANK_YOU' | translate }}</p>
+  </div>
+
+</div>
+
+<!-- PRINT BUTTON -->
+<button (click)="printReceipt()">
+  {{ 'RECEIPT.PRINT' | translate }}
+</button>

@@ -1,0 +1,167 @@
+<div class="clients-page">
+
+  <mat-card class="clients-card">
+
+    <!-- Header -->
+    <div class="page-header">
+
+      <div class="header-left">
+        <div class="header-icon">
+          <mat-icon>people</mat-icon>
+        </div>
+
+        <div>
+          <h2>{{ 'CLIENTS.TITLE' | translate }}</h2>
+          <p>{{ 'CLIENTS.SUBTITLE' | translate }}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Top Actions -->
+    <div class="top-bar">
+
+      <!-- Search -->
+      <mat-form-field appearance="outline" class="search-box">
+        <mat-label>{{ 'CLIENTS.SEARCH_LABEL' | translate }}</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+
+        <input
+          matInput
+          [placeholder]="'CLIENTS.SEARCH_PLACEHOLDER' | translate"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()" />
+      </mat-form-field>
+
+      <!-- Add Client -->
+      <button mat-flat-button class="btn-primary" (click)="signUp()">
+        <mat-icon>person_add</mat-icon>
+        {{ 'CLIENTS.ADD' | translate }}
+      </button>
+
+    </div>
+
+    <!-- Offer Section -->
+    <form (ngSubmit)="submitOffer()" class="offer-box">
+
+      <mat-form-field appearance="outline" class="offer-input">
+        <mat-label>{{ 'CLIENTS.OFFER_LABEL' | translate }}</mat-label>
+
+        <mat-icon matPrefix>local_offer</mat-icon>
+
+        <textarea
+          matInput
+          rows="1"
+          [(ngModel)]="offer"
+          name="offer"
+          [placeholder]="'CLIENTS.OFFER_PLACEHOLDER' | translate">
+        </textarea>
+
+      </mat-form-field>
+
+      <button mat-flat-button class="btn-send" type="submit">
+        <mat-icon>send</mat-icon>
+        {{ 'CLIENTS.SEND_OFFER' | translate }}
+      </button>
+
+    </form>
+
+    <!-- Messages -->
+    <div *ngIf="errorMessage" class="alert error">
+      <mat-icon>error</mat-icon>
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="alert success">
+      <mat-icon>check_circle</mat-icon>
+      {{ successMessage }}
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrapper">
+
+      <table mat-table [dataSource]="clients" class="clients-table">
+
+        <!-- ID -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>{{ 'CLIENTS.ID' | translate }}</th>
+          <td mat-cell *matCellDef="let client">
+            <span class="badge">#{{ client.userID }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Name -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>{{ 'CLIENTS.NAME' | translate }}</th>
+          <td mat-cell *matCellDef="let client">
+            <div class="client-name">
+              <mat-icon>person</mat-icon>
+              {{ client.name }}
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Email -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>{{ 'CLIENTS.EMAIL' | translate }}</th>
+          <td mat-cell *matCellDef="let client">{{ client.email }}</td>
+        </ng-container>
+
+        <!-- Phone -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef>{{ 'CLIENTS.PHONE' | translate }}</th>
+          <td mat-cell *matCellDef="let client">{{ client.phone }}</td>
+        </ng-container>
+
+        <!-- Branch -->
+        <ng-container matColumnDef="branch">
+          <th mat-header-cell *matHeaderCellDef>{{ 'CLIENTS.BRANCH' | translate }}</th>
+          <td mat-cell *matCellDef="let client">
+            <span class="branch-chip">
+              <mat-icon>store</mat-icon>
+              {{ client.branchName }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>{{ 'CLIENTS.ACTIONS' | translate }}</th>
+
+          <td mat-cell *matCellDef="let client" class="actions-cell">
+
+            <button mat-icon-button class="edit-btn" (click)="edititem(client)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button class="delete-btn"
+              *ngIf="authService.isAdminwithPermissionLoggedIn || authService.isOwnerLoggedIn || authService.isDeveloperLoggedIn"
+              (click)="deleteitem(client)">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+            <button mat-flat-button class="order-btn" (click)="placeorder(client)">
+              <mat-icon>add_shopping_cart</mat-icon>
+              {{ 'CLIENTS.ORDER' | translate }}
+            </button>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      </table>
+
+    </div>
+
+    <!-- Empty -->
+    <div *ngIf="clients?.length === 0" class="empty-state">
+      <mat-icon>person_off</mat-icon>
+      <h3>{{ 'CLIENTS.EMPTY_TITLE' | translate }}</h3>
+      <p>{{ 'CLIENTS.EMPTY_DESC' | translate }}</p>
+    </div>
+
+  </mat-card>
+
+</div>

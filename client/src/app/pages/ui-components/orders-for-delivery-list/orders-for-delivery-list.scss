@@ -1,0 +1,117 @@
+/* PAGE */
+.talabat-page {
+  padding: 20px;
+  background: #fafafa;
+}
+
+/* HEADER */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.page-header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.count {
+  color: #ff5a00;
+  font-weight: 600;
+}
+
+/* TABLE WRAPPER */
+.table-wrapper {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* TABLE */
+table {
+  width: 100%;
+}
+
+/* HEADER */
+.mat-mdc-header-row {
+  background: #fff4eb;
+}
+
+.mat-mdc-header-cell {
+  font-weight: 700;
+  color: #444;
+}
+
+/* ROW HOVER */
+.mat-mdc-row:hover {
+  background: #fafafa;
+}
+
+/* IDS */
+.id {
+  color: #ff5a00;
+  font-weight: 700;
+}
+
+.order-id {
+  color: #00b14f;
+  font-weight: 700;
+}
+
+/* LINKS */
+.link {
+  color: #1976d2;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* BADGES */
+.badge {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.Pending {
+  background: #fff4eb;
+  color: #ff5a00;
+}
+
+.badge.Delivered {
+  background: #e8f5e9;
+  color: #00b14f;
+}
+
+.badge.Assigned {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+/* ACTION BUTTONS */
+button[mat-icon-button] {
+  background: #f5f5f5;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+button[mat-icon-button]:hover {
+  background: #eee;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  table {
+    font-size: 12px;
+  }
+}

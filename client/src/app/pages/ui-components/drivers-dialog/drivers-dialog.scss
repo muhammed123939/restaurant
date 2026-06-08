@@ -1,0 +1,121 @@
+/* =========================
+   TITLE
+========================= */
+.dialog-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-weight: 600;
+  color: #ff5a00;
+}
+
+.dialog-title mat-icon {
+  color: #ff5a00;
+}
+
+/* =========================
+   CONTENT
+========================= */
+.dialog-content {
+  padding: 10px 0;
+}
+
+/* =========================
+   DRIVER LIST
+========================= */
+.driver-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 350px;
+  overflow: auto;
+}
+
+/* DRIVER CARD */
+.driver-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px;
+  border-radius: 14px;
+
+  background: #fafafa;
+  border: 1px solid transparent;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.driver-card:hover {
+  background: #fff3e6;
+}
+
+/* SELECTED STATE */
+.driver-card.selected {
+  border-color: #ff5a00;
+  background: #fff3e6;
+}
+
+/* AVATAR */
+.driver-avatar {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  background: #ff5a00;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+}
+
+/* INFO */
+.driver-info {
+  flex: 1;
+}
+
+.name {
+  font-weight: 600;
+  color: #333;
+}
+
+.sub {
+  font-size: 12px;
+  color: #888;
+}
+
+/* CHECK ICON */
+.check {
+  color: #ff5a00;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  padding: 12px;
+}
+
+.btn-cancel {
+  border-radius: 10px;
+}
+
+.btn-assign {
+  background: #ff5a00 !important;
+  color: #fff !important;
+
+  border-radius: 10px;
+}
+
+.btn-assign:disabled {
+  background: #ccc !important;
+}

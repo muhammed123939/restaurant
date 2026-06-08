@@ -1,0 +1,105 @@
+<h2 mat-dialog-title class="order-dialog-title">
+  <div class="title-left">
+    <mat-icon>receipt_long</mat-icon>
+    <span>{{ 'ORDER_DIALOG.TITLE' | translate }}</span>
+  </div>
+
+  <span class="order-id-badge">
+    #{{ order.orderID }}
+  </span>
+</h2>
+
+<mat-dialog-content class="order-details-content">
+
+  <!-- TRACKER -->
+  <div class="order-tracker">
+
+    <div class="step" [class.active]="isStepActive(1)">
+      <div class="circle">1</div>
+      <div class="text">{{ 'ORDER_DIALOG.STEP_PREPARING' | translate }}</div>
+    </div>
+
+    <div class="line" [class.active]="isStepActive(2)"></div>
+
+    <div class="step" [class.active]="isStepActive(2)">
+      <div class="circle">2</div>
+      <div class="text">{{ 'ORDER_DIALOG.STEP_OUT_FOR_DELIVERY' | translate }}</div>
+    </div>
+
+    <div class="line" [class.active]="isStepActive(3)"></div>
+
+    <div class="step" [class.active]="isStepActive(3)">
+      <div class="circle">3</div>
+      <div class="text">{{ 'ORDER_DIALOG.STEP_DELIVERED' | translate }}</div>
+    </div>
+
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div class="order-summary-card">
+
+    <div class="summary-item">
+      <span class="label">{{ 'ORDER_DIALOG.DATE' | translate }}</span>
+      <span class="value">
+        {{ order.orderDate | date:'yyyy-MM-dd HH:mm' }}
+      </span>
+    </div>
+
+    <div class="summary-item">
+      <span class="label">{{ 'ORDER_DIALOG.ITEMS' | translate }}</span>
+      <span class="value">
+        {{ order.orderDetails?.length }}
+      </span>
+    </div>
+
+    <div class="summary-item total">
+      <span class="label">{{ 'ORDER_DIALOG.TOTAL' | translate }}</span>
+      <span class="value">
+        {{ order.totalAmount }} {{ 'COMMON.CURRENCY' | translate }}
+      </span>
+    </div>
+
+  </div>
+
+  <!-- ITEMS -->
+  <div class="items-list">
+
+    <div class="item-card" *ngFor="let detail of order.orderDetails">
+
+      <div class="item-info">
+
+        <div class="item-name">
+          {{ detail.name }}
+        </div>
+
+        <div class="item-id">
+          {{ 'ORDER_DIALOG.ITEM_LABEL' | translate }} #{{ detail.menuItemID }}
+        </div>
+
+      </div>
+
+      <div class="item-right">
+
+        <div class="item-qty">
+          x{{ detail.quantity }}
+        </div>
+
+        <div class="item-price">
+          {{ detail.price * detail.quantity }} {{ 'COMMON.CURRENCY' | translate }}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="order-dialog-actions">
+
+  <button mat-raised-button color="primary" mat-dialog-close>
+    {{ 'COMMON.CLOSE' | translate }}
+  </button>
+
+</mat-dialog-actions>

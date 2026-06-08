@@ -1,0 +1,81 @@
+<div class="talabat-dialog">
+
+  <!-- Header -->
+  <div class="dialog-header">
+    <div class="header-icon">
+      <mat-icon>comment</mat-icon>
+    </div>
+
+    <div class="header-content">
+      <h2>{{ 'COMMENTS.TITLE' | translate }}</h2>
+      <p>{{ 'COMMENTS.SUBTITLE' | translate }}</p>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <mat-dialog-content class="dialog-content">
+
+    <!-- Order Comment -->
+    <div class="section-title">
+      <mat-icon>restaurant</mat-icon>
+      {{ 'COMMENTS.ORDER_TITLE' | translate }}
+    </div>
+
+    <mat-form-field appearance="outline" class="w-100 talabat-field">
+
+      <textarea
+        matInput
+        rows="4"
+        maxlength="300"
+        [placeholder]="'COMMENTS.ORDER_PLACEHOLDER' | translate"
+        [(ngModel)]="orderComment">
+      </textarea>
+
+      <mat-hint align="end">
+        {{ orderComment?.length || 0 }}/300
+      </mat-hint>
+    </mat-form-field>
+
+    <!-- Delivery Comment -->
+    <ng-container *ngIf="hasDelivery">
+
+      <div class="section-title mt-3">
+        <mat-icon>delivery_dining</mat-icon>
+        {{ 'COMMENTS.DELIVERY_TITLE' | translate }}
+      </div>
+
+      <mat-form-field appearance="outline" class="w-100 talabat-field">
+
+        <textarea
+          matInput
+          rows="4"
+          maxlength="300"
+          [placeholder]="'COMMENTS.DELIVERY_PLACEHOLDER' | translate"
+          [(ngModel)]="deliveryComment">
+        </textarea>
+
+        <mat-hint align="end">
+          {{ deliveryComment?.length || 0 }}/300
+        </mat-hint>
+      </mat-form-field>
+
+    </ng-container>
+
+  </mat-dialog-content>
+
+  <!-- Footer -->
+  <mat-dialog-actions class="dialog-actions">
+
+    <button mat-stroked-button class="btn-cancel" (click)="close()">
+      <mat-icon>close</mat-icon>
+      {{ 'COMMENTS.CANCEL' | translate }}
+    </button>
+
+    <button mat-flat-button class="btn-save" (click)="save()">
+      <mat-icon>save</mat-icon>
+      {{ 'COMMENTS.SAVE' | translate }}
+    </button>
+
+  </mat-dialog-actions>
+
+</div>

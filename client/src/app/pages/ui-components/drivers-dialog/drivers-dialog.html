@@ -1,0 +1,52 @@
+<h2 mat-dialog-title class="dialog-title">
+  <mat-icon>delivery_dining</mat-icon>
+  {{ 'DRIVER.TITLE' | translate }}
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <div class="driver-list">
+
+    <div
+      class="driver-card"
+      *ngFor="let driver of drivers"
+      (click)="selectedDriverId = driver.userID"
+      [class.selected]="selectedDriverId === driver.userID">
+
+      <div class="driver-avatar">
+        {{ driver.name.charAt(0) }}
+      </div>
+
+      <div class="driver-info">
+        <div class="name">{{ driver.name }}</div>
+        <div class="sub">
+          {{ 'DRIVER.ID' | translate }}: {{ driver.userID }}
+        </div>
+      </div>
+
+      <mat-icon class="check" *ngIf="selectedDriverId === driver.userID">
+        check_circle
+      </mat-icon>
+
+    </div>
+
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions">
+
+  <button mat-stroked-button class="btn-cancel" (click)="close()">
+    {{ 'DRIVER.CANCEL' | translate }}
+  </button>
+
+  <button
+    mat-flat-button
+    class="btn-assign"
+    (click)="assignDriver()"
+    [disabled]="!selectedDriverId">
+
+    {{ 'DRIVER.ASSIGN' | translate }}
+  </button>
+
+</mat-dialog-actions>
