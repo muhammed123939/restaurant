@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+
+    --bs-font-sans-serif: "Plus Jakarta Sans", sans-serif;
+
+    /* Talabat Colors */
+    --bs-primary: #ff6b00;
+    --bs-secondary: #5f6368;
+    --bs-danger: #ef4444;
+    --bs-success: #22c55e;
+
+    /* Body */
+    --bs-body-font-size: 0.875rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+
+    --bs-body-color: #525252;
+    --bs-body-bg: #fafafa;
+
+    /* Headings */
+    --bs-heading-color: #222222;
+
+    /* Borders */
+    --bs-border-color: #eeeeee;
+    --bs-border-radius: 16px;
+
+    /* Layout */
+    --bs-gutter-x: 24px;
+
+    /* Buttons */
+    --bs-btn-font-size: 0.875rem;
+
+    /* Cards */
+    --bs-card-spacer-y: 24px;
+    --bs-card-spacer-x: 24px;
+    --bs-card-border-width: 0;
+
+    /* RGB Values */
+    --bs-success-rgb: 34,197,94;
+    --bs-primary-rgb: 255,107,0;
+    --bs-light-rgb: 255,255,255;
+    --bs-dark-rgb: 34,34,34;
+}
