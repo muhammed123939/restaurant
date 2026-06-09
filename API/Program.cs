@@ -14,6 +14,7 @@ builder.Services.AddScoped<NotificationService>(); // ✅ MUST be before app.Bui
 
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -22,7 +23,7 @@ app.UseCors(policy =>
     policy.AllowAnyHeader()
           .AllowAnyMethod()
           .AllowCredentials()
-          .WithOrigins("http://localhost:4200", "https://localhost:4200"));
+          .WithOrigins("http://localhost:4200", "https://localhost:4200" , "https://restaurant-beige-ten.vercel.app"));
 
 app.UseAuthentication();
 app.UseAuthorization();
