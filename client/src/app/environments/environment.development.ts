@@ -4,5 +4,6 @@
 // };
 export const environment = {
   production: true,
-  apiUrl: 'https://restaurantdb12345.azurewebsites.net/api/'
+  apiUrl: 'https://restaurantdb12345-efajhndubtfghueq.uaenorth-01.azurewebsites.net/api/'
 };
+
