@@ -152,3 +152,9 @@ C:\Users\user\projects\spike-angular-free-main\api\obj\Debug\net8.0\refint\API.d
 C:\Users\user\projects\spike-angular-free-main\api\obj\Debug\net8.0\API.pdb
 C:\Users\user\projects\spike-angular-free-main\api\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\user\projects\spike-angular-free-main\api\obj\Debug\net8.0\ref\API.dll
+C:\Users\user\projects\spike-angular-free-main\api\obj\Debug\net8.0\API.sourcelink.json
+C:\Users\user\projects\spike-angular-free-main\api\bin\Debug\net8.0\publish\web.config
+C:\Users\user\projects\spike-angular-free-main\api\bin\Debug\net8.0\publish\API.deps.json
+C:\Users\user\projects\spike-angular-free-main\api\bin\Debug\net8.0\publish\API.runtimeconfig.json
+C:\Users\user\projects\spike-angular-free-main\api\bin\Debug\net8.0\publish\appsettings.Development.json
+C:\Users\user\projects\spike-angular-free-main\api\bin\Debug\net8.0\publish\appsettings.json

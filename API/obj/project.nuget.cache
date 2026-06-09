@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Y5B9TWKECXU=",
+  "dgSpecHash": "w3yq7GXjHZM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\projects\\spike-angular-free-main\\api\\API.csproj",
+  "projectFilePath": "C:\\Users\\user\\projects\\spike-angular-free-main\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\16.1.1\\automapper.16.1.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
