@@ -1,28 +1,30 @@
-/* =====================================
-   PAGE WRAPPER
-===================================== */
 .home-container {
-  min-height: calc(100vh - 64px); /* adjust if header height differs */
+  min-height: 100%;
   background: linear-gradient(135deg, #f6f7fb, #ffffff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
 
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start; /* IMPORTANT FIX */
+  align-items: center;
+
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
 /* =====================================
    CARD
 ===================================== */
+
 .welcome-card {
+  margin-top: 40px; /* gives natural spacing from header */
   background: #fff;
   width: 100%;
   max-width: 650px;
   padding: 40px 30px;
-  border-radius: 18px;
 
+  border-radius: 18px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+
   text-align: center;
 
   border-top: 5px solid #ff5a00;
@@ -32,6 +34,7 @@
 /* =====================================
    TITLES
 ===================================== */
+
 .welcome-card h1 {
   font-size: 28px;
   font-weight: 800;
@@ -55,6 +58,7 @@
 /* =====================================
    ICON BADGE
 ===================================== */
+
 .welcome-card::before {
   content: "🍽️";
   font-size: 30px;
@@ -65,6 +69,7 @@
 /* =====================================
    ANIMATION
 ===================================== */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -77,8 +82,9 @@
 }
 
 /* =====================================
-   TABLET (≤ 992px)
+   TABLET
 ===================================== */
+
 @media (max-width: 992px) {
   .welcome-card {
     max-width: 85%;
@@ -95,13 +101,16 @@
 }
 
 /* =====================================
-   MOBILE (≤ 768px)
+   MOBILE
 ===================================== */
+
 @media (max-width: 768px) {
   .home-container {
-    min-height: calc(100vh - 56px);
+    min-height: 100vh; /* FIX: remove 56px subtraction */
     padding: 16px;
-    align-items: center; /* keep centered but safer */
+
+    justify-content: flex-start; /* prevents clipping with sidebar */
+    align-items: center;
   }
 
   .welcome-card {
@@ -124,12 +133,14 @@
 }
 
 /* =====================================
-   SMALL MOBILE (≤ 480px)
+   SMALL MOBILE
 ===================================== */
+
 @media (max-width: 480px) {
   .home-container {
     padding: 12px;
-    align-items: flex-start; /* prevents vertical clipping */
+    justify-content: flex-start;
+    align-items: stretch; /* safer for narrow screens */
   }
 
   .welcome-card {
@@ -151,8 +162,9 @@
 }
 
 /* =====================================
-   VERY SMALL (≤ 360px)
+   VERY SMALL
 ===================================== */
+
 @media (max-width: 360px) {
   .welcome-card h1 {
     font-size: 18px;
