@@ -75,34 +75,40 @@
       </ng-container>
 
       <!-- Driver -->
-      <ng-container matColumnDef="employee">
-        <th mat-header-cell *matHeaderCellDef>{{ 'DELIVERIES.DRIVER' | translate }}</th>
-        <td mat-cell *matCellDef="let item">
-          <span class="link" (click)="swalDriver(item)">
-            {{ 'DELIVERIES.VIEW_DRIVER' | translate }}
-          </span>
-        </td>
-      </ng-container>
+<ng-container matColumnDef="employee">
+  <th mat-header-cell *matHeaderCellDef>
+    {{ 'DELIVERIES.DRIVER' | translate }}
+  </th>
+  <td mat-cell *matCellDef="let item">
+    <button mat-button color="primary" (click)="swalDriver(item)">
+      {{ 'DELIVERIES.VIEW_DRIVER' | translate }}
+    </button>
+  </td>
+</ng-container>
 
-      <!-- Customer -->
-      <ng-container matColumnDef="customer">
-        <th mat-header-cell *matHeaderCellDef>{{ 'DELIVERIES.CUSTOMER' | translate }}</th>
-        <td mat-cell *matCellDef="let item">
-          <span class="link" (click)="swalCustomer(item.order)">
-            {{ 'DELIVERIES.VIEW_CUSTOMER' | translate }}
-          </span>
-        </td>
-      </ng-container>
+<!-- Customer -->
+<ng-container matColumnDef="customer">
+  <th mat-header-cell *matHeaderCellDef>
+    {{ 'DELIVERIES.CUSTOMER' | translate }}
+  </th>
+  <td mat-cell *matCellDef="let item">
+    <button mat-button color="accent" (click)="swalCustomer(item.order)">
+      {{ 'DELIVERIES.VIEW_CUSTOMER' | translate }}
+    </button>
+  </td>
+</ng-container>
 
-      <!-- Address -->
-      <ng-container matColumnDef="address">
-        <th mat-header-cell *matHeaderCellDef>{{ 'DELIVERIES.ADDRESS' | translate }}</th>
-        <td mat-cell *matCellDef="let item">
-          <span class="link" (click)="swalAddress(item.deliveryAddress)">
-            {{ 'DELIVERIES.VIEW_ADDRESS' | translate }}
-          </span>
-        </td>
-      </ng-container>
+<!-- Address -->
+<ng-container matColumnDef="address">
+  <th mat-header-cell *matHeaderCellDef>
+    {{ 'DELIVERIES.ADDRESS' | translate }}
+  </th>
+  <td mat-cell *matCellDef="let item">
+    <button mat-button color="warn" (click)="swalAddress(item.deliveryAddress)">
+      {{ 'DELIVERIES.VIEW_ADDRESS' | translate }}
+    </button>
+  </td>
+</ng-container>
 
       <!-- Actions -->
       <ng-container matColumnDef="actions">
