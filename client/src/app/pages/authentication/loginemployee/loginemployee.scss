@@ -1,36 +1,54 @@
-/* Page background */
+
+
+/* =========================
+   PAGE BACKGROUND
+========================= */
 .auth-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #f6f7fb, #eef1f5);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Wrapper */
+/* =========================
+   WRAPPER
+========================= */
 .auth-wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-/* Card */
+/* =========================
+   CARD
+========================= */
 .auth-card {
   width: 100%;
   max-width: 420px;
-  border-radius: 18px;
   background: #fff;
+
+  border-radius: 18px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
   border: none;
+
+  overflow: hidden;
 }
 
-/* Content */
+/* =========================
+   CONTENT
+========================= */
 .auth-content {
   padding: 28px;
 }
 
-/* Logo */
+/* =========================
+   LOGO
+========================= */
 .logo-box {
   text-align: center;
   margin-bottom: 10px;
@@ -40,16 +58,17 @@
   width: 110px;
 }
 
-/* Title */
+/* =========================
+   TEXT
+========================= */
 .title {
   text-align: center;
   font-size: 22px;
   font-weight: 800;
-  color: #ff5a00; /* Talabat orange */
+  color: #ff5a00;
   margin-top: 10px;
 }
 
-/* Subtitle */
 .subtitle {
   text-align: center;
   font-size: 13px;
@@ -57,19 +76,22 @@
   margin-bottom: 20px;
 }
 
-/* Form */
+/* =========================
+   FORM
+========================= */
 .form {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-/* Fields */
 .field {
   width: 100%;
 }
 
-/* Error box */
+/* =========================
+   ERROR BOX
+========================= */
 .error-box {
   background: #ffe9e5;
   color: #d32f2f;
@@ -80,7 +102,9 @@
   text-align: center;
 }
 
-/* Login button */
+/* =========================
+   BUTTON
+========================= */
 .login-btn {
   width: 100%;
   background: #ff5a00 !important;
@@ -88,28 +112,116 @@
   font-weight: 700;
   border-radius: 12px;
   padding: 10px;
-  box-shadow: 0 6px 16px rgba(255, 90, 0, 0.25);
-}
 
-/* Hover effect */
-.login-btn:hover {
-  background: #ff6a1a !important;
-  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 90, 0, 0.25);
   transition: 0.2s ease;
 }
 
-/* Material outline focus */
+.login-btn:hover {
+  background: #ff6a1a !important;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   MATERIAL FIX
+========================= */
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
   color: #ff5a00 !important;
 }
 
-/* Responsive */
-@media (max-width: 480px) {
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
   .auth-card {
+    max-width: 380px;
+  }
+
+  .auth-content {
+    padding: 24px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  .auth-page {
+    align-items: flex-start;
+    padding-top: 30px;
+  }
+
+  .auth-card {
+    max-width: 100%;
     border-radius: 14px;
   }
 
   .auth-content {
     padding: 20px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .logo {
+    width: 100px;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+@media (max-width: 480px) {
+
+  .auth-page {
+    padding: 12px;
+    padding-top: 20px;
+    align-items: flex-start;
+  }
+
+  .auth-content {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 90px;
+  }
+}
+
+/* =========================
+   VERY SMALL DEVICES
+========================= */
+@media (max-width: 360px) {
+
+  .auth-content {
+    padding: 14px;
+  }
+
+  .title {
+    font-size: 17px;
+  }
+
+  .login-btn {
+    font-size: 13px;
   }
 }

@@ -1,15 +1,19 @@
-/* ===========================
-   TALABAT STYLE MENU PAGE
-   =========================== */
 
+/* ===========================
+   CARD
+=========================== */
 .cardWithShadow {
   border-radius: 20px;
   border: none;
   background: #fff;
-  padding: 12px;
+  padding: 14px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
 
+/* ===========================
+   TITLE
+=========================== */
 .mat-mdc-card-title,
 mat-card-title {
   font-size: 28px !important;
@@ -20,14 +24,15 @@ mat-card-title {
 
 /* ===========================
    BUTTONS
-   =========================== */
-
+=========================== */
 button[mat-raised-button] {
   border-radius: 12px !important;
   font-weight: 600;
   height: 46px;
+
   margin-right: 10px;
   margin-bottom: 10px;
+
   transition: all 0.25s ease;
 }
 
@@ -35,32 +40,32 @@ button[mat-raised-button]:hover {
   transform: translateY(-2px);
 }
 
-/* Primary Buttons */
+/* Primary */
 .mat-mdc-raised-button.mat-primary {
   background: #ff5a00 !important;
   color: white !important;
 }
 
-/* Accent Buttons */
+/* Accent */
 .mat-mdc-raised-button.mat-accent {
   background: #00b14f !important;
   color: white !important;
 }
 
-/* Warn Buttons */
+/* Warn */
 .mat-mdc-raised-button.mat-warn {
   background: #d32f2f !important;
   color: white !important;
 }
 
 /* ===========================
-   EDIT ORDER ALERT
-   =========================== */
-
+   EDIT MODE
+=========================== */
 .edit-mode-alert {
   background: #fff4eb;
   border: 1px solid #ffd4b3;
   border-radius: 14px;
+  padding: 10px;
 }
 
 .text-purple {
@@ -76,26 +81,25 @@ button[mat-raised-button]:hover {
 
 /* ===========================
    FORM FIELDS
-   =========================== */
-
+=========================== */
 mat-form-field {
   margin-right: 12px;
+  flex: 1;
+  min-width: 220px;
 }
 
 .w-250 {
   width: 260px;
 }
 
-/* IMPORTANT FIX */
+/* Material fix */
 .mat-mdc-form-field {
   background: transparent !important;
 }
 
-/* Search & Select styling */
 .mat-mdc-text-field-wrapper {
   background: #fff !important;
   border-radius: 14px !important;
-  overflow: hidden;
 }
 
 .mdc-text-field {
@@ -107,11 +111,11 @@ mat-form-field {
 }
 
 /* ===========================
-   TABLE
-   =========================== */
-
+   TABLE WRAPPER
+=========================== */
 .table-responsive {
-      overflow-x: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
   margin-top: 20px;
   border-radius: 20px;
@@ -120,11 +124,14 @@ mat-form-field {
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
 }
 
+/* TABLE */
 table {
   width: 100%;
+  min-width: 750px; /* important for mobile scroll */
   border-collapse: collapse;
 }
 
+/* HEADER */
 .mat-mdc-header-row {
   background: #fff8f3;
 }
@@ -136,6 +143,7 @@ table {
   border-bottom: 2px solid #f3f3f3;
 }
 
+/* ROW */
 .mat-mdc-row {
   transition: all 0.2s ease;
 }
@@ -144,6 +152,7 @@ table {
   background: #fafafa;
 }
 
+/* CELL */
 .mat-mdc-cell {
   border-bottom: 1px solid #f1f1f1;
   padding-top: 14px;
@@ -151,9 +160,8 @@ table {
 }
 
 /* ===========================
-   PRODUCT
-   =========================== */
-
+   PRODUCT STYLE
+=========================== */
 .mat-mdc-cell img {
   width: 75px;
   height: 75px;
@@ -189,8 +197,7 @@ table {
 
 /* ===========================
    ACTIONS
-   =========================== */
-
+=========================== */
 .mat-column-actions button[mat-raised-button] {
   width: 42px;
   height: 42px;
@@ -205,11 +212,9 @@ table {
   margin-left: 5px;
 }
 
-
 /* ===========================
    MENU
-   =========================== */
-
+=========================== */
 .mat-mdc-menu-panel {
   border-radius: 16px !important;
   overflow: hidden;
@@ -221,8 +226,7 @@ table {
 
 /* ===========================
    CART BUTTON
-   =========================== */
-
+=========================== */
 button[color="accent"] {
   background: #00b14f !important;
   color: white !important;
@@ -231,8 +235,7 @@ button[color="accent"] {
 
 /* ===========================
    SELECTED TABLE
-   =========================== */
-
+=========================== */
 .selected-table,
 span[style*="color: #d32f2f"] {
   background: #fff4eb;
@@ -245,18 +248,32 @@ span[style*="color: #d32f2f"] {
 }
 
 /* ===========================
-   MOBILE
-   =========================== */
-
+   MOBILE (TABLET)
+=========================== */
 @media (max-width: 768px) {
 
-  .w-250 {
-    width: 100%;
+  .cardWithShadow {
+    padding: 12px;
+  }
+
+  .mat-mdc-card-title,
+  mat-card-title {
+    font-size: 22px !important;
   }
 
   mat-form-field {
     width: 100%;
     margin-right: 0;
+    min-width: 100%;
+  }
+
+  .w-250 {
+    width: 100%;
+  }
+
+  .edit-text {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .mat-mdc-cell img {
@@ -267,9 +284,36 @@ span[style*="color: #d32f2f"] {
   .mat-mdc-cell h4 {
     font-size: 14px;
   }
+}
 
-  .edit-text {
-    flex-direction: column;
-    align-items: flex-start;
+/* ===========================
+   SMALL PHONES
+=========================== */
+@media (max-width: 480px) {
+
+  .cardWithShadow {
+    padding: 10px;
+  }
+
+  .mat-mdc-card-title,
+  mat-card-title {
+    font-size: 20px !important;
+  }
+
+  button[mat-raised-button] {
+    width: 100%;
+  }
+
+  table {
+    min-width: 650px;
+  }
+
+  .mat-mdc-cell img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .mat-column-actions button {
+    transform: scale(0.9);
   }
 }

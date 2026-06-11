@@ -1,14 +1,23 @@
-/* CARD */
+
+/* =========================
+   CARD
+========================= */
 .talabat-card {
   border-radius: 18px;
   background: #fafafa;
-  padding: 10px;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 .page-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
   gap: 10px;
   margin-bottom: 15px;
 }
@@ -24,19 +33,26 @@
   font-weight: 600;
 }
 
-/* FILTERS */
+/* =========================
+   FILTERS
+========================= */
 .filters {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 15px;
+  align-items: center;
 }
 
+/* better responsive inputs */
 mat-form-field {
   min-width: 220px;
+  flex: 1;
 }
 
-/* INPUT STYLE FIX */
+/* =========================
+   MATERIAL INPUT FIX
+========================= */
 .mat-mdc-form-field {
   background: transparent !important;
 }
@@ -46,21 +62,30 @@ mat-form-field {
   border-radius: 12px !important;
 }
 
-/* TABLE WRAPPER */
+/* =========================
+   TABLE WRAPPER
+========================= */
 .table-wrapper {
   background: #fff;
   border-radius: 16px;
-  overflow: hidden;
+
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* TABLE */
+/* =========================
+   TABLE
+========================= */
 table {
   width: 100%;
+  min-width: 700px; /* important for mobile scroll */
 }
 
-/* HEADER */
+/* =========================
+   HEADER ROW
+========================= */
 .mat-mdc-header-row {
   background: #fff4eb;
 }
@@ -70,24 +95,16 @@ table {
   color: #444;
 }
 
-/* ROW HOVER */
+/* =========================
+   ROW HOVER
+========================= */
 .mat-mdc-row:hover {
   background: #fafafa;
 }
 
-/* ORDER ID */
-.order-id {
-  font-weight: 700;
-  color: #ff5a00;
-}
-
-/* PRICE */
-.price {
-  font-weight: 700;
-  color: #00b14f;
-}
-
-/* BADGES */
+/* =========================
+   BADGES
+========================= */
 .badge {
   padding: 4px 10px;
   border-radius: 10px;
@@ -115,28 +132,82 @@ table {
   color: #666;
 }
 
-/* ACTION BUTTONS */
+/* =========================
+   ACTION BUTTONS
+========================= */
 .actions button {
   margin-right: 5px;
 }
 
-/* ICON BUTTON CLEAN */
 button[mat-icon-button] {
   background: #f5f5f5;
   border-radius: 10px;
+  transition: 0.2s ease;
 }
 
 button[mat-icon-button]:hover {
   background: #eee;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
 @media (max-width: 768px) {
-  .filters {
+
+  .talabat-card {
+    padding: 12px;
+  }
+
+  .page-header {
     flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page-header h2 {
+    font-size: 22px;
   }
 
   mat-form-field {
-    width: 100%;
+    min-width: 100%;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  table {
+    min-width: 650px;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+@media (max-width: 480px) {
+
+  .talabat-card {
+    padding: 10px;
+  }
+
+  .page-header h2 {
+    font-size: 20px;
+  }
+
+  .count {
+    font-size: 13px;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  button[mat-icon-button] {
+    transform: scale(0.9);
   }
 }
