@@ -19,7 +19,7 @@ export interface Notification {
   providedIn: 'root'
 })
 export class NotificationService {
-private baseUrl = environment.apiUrl + '/notifications';
+private baseUrl = environment.apiUrl + 'notifications';
 
   // ✅ Store notifications & unread count in BehaviorSubject (reactive state)
   private _notifications = new BehaviorSubject<Notification[]>([]);

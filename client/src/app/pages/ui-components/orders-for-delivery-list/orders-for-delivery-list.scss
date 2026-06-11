@@ -25,9 +25,9 @@
 
 /* TABLE WRAPPER */
 .table-wrapper {
+  overflow-x: auto;
   background: #fff;
   border-radius: 16px;
-  overflow: hidden;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
