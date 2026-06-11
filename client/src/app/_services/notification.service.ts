@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../environments/environment.development';
 
 export interface Notification {
   id: number;
@@ -18,7 +19,7 @@ export interface Notification {
   providedIn: 'root'
 })
 export class NotificationService {
-  private baseUrl = 'http://localhost:5001/api/notifications';
+private baseUrl = environment.apiUrl + '/notifications';
 
   // ✅ Store notifications & unread count in BehaviorSubject (reactive state)
   private _notifications = new BehaviorSubject<Notification[]>([]);
