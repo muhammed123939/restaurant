@@ -7,6 +7,8 @@
 
   background: #fff;
   box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+
+  width: 100%;
 }
 
 /* =========================
@@ -21,10 +23,13 @@
   align-items: center;
 
   padding: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .employees-header h2 {
   margin: 0;
+  font-size: 20px;
 }
 
 .employees-header p {
@@ -40,6 +45,8 @@
 
   border-radius: 10px;
   font-weight: 600;
+
+  flex-shrink: 0;
 }
 
 /* =========================
@@ -51,16 +58,20 @@
   align-items: flex-end;
 
   margin-top: 15px;
+  flex-wrap: wrap;
 }
 
 .msg-input {
   flex: 1;
+  min-width: 0;
 }
 
 .btn-send {
   background: #ff5a00 !important;
   color: #fff !important;
   border-radius: 10px;
+
+  flex-shrink: 0;
 }
 
 /* =========================
@@ -70,19 +81,23 @@
   margin-top: 10px;
 }
 
-.success {
-  background: #e7f7ec;
-  color: #2e7d32;
+.success,
+.error {
   padding: 8px;
   border-radius: 8px;
   margin-bottom: 6px;
+
+  word-break: break-word;
+}
+
+.success {
+  background: #e7f7ec;
+  color: #2e7d32;
 }
 
 .error {
   background: #ffe5e5;
   color: #d32f2f;
-  padding: 8px;
-  border-radius: 8px;
 }
 
 /* =========================
@@ -91,10 +106,14 @@
 .table-wrapper {
   margin-top: 15px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
+/* ensure table never breaks layout */
 table {
   width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
 }
 
 /* header style */
@@ -102,9 +121,16 @@ th {
   background: #fff3e6;
   color: #ff5a00;
   font-weight: 600;
+
+  white-space: nowrap;
+  padding: 10px;
 }
 
 /* row hover */
+td {
+  padding: 10px;
+}
+
 tr:hover {
   background: #fafafa;
 }
@@ -122,4 +148,71 @@ tr:hover {
 
   color: #ff5a00;
   font-weight: 600;
+
+  word-break: break-word;
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .employees-header {
+    padding: 14px;
+  }
+
+  .employees-header h2 {
+    font-size: 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .employees-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-add {
+    width: 100%;
+  }
+
+  .message-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-send {
+    width: 100%;
+  }
+
+  table {
+    min-width: 500px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .employees-card {
+    border-radius: 14px;
+  }
+
+  .employees-header h2 {
+    font-size: 16px;
+  }
+
+  .employees-header p {
+    font-size: 11px;
+  }
+
+  th,
+  td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .empty {
+    font-size: 13px;
+  }
 }

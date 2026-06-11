@@ -1,5 +1,9 @@
 @use "../variables" as *;
 
+/* ===================================
+   TOPBAR (MAIN HEADER)
+=================================== */
+
 html .topbar {
   background-color: var(--mat-sys-surface);
   position: sticky;
@@ -8,107 +12,194 @@ html .topbar {
   height: $header-height;
   border-radius: $border-radius;
   box-shadow: var(--mat-sys-level2);
+
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 10px 12px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 10px;
+  }
 }
 
+/* Dropdown */
 .topbar-dd {
   min-width: 220px !important;
+
+  @media (max-width: 768px) {
+    min-width: 180px !important;
+  }
+
+  @media (max-width: 480px) {
+    min-width: 150px !important;
+  }
 }
 
+/* Upgrade background image */
 .upgrade-bg {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
   height: 100%;
+  max-width: 100%;
+
+  @media (max-width: 768px) {
+    opacity: 0.6;
+  }
 }
 
 .object-cover {
   object-fit: cover;
 }
 
+/* Profile dropdown alignment */
 .profile-dd {
   margin-top: -5px;
   margin-left: -5px;
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+    margin-left: 0;
+  }
 }
 
-
-
-// App Topstrip
+/* ===================================
+   APP TOPSTRIP (FIXED HEADER BAR)
+=================================== */
 
 .app-topstrip {
   position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 12;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   background: linear-gradient(90deg, #0F0533 0%, #1B0A5C 100%);
+  padding: 8px 16px;
+
+  flex-wrap: wrap;
+  gap: 10px;
 
   @media (max-width: 991px) {
     flex-direction: column;
-    gap: 16px;
+    align-items: flex-start;
+    gap: 12px;
   }
 
+  @media (max-width: 768px) {
+    padding: 10px 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 10px;
+  }
+
+  /* RIGHT SECTION */
   .topstrip-right {
     display: flex;
+    align-items: center;
+    gap: 12px;
 
     @media (max-width: 991px) {
       flex-direction: column;
-      gap: 16px;
+      align-items: flex-start;
+      width: 100%;
     }
   }
 
+  /* INNER RIGHT SECTION */
   .topstrip-right-inner {
     display: flex;
+    align-items: center;
+    gap: 12px;
 
     @media (max-width: 767px) {
       flex-direction: column;
-      gap: 16px;
+      align-items: flex-start;
+      width: 100%;
     }
   }
 
+  /* LEFT BORDER LINK GROUP */
   .linkbar {
     border-left: 1px solid rgba(255, 255, 255, 0.4);
     padding-left: 20px;
+
+    @media (max-width: 768px) {
+      border-left: none;
+      padding-left: 0;
+    }
   }
 
+  /* GRADIENT TEXT */
   .text-linear-gradient {
     background: linear-gradient(90deg, #FFFFFF 0%, #8D70F8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
   }
 
+  /* DROPDOWN BUTTON */
   .live-preview-drop {
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 7px;
+    transition: all 0.2s ease;
 
     &:hover,
     &:active {
       background-color: #8D70F8;
     }
 
+    @media (max-width: 480px) {
+      width: 100%;
+      text-align: center;
+    }
   }
 
+  /* PRIMARY BUTTON */
   .get-pro-btn {
     background-color: #8D70F8;
     border-radius: 7px;
+    transition: all 0.2s ease;
 
     &:hover {
       background-color: #714BFF;
     }
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
   }
 
+  /* SECONDARY BUTTON */
   .all-access-pass-btn {
     background-color: #B3F143;
     color: #000000 !important;
     border-radius: 7px;
+    transition: all 0.2s ease;
 
     &:hover {
       background-color: #90DE03;
     }
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
   }
 
+  /* LINK HOVER */
   .link-hover {
     height: auto;
+    transition: color 0.2s ease;
 
     &:hover,
     &:active {
@@ -121,5 +212,14 @@ html .topbar {
       }
     }
   }
+}
 
+/* ===================================
+   RESPONSIVE SAFETY (GLOBAL FIX)
+=================================== */
+
+@media (max-width: 768px) {
+  .app-topstrip {
+    position: relative; /* avoids overlap issues on mobile */
+  }
 }

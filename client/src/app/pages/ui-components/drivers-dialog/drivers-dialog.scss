@@ -8,6 +8,9 @@
 
   font-weight: 600;
   color: #ff5a00;
+
+  flex-wrap: wrap;
+  word-break: break-word;
 }
 
 .dialog-title mat-icon {
@@ -28,8 +31,10 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
   max-height: 350px;
-  overflow: auto;
+  overflow-y: auto;
+  padding-right: 4px;
 }
 
 /* DRIVER CARD */
@@ -46,6 +51,9 @@
 
   cursor: pointer;
   transition: 0.2s ease;
+
+  min-width: 0;
+  flex-wrap: wrap;
 }
 
 .driver-card:hover {
@@ -72,26 +80,31 @@
   justify-content: center;
 
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 /* INFO */
 .driver-info {
   flex: 1;
+  min-width: 0;
 }
 
 .name {
   font-weight: 600;
   color: #333;
+  word-break: break-word;
 }
 
 .sub {
   font-size: 12px;
   color: #888;
+  word-break: break-word;
 }
 
 /* CHECK ICON */
 .check {
   color: #ff5a00;
+  flex-shrink: 0;
 }
 
 /* =========================
@@ -103,6 +116,7 @@
   gap: 10px;
 
   padding: 12px;
+  flex-wrap: wrap;
 }
 
 .btn-cancel {
@@ -118,4 +132,58 @@
 
 .btn-assign:disabled {
   background: #ccc !important;
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+========================= */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .driver-card {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .driver-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .dialog-actions {
+    justify-content: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .dialog-title {
+    font-size: 14px;
+  }
+
+  .driver-card {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .driver-avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .dialog-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .btn-cancel,
+  .btn-assign {
+    width: 100%;
+  }
+
+  .sub {
+    font-size: 11px;
+  }
 }

@@ -4,14 +4,19 @@
    GLOBAL RESET
 ========================= */
 *,
-:after,
-:before {
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: $font-family;
-  line-height: 1.3rem;
+  line-height: 1.4rem;
   font-size: 14px;
   overflow-x: hidden;
   color: var(--mat-sys-on-background);
@@ -20,7 +25,7 @@ body {
 
 /* =========================
    MAIN WRAPPER
-   (SAFE "ZOOM OUT" EFFECT)
+   (RESPONSIVE SAFE LAYOUT)
 ========================= */
 .mainWrapper {
   display: flex;
@@ -29,18 +34,38 @@ body {
   flex: 1;
   margin-top: 72px;
 
-  /* instead of transform scale (safe) */
   font-size: 14px;
+
+  @media (max-width: 992px) {
+    margin-top: 120px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 140px;
+    font-size: 12.5px;
+  }
 }
 
 /* =========================
    CONTAINER
 ========================= */
 .container {
+  width: 100%;
   max-width: 1200px;
+  margin: 0 auto;
   padding-left: 24px;
   padding-right: 24px;
-  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 
   &.full-width {
     display: flex;
@@ -53,12 +78,20 @@ body {
    PAGE WRAPPER
 ========================= */
 .pageWrapper {
-  padding: 16px; /* reduced for zoom-out effect */
+  padding: 16px;
   min-height: calc(100vh - 70px);
   margin: 0 auto;
 
   &.maxWidth {
     max-width: $boxedWidth;
+  }
+
+  @media (max-width: 768px) {
+    padding: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
   }
 }
 
@@ -85,15 +118,26 @@ body {
 .cursor-pointer { cursor: pointer; }
 
 /* =========================
-   TABLE
+   TABLE RESPONSIVE FIX
 ========================= */
 .table-responsive {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
   td,
   mat-cell {
     white-space: nowrap;
     padding: 14px;
+
+    @media (max-width: 768px) {
+      padding: 10px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 8px;
+      font-size: 12px;
+    }
   }
 }
 
@@ -102,6 +146,7 @@ body {
 ========================= */
 a {
   color: var(--mat-sys-on-background);
+  transition: color 0.2s ease;
 
   &:hover {
     color: $primary;
@@ -113,11 +158,8 @@ a {
 ========================= */
 pre {
   margin: 0;
-  white-space: nowrap;
-}
-
-td.hljs-ln-line.hljs-ln-numbers {
-  padding-right: 10px;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 /* =========================
@@ -143,36 +185,37 @@ td.hljs-ln-line.hljs-ln-numbers {
 }
 
 /* =========================
-   SIDEBAR WIDTH (IMPORTANT)
+   SIDEBAR WIDTH (RESPONSIVE)
 ========================= */
 .sidebarNav {
   width: 260px !important;
-}
 
-/* =========================
-   HEADER OFFSET MOBILE FIX
-========================= */
-@media (max-width: 991px) {
-  .mainWrapper {
-    margin-top: 154px;
-  }
-}
-
-/* =========================
-   MOBILE OPTIMIZATION
-========================= */
-@media (max-width: 768px) {
-
-  .pageWrapper {
-    padding: 12px;
-  }
-
-  .sidebarNav {
+  @media (max-width: 992px) {
     width: 240px !important;
   }
 
+  @media (max-width: 576px) {
+    width: 220px !important;
+  }
+}
+
+/* =========================
+   MOBILE LAYOUT ADJUSTMENTS
+========================= */
+@media (max-width: 992px) {
   .mainWrapper {
     margin-top: 120px;
-    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainWrapper {
+    margin-top: 110px;
+  }
+}
+
+@media (max-width: 576px) {
+  .mainWrapper {
+    margin-top: 100px;
   }
 }

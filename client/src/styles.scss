@@ -1,18 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-  line-height: 1.3rem;
-  font-size: 14px;
-  overflow-x: hidden;
-}
+/* ===================================
+   GLOBAL BASE STYLES (RESPONSIVE)
+=================================== */
 
 html,
 body {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.5;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #222;
+}
+
+/* =========================
+   RESPONSIVE TYPOGRAPHY
+========================= */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 12.5px;
+    line-height: 1.35;
+  }
 }
 
 /* ===================================
-   RTL / LTR Support
+   RTL / LTR SUPPORT (FULLY RESPONSIVE)
 =================================== */
 
 html[dir="rtl"] {
@@ -23,7 +50,7 @@ html[dir="ltr"] {
   direction: ltr;
 }
 
-/* Text */
+/* Base text alignment */
 html[dir="rtl"] body {
   text-align: right;
 }
@@ -32,25 +59,29 @@ html[dir="ltr"] body {
   text-align: left;
 }
 
-/* Angular Material Form Fields */
+/* ===================================
+   ANGULAR MATERIAL RTL FIXES
+=================================== */
+
+/* Form fields */
 html[dir="rtl"] .mat-mdc-form-field {
   text-align: right;
 }
 
-/* Inputs */
+/* Inputs & textarea */
 html[dir="rtl"] input,
 html[dir="rtl"] textarea {
   text-align: right;
 }
 
-/* Selects */
+/* Select dropdown */
 html[dir="rtl"] .mat-mdc-select-value {
   text-align: right;
 }
 
 /* Tables */
-html[dir="rtl"] .mat-mdc-table,
-html[dir="rtl"] table {
+html[dir="rtl"] table,
+html[dir="rtl"] .mat-mdc-table {
   direction: rtl;
 }
 
@@ -69,15 +100,64 @@ html[dir="rtl"] .mat-drawer-content {
   direction: rtl;
 }
 
-/* Icons spacing */
+/* ===================================
+   ICONS SPACING (RTL SAFE)
+=================================== */
+
 html[dir="rtl"] .mat-icon,
 html[dir="rtl"] i-tabler {
   margin-left: 8px;
   margin-right: 0;
 }
 
-/* Buttons */
+html[dir="ltr"] .mat-icon,
+html[dir="ltr"] i-tabler {
+  margin-right: 8px;
+  margin-left: 0;
+}
+
+/* Buttons with icons */
 html[dir="rtl"] button mat-icon {
   margin-left: 8px;
   margin-right: 0;
+}
+
+html[dir="ltr"] button mat-icon {
+  margin-right: 8px;
+  margin-left: 0;
+}
+
+/* ===================================
+   MOBILE OPTIMIZATION FOR MATERIAL
+=================================== */
+
+@media (max-width: 768px) {
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .mat-mdc-form-field {
+    font-size: 12.5px;
+  }
+}
+
+/* ===================================
+   SCROLL SAFETY
+=================================== */
+
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent horizontal scroll issues */
+* {
+  max-width: 100%;
 }

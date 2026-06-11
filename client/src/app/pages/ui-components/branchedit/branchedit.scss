@@ -1,3 +1,6 @@
+/* =========================
+   Branch Card Container
+========================= */
 .branch-card {
   max-width: 950px;
   margin: 30px auto;
@@ -7,8 +10,9 @@
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Header */
-
+/* =========================
+   Header
+========================= */
 .branch-header {
   background: linear-gradient(135deg, #ff5a00, #ff7a00);
   color: white;
@@ -24,11 +28,14 @@
   width: 72px;
   height: 72px;
   border-radius: 18px;
-  background: rgba(255,255,255,.18);
+
+  background: rgba(255, 255, 255, 0.18);
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  flex-shrink: 0;
 }
 
 .branch-avatar mat-icon {
@@ -39,34 +46,41 @@
 
 .branch-info {
   flex: 1;
+  min-width: 0;
 }
 
 .branch-info h2 {
   margin: 0;
   font-size: 24px;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .branch-info p {
   margin: 6px 0 0;
-  opacity: .9;
+  opacity: 0.9;
+  line-height: 1.4;
 }
 
 .branch-badge {
-  background: rgba(255,255,255,.2);
+  background: rgba(255, 255, 255, 0.2);
   padding: 10px 18px;
   border-radius: 30px;
   font-weight: 600;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-/* Content */
-
+/* =========================
+   Content
+========================= */
 mat-card-content {
   padding: 30px !important;
 }
 
-/* Grid */
-
+/* =========================
+   Grid Layout
+========================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -81,8 +95,9 @@ mat-form-field {
   width: 100%;
 }
 
-/* Unsaved */
-
+/* =========================
+   Unsaved Banner
+========================= */
 .unsaved-banner {
   display: inline-flex;
   align-items: center;
@@ -97,8 +112,9 @@ mat-form-field {
   font-weight: 500;
 }
 
-/* Alerts */
-
+/* =========================
+   Alerts
+========================= */
 .alert {
   display: flex;
   align-items: center;
@@ -120,8 +136,9 @@ mat-form-field {
   color: #d32f2f;
 }
 
-/* Buttons */
-
+/* =========================
+   Actions / Buttons
+========================= */
 .actions {
   display: flex;
   gap: 16px;
@@ -134,23 +151,50 @@ mat-form-field {
 
   min-width: 180px;
   height: 48px;
+
   border-radius: 12px !important;
+  transition: 0.2s ease;
 }
 
 .btn-save:hover {
   background: #e65100 !important;
+  transform: translateY(-1px);
 }
 
 .btn-cancel {
   min-width: 150px;
   height: 48px;
+
   border-radius: 12px !important;
 }
 
-/* Mobile */
+/* =========================
+   Tablet (<= 992px)
+========================= */
+@media (max-width: 992px) {
+  mat-card-content {
+    padding: 24px !important;
+  }
 
+  .branch-header {
+    padding: 20px;
+  }
+
+  .branch-info h2 {
+    font-size: 22px;
+  }
+
+  .actions {
+    margin-top: 24px;
+  }
+}
+
+/* =========================
+   Mobile (<= 768px)
+========================= */
 @media (max-width: 768px) {
 
+  /* Grid becomes single column */
   .grid {
     grid-template-columns: 1fr;
   }
@@ -159,17 +203,65 @@ mat-form-field {
     grid-column: auto;
   }
 
+  /* Header stacking */
   .branch-header {
     flex-direction: column;
     text-align: center;
+    gap: 12px;
   }
 
+  .branch-avatar {
+    width: 62px;
+    height: 62px;
+  }
+
+  .branch-info h2 {
+    font-size: 20px;
+  }
+
+  .branch-badge {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  /* Actions stacked */
   .actions {
     flex-direction: column;
+    gap: 12px;
   }
 
   .btn-save,
   .btn-cancel {
     width: 100%;
+    min-width: unset;
+  }
+
+  mat-card-content {
+    padding: 18px !important;
+  }
+}
+
+/* =========================
+   Small Mobile (<= 420px)
+========================= */
+@media (max-width: 420px) {
+
+  .branch-info h2 {
+    font-size: 18px;
+  }
+
+  .branch-info p {
+    font-size: 13px;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .unsaved-banner {
+    font-size: 13px;
+    padding: 10px 12px;
   }
 }

@@ -1,30 +1,53 @@
-/* Dialog */
+/* =========================
+   DIALOG WRAPPER
+========================= */
+.order-details-content {
+  width: 650px;
+  max-width: 100%;
+  background: #fafafa;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+/* =========================
+   ORDER TRACKER
+========================= */
 .order-tracker {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   margin-bottom: 24px;
   padding: 20px 10px;
+
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 80px;
+
+  min-width: 70px;
+  flex: 1;
 }
 
 .circle {
   width: 38px;
   height: 38px;
   border-radius: 50%;
+
   background: #e0e0e0;
   color: #666;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-weight: 600;
   transition: .3s;
+  flex-shrink: 0;
 }
 
 .text {
@@ -32,19 +55,25 @@
   font-size: 12px;
   text-align: center;
   color: #777;
+
+  word-break: break-word;
 }
 
+/* LINE */
 .line {
   flex: 1;
   height: 4px;
   background: #e0e0e0;
+
   margin: 0 8px;
   border-radius: 20px;
   transition: .3s;
+
+  min-width: 20px;
 }
 
 .step.active .circle {
-  background: #ff5a00; /* Talabat Orange */
+  background: #ff5a00;
   color: white;
 }
 
@@ -57,22 +86,22 @@
   background: #ff5a00;
 }
 
-.order-details-content {
-  width: 650px;
-  max-width: 100%;
-  background: #fafafa;
-  padding: 0 !important;
-}
-
-/* Header */
+/* =========================
+   HEADER
+========================= */
 .order-dialog-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   background: #ff5a00;
   color: white;
+
   padding: 18px 24px !important;
   margin: 0 !important;
+
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .title-left {
@@ -93,23 +122,34 @@
   border-radius: 20px;
   font-size: 14px;
   font-weight: 600;
+
+  white-space: nowrap;
 }
 
-/* Summary */
+/* =========================
+   SUMMARY
+========================= */
 .order-summary-card {
   margin: 20px;
   background: white;
   border-radius: 18px;
   padding: 20px;
+
   display: flex;
   justify-content: space-between;
+  gap: 15px;
+
   box-shadow: 0 2px 12px rgba(0,0,0,.06);
+
+  flex-wrap: wrap;
 }
 
 .summary-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  min-width: 120px;
 }
 
 .summary-item .label {
@@ -129,7 +169,9 @@
   font-weight: 700;
 }
 
-/* Item List */
+/* =========================
+   ITEM LIST
+========================= */
 .items-list {
   padding: 0 20px 20px;
 }
@@ -145,8 +187,10 @@
   align-items: center;
 
   box-shadow: 0 2px 10px rgba(0,0,0,.05);
-
   transition: all .2s ease;
+
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .item-card:hover {
@@ -156,22 +200,26 @@
 .item-info {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .item-name {
   font-size: 16px;
   font-weight: 700;
   color: #222;
+  word-break: break-word;
 }
 
 .item-id {
   color: #888;
   font-size: 13px;
   margin-top: 4px;
+  word-break: break-word;
 }
 
 .item-right {
   text-align: right;
+  min-width: 100px;
 }
 
 .item-qty {
@@ -190,37 +238,88 @@
   color: #00b14f;
 }
 
-/* Footer */
+/* =========================
+   FOOTER
+========================= */
 .order-dialog-actions {
   padding: 16px 20px !important;
   background: white;
   border-top: 1px solid #eee;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .order-dialog-actions button {
   background: #ff5a00 !important;
   color: white !important;
   border-radius: 12px !important;
+
   min-width: 120px;
   height: 44px;
 }
 
-/* Mobile */
+/* =========================
+   TABLET
+========================= */
 @media (max-width: 768px) {
 
   .order-summary-card {
     flex-direction: column;
-    gap: 15px;
+    align-items: flex-start;
   }
 
   .item-card {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
   }
 
   .item-right {
     width: 100%;
     text-align: left;
+  }
+
+  .order-tracker {
+    justify-content: center;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+@media (max-width: 480px) {
+
+  .order-dialog-title {
+    padding: 14px 16px !important;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .circle {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .text {
+    font-size: 11px;
+  }
+
+  .summary-item .value {
+    font-size: 14px;
+  }
+
+  .summary-item.total .value {
+    font-size: 18px;
+  }
+
+  .order-dialog-actions {
+    flex-direction: column;
+  }
+
+  .order-dialog-actions button {
+    width: 100%;
   }
 }

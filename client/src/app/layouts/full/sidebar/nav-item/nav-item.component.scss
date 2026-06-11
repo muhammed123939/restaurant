@@ -1,4 +1,8 @@
+/* ===================================
+   NAVIGATION MENU (RESPONSIVE)
+=================================== */
 
+/* Section title */
 .nav-caption {
   font-size: 12px;
   font-weight: 700;
@@ -6,10 +10,14 @@
   padding: 14px 16px 6px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-    background-color: white;
+  background-color: transparent;
+  opacity: 0.8;
 }
 
-/* Main item */
+/* ===================================
+   MAIN MENU ITEM
+=================================== */
+
 .menu-list-item {
   display: flex;
   align-items: center;
@@ -20,63 +28,135 @@
   cursor: pointer;
   transition: all 0.2s ease;
   color: #ffffff;
-
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 /* Icon */
 .routeIcon {
   font-size: 18px;
   color: #ffffff;
-  transition: 0.2s;
-
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
-/* Hover effect (Talabat orange) */
+/* ===================================
+   HOVER STATE
+=================================== */
+
 .menu-list-item:hover {
-  background: #ffffff;
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(2px);
 }
 
 .menu-list-item:hover .routeIcon {
   color: #ffffff;
 }
 
-/* ACTIVE ITEM */
+/* ===================================
+   ACTIVE ITEM
+=================================== */
+
 .activeMenu {
   background: #ffffff !important;
-  color: #fff !important;
+  color: #ff5a00 !important;
   box-shadow: 0 4px 10px rgba(255, 90, 0, 0.25);
+  font-weight: 600;
 }
 
 /* Active icon */
 .activeMenu .routeIcon {
-  color: #fff !important;
+  color: #ff5a00 !important;
 }
 
-/* Disabled */
+/* ===================================
+   DISABLED STATE
+=================================== */
+
 .disabled {
   opacity: 0.5;
   pointer-events: none;
 }
 
-/* Chip */
+/* ===================================
+   CHIP STYLE
+=================================== */
+
 .item-chip {
   font-size: 11px;
-  background: #dadada;
-  color: #fff;
+  background: #e0e0e0;
+  color: #333;
+  padding: 2px 6px;
+  border-radius: 10px;
 }
 
-/* Arrow */
+/* ===================================
+   ARROW ICON
+=================================== */
+
 .arrow-icon {
   margin-left: auto;
   display: flex;
   align-items: center;
+  opacity: 0.8;
 }
 
-/* Child indentation */
+/* ===================================
+   CHILD ITEMS (NESTED MENU)
+=================================== */
+
 :host ::ng-deep app-nav-item {
   display: block;
   margin-left: 12px;
-  border-left: 2px solid #f2f2f2;
-  padding-left: 6px;
+  border-left: 2px solid rgba(255, 255, 255, 0.15);
+  padding-left: 8px;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+=================================== */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .menu-list-item {
+    padding: 10px 12px;
+    font-size: 13px;
+    margin: 4px 8px;
+  }
+
+  .routeIcon {
+    font-size: 17px;
+  }
+
+  .nav-caption {
+    font-size: 11px;
+    padding: 12px 14px 6px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .menu-list-item {
+    padding: 9px 10px;
+    font-size: 12.5px;
+    gap: 8px;
+  }
+
+  .routeIcon {
+    font-size: 16px;
+  }
+
+  .arrow-icon {
+    display: none; /* cleaner mobile UI */
+  }
+
+  .nav-caption {
+    font-size: 11px;
+    padding: 10px 12px 5px;
+  }
+
+  :host ::ng-deep app-nav-item {
+    margin-left: 8px;
+    padding-left: 6px;
+  }
 }

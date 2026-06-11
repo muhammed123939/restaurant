@@ -7,6 +7,8 @@
   border: none;
 
   box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+
+  width: 100%;
 }
 
 /* =========================
@@ -21,8 +23,10 @@
   gap: 12px;
 
   padding: 18px;
+  flex-wrap: wrap;
 }
 
+/* AVATAR */
 .avatar {
   width: 48px;
   height: 48px;
@@ -36,10 +40,12 @@
 
   font-weight: 600;
   font-size: 18px;
+
+  flex-shrink: 0;
 }
 
 /* =========================
-   FORM GRID (COMPACT)
+   FORM GRID
 ========================= */
 .user-form {
   margin-top: 10px;
@@ -49,6 +55,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+
+  width: 100%;
+  min-width: 0;
 }
 
 /* =========================
@@ -61,28 +70,28 @@
   gap: 6px;
 }
 
-.error {
-  background: #ffe5e5;
-  color: #d32f2f;
+.error,
+.info,
+.success {
   padding: 8px;
   border-radius: 8px;
   font-size: 13px;
+  word-break: break-word;
+}
+
+.error {
+  background: #ffe5e5;
+  color: #d32f2f;
 }
 
 .info {
   background: #e6f3ff;
   color: #1976d2;
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 13px;
 }
 
 .success {
   background: #e7f7ec;
   color: #2e7d32;
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 13px;
 }
 
 /* =========================
@@ -114,8 +123,23 @@
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE BREAKPOINTS
 ========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .user-header {
+    padding: 14px;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .form-grid {
     grid-template-columns: 1fr;
@@ -123,11 +147,37 @@
 
   .actions {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .btn-save,
   .btn-address,
   .btn-cancel {
     width: 100%;
+  }
+
+  .user-header {
+    gap: 8px;
+    justify-content: flex-start;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .user-card {
+    border-radius: 14px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+  }
+
+  .error,
+  .info,
+  .success {
+    font-size: 12px;
+    padding: 7px;
   }
 }

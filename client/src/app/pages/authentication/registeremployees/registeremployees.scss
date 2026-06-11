@@ -1,21 +1,46 @@
-/* Page background */
+/* ===================================
+   AUTH PAGE (FULL RESPONSIVE)
+=================================== */
+
 .auth-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #f6f7fb, #eef1f5);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 20px;
 }
 
-/* Wrapper */
+/* Tablet spacing */
+@media (max-width: 768px) {
+  .auth-page {
+    padding: 16px;
+  }
+}
+
+/* Mobile spacing */
+@media (max-width: 480px) {
+  .auth-page {
+    padding: 12px;
+  }
+}
+
+/* ===================================
+   WRAPPER
+=================================== */
+
 .auth-wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-/* Card */
+/* ===================================
+   CARD
+=================================== */
+
 .auth-card {
   width: 100%;
   max-width: 520px;
@@ -23,14 +48,52 @@
   background: #fff;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
   border: none;
+
+  transition: all 0.3s ease;
 }
 
-/* Content */
+/* Tablet */
+@media (max-width: 768px) {
+  .auth-card {
+    max-width: 450px;
+    border-radius: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .auth-card {
+    max-width: 100%;
+    border-radius: 14px;
+  }
+}
+
+/* ===================================
+   CONTENT
+=================================== */
+
 .auth-content {
   padding: 28px;
 }
 
-/* Logo */
+/* Tablet */
+@media (max-width: 768px) {
+  .auth-content {
+    padding: 22px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .auth-content {
+    padding: 18px;
+  }
+}
+
+/* ===================================
+   LOGO
+=================================== */
+
 .logo-box {
   text-align: center;
   margin-bottom: 10px;
@@ -38,9 +101,20 @@
 
 .logo {
   width: 110px;
+  max-width: 100%;
 }
 
-/* Title */
+/* Mobile logo */
+@media (max-width: 480px) {
+  .logo {
+    width: 90px;
+  }
+}
+
+/* ===================================
+   TITLE / SUBTITLE
+=================================== */
+
 .title {
   text-align: center;
   font-size: 22px;
@@ -49,7 +123,6 @@
   margin-top: 10px;
 }
 
-/* Subtitle */
 .subtitle {
   text-align: center;
   font-size: 13px;
@@ -57,45 +130,89 @@
   margin-bottom: 18px;
 }
 
-/* Form */
+/* Tablet */
+@media (max-width: 768px) {
+  .title {
+    font-size: 21px;
+  }
+
+  .subtitle {
+    font-size: 12.5px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+}
+
+/* ===================================
+   FORM
+=================================== */
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-/* Fields */
+/* ===================================
+   FIELD
+=================================== */
+
 .field {
   width: 100%;
 }
 
-/* Error box */
+/* ===================================
+   ERROR BOX
+=================================== */
+
 .error-box {
   background: #ffe9e5;
   color: #d32f2f;
   padding: 10px 12px;
   border-radius: 10px;
+
   font-size: 13px;
   font-weight: 600;
   text-align: center;
 }
 
-/* Register button */
+/* Mobile error */
+@media (max-width: 480px) {
+  .error-box {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
+
+/* ===================================
+   BUTTONS
+=================================== */
+
 .register-btn {
   width: 100%;
   background: #ff5a00 !important;
   color: #fff !important;
+
   font-weight: 700;
   border-radius: 12px;
   padding: 10px;
+
   box-shadow: 0 6px 16px rgba(255, 90, 0, 0.25);
+  transition: all 0.2s ease;
 }
 
-/* Hover */
 .register-btn:hover {
   background: #ff6a1a !important;
   transform: translateY(-1px);
-  transition: 0.2s ease;
 }
 
 /* Cancel button */
@@ -105,7 +222,19 @@
   font-weight: 600;
 }
 
-/* Footer */
+/* Mobile buttons */
+@media (max-width: 480px) {
+  .register-btn,
+  .cancel-btn {
+    padding: 9px;
+    font-size: 13px;
+  }
+}
+
+/* ===================================
+   FOOTER
+=================================== */
+
 .footer {
   text-align: center;
   margin-top: 18px;
@@ -119,18 +248,10 @@
   text-decoration: none;
 }
 
-/* Material focus */
+/* ===================================
+   MATERIAL FIX
+=================================== */
+
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
   color: #ff5a00 !important;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .auth-card {
-    border-radius: 14px;
-  }
-
-  .auth-content {
-    padding: 20px;
-  }
 }

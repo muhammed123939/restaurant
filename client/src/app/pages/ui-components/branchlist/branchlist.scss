@@ -1,58 +1,78 @@
+/* =========================
+   Page Container
+========================= */
 .branches-page {
   padding: 24px;
   background: #f8f8f8;
   min-height: 100vh;
 }
 
-/* Header */
-
+/* =========================
+   Header Section
+========================= */
 .header-section {
   margin-bottom: 24px;
 }
 
+/* =========================
+   Add Button
+========================= */
 .add-btn {
   background: #ff5a00 !important;
   color: white !important;
+
   border-radius: 12px !important;
   height: 48px;
+
   padding: 0 24px;
   font-weight: 600;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .add-btn mat-icon {
-  margin-right: 8px;
+  margin-right: 0;
 }
 
-/* Grid */
-
+/* =========================
+   Grid
+========================= */
 .branches-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 20px;
 }
 
-/* Card */
-
+/* =========================
+   Card
+========================= */
 .branch-card {
   border-radius: 18px !important;
   overflow: hidden;
   border: none;
-  transition: all .25s ease;
-  box-shadow: 0 3px 12px rgba(0,0,0,.08) !important;
+
+  transition: all 0.25s ease;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08) !important;
 }
 
 .branch-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0,0,0,.12) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Card Header */
-
+/* =========================
+   Card Header
+========================= */
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   padding: 18px;
+  gap: 12px;
 }
 
 .card-header h3 {
@@ -60,23 +80,28 @@
   color: #333;
   font-size: 20px;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .branch-id {
   color: #ff5a00;
   font-size: 13px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
-/* Actions */
-
+/* =========================
+   Actions
+========================= */
 .actions {
   display: flex;
   gap: 6px;
+  flex-shrink: 0;
 }
 
-/* Body */
-
+/* =========================
+   Card Body
+========================= */
 .card-body {
   padding: 18px;
 }
@@ -84,6 +109,7 @@
 .info-row {
   display: flex;
   align-items: center;
+
   margin-bottom: 16px;
   gap: 10px;
 }
@@ -91,6 +117,7 @@
 .info-row mat-icon {
   color: #ff5a00;
   font-size: 20px;
+  flex-shrink: 0;
 }
 
 .info-row span {
@@ -101,14 +128,17 @@
 
 .info-row strong {
   color: #222;
+  word-break: break-word;
 }
 
-/* Empty */
-
+/* =========================
+   Empty State
+========================= */
 .empty-card {
   margin-top: 40px;
   padding: 50px;
   text-align: center;
+
   border-radius: 20px !important;
 }
 
@@ -124,14 +154,92 @@
   color: #444;
 }
 
-/* Mobile */
+/* =========================
+   Tablet (<= 992px)
+========================= */
+@media (max-width: 992px) {
+  .branches-page {
+    padding: 20px;
+  }
 
+  .branches-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .card-header h3 {
+    font-size: 18px;
+  }
+}
+
+/* =========================
+   Mobile (<= 768px)
+========================= */
 @media (max-width: 768px) {
+
   .branches-grid {
     grid-template-columns: 1fr;
   }
 
   .add-btn {
     width: 100%;
+    justify-content: center;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .card-body {
+    padding: 16px;
+  }
+
+  .info-row span {
+    min-width: 60px;
+    font-size: 13px;
+  }
+}
+
+/* =========================
+   Small Mobile (<= 420px)
+========================= */
+@media (max-width: 420px) {
+
+  .branches-page {
+    padding: 16px;
+  }
+
+  .card-header h3 {
+    font-size: 16px;
+  }
+
+  .branch-id {
+    font-size: 12px;
+  }
+
+  .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .info-row span {
+    min-width: unset;
+  }
+
+  .empty-card {
+    padding: 30px 20px;
+  }
+
+  .empty-card mat-icon {
+    font-size: 55px;
+    width: 55px;
+    height: 55px;
   }
 }

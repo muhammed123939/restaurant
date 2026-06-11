@@ -1,3 +1,6 @@
+/* =========================
+   Register Card Container
+========================= */
 .branch-register-card {
   max-width: 900px;
   margin: 30px auto;
@@ -7,12 +10,12 @@
 
   border: none;
 
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Header */
-
+/* =========================
+   Header
+========================= */
 .register-header {
   background: linear-gradient(135deg, #ff5a00, #ff7a00);
 
@@ -31,11 +34,13 @@
 
   border-radius: 18px;
 
-  background: rgba(255, 255, 255, .18);
+  background: rgba(255, 255, 255, 0.18);
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  flex-shrink: 0;
 }
 
 .header-icon mat-icon {
@@ -44,25 +49,34 @@
   height: 36px;
 }
 
+.header-content {
+  flex: 1;
+  min-width: 0;
+}
+
 .header-content h2 {
   margin: 0;
   font-size: 26px;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .header-content p {
   margin: 5px 0 0;
-  opacity: .9;
+  opacity: 0.9;
+  line-height: 1.4;
 }
 
-/* Content */
-
+/* =========================
+   Content
+========================= */
 mat-card-content {
   padding: 30px !important;
 }
 
-/* Grid */
-
+/* =========================
+   Form Grid
+========================= */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -77,8 +91,9 @@ mat-form-field {
   width: 100%;
 }
 
-/* Alerts */
-
+/* =========================
+   Alerts
+========================= */
 .alert {
   display: flex;
   align-items: center;
@@ -102,8 +117,9 @@ mat-form-field {
   color: #d32f2f;
 }
 
-/* Buttons */
-
+/* =========================
+   Buttons
+========================= */
 .actions {
   display: flex;
   gap: 16px;
@@ -120,10 +136,13 @@ mat-form-field {
   border-radius: 12px !important;
 
   font-weight: 600;
+
+  transition: 0.2s ease;
 }
 
 .btn-save:hover:not(:disabled) {
   background: #e65100 !important;
+  transform: translateY(-1px);
 }
 
 .btn-cancel {
@@ -133,10 +152,33 @@ mat-form-field {
   border-radius: 12px !important;
 }
 
-/* Mobile */
+/* =========================
+   Tablet (<= 992px)
+========================= */
+@media (max-width: 992px) {
+  mat-card-content {
+    padding: 24px !important;
+  }
 
+  .register-header {
+    padding: 20px;
+  }
+
+  .header-content h2 {
+    font-size: 24px;
+  }
+
+  .actions {
+    margin-top: 24px;
+  }
+}
+
+/* =========================
+   Mobile (<= 768px)
+========================= */
 @media (max-width: 768px) {
 
+  /* Grid becomes single column */
   .form-grid {
     grid-template-columns: 1fr;
   }
@@ -145,17 +187,63 @@ mat-form-field {
     grid-column: auto;
   }
 
+  /* Header stacking */
   .register-header {
     flex-direction: column;
     text-align: center;
+    gap: 12px;
   }
 
+  .header-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .header-content h2 {
+    font-size: 20px;
+  }
+
+  .header-content p {
+    font-size: 13px;
+  }
+
+  /* Buttons stacked */
   .actions {
     flex-direction: column;
+    gap: 12px;
   }
 
   .btn-save,
   .btn-cancel {
     width: 100%;
+    min-width: unset;
+  }
+
+  mat-card-content {
+    padding: 18px !important;
+  }
+}
+
+/* =========================
+   Small Mobile (<= 420px)
+========================= */
+@media (max-width: 420px) {
+
+  .branch-register-card {
+    margin: 16px auto;
+  }
+
+  .header-content h2 {
+    font-size: 18px;
+  }
+
+  .header-content p {
+    font-size: 12px;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    height: 44px;
+    font-size: 13px;
   }
 }

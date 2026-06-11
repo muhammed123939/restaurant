@@ -1,4 +1,21 @@
-/* Page background */
+/* ==========================================
+   TALABAT FORM PAGE
+   FULLY RESPONSIVE
+   Mobile • Tablet • Laptop • Desktop
+========================================== */
+
+/* ==========================================
+   GLOBAL
+========================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   PAGE BACKGROUND
+========================================== */
+
 .page {
   min-height: 100vh;
   background: #f6f7fb;
@@ -6,9 +23,13 @@
   justify-content: center;
   align-items: flex-start;
   padding: 30px 16px;
+  overflow-x: hidden;
 }
 
-/* Main card */
+/* ==========================================
+   MAIN CARD
+========================================== */
+
 .form-card {
   width: 100%;
   max-width: 520px;
@@ -16,99 +37,245 @@
   background: #fff;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
   border: none;
+  overflow: hidden;
 }
 
-/* Header */
+/* ==========================================
+   HEADER
+========================================== */
+
 .header {
   display: flex;
   justify-content: center;
-  padding-top: 18px;
+  align-items: center;
+  text-align: center;
+  padding: 18px 16px 0;
 }
 
 .title {
   font-size: 20px;
   font-weight: 800;
-  color: #ff5a00; /* Talabat orange */
+  color: #ff5a00;
+  line-height: 1.4;
+  word-break: break-word;
 }
 
-/* Content */
+/* ==========================================
+   CONTENT
+========================================== */
+
 .content {
   padding: 16px 20px 22px;
 }
 
-/* Form layout */
+/* ==========================================
+   FORM LAYOUT
+========================================== */
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* Fields */
+/* ==========================================
+   FIELDS
+========================================== */
+
 .field {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Angular Material */
+
+::ng-deep .mat-form-field,
+::ng-deep .mat-mdc-form-field {
   width: 100%;
 }
 
-/* Error box */
+/* ==========================================
+   ERROR BOX
+========================================== */
+
 .error-box {
   background: #ffe9e5;
   color: #d32f2f;
-  padding: 10px 12px;
+  padding: 12px;
   border-radius: 10px;
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 10px;
+  line-height: 1.5;
+  word-break: break-word;
 }
 
-/* Success box */
+/* ==========================================
+   SUCCESS BOX
+========================================== */
+
 .success-box {
   background: #e8f5e9;
   color: #1b5e20;
-  padding: 10px 12px;
+  padding: 12px;
   border-radius: 10px;
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 10px;
+  line-height: 1.5;
+  word-break: break-word;
 }
 
-/* Buttons layout */
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
 .actions {
   display: flex;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 10px;
+  width: 100%;
 }
 
-/* Save button (Talabat orange) */
+/* ==========================================
+   SAVE BUTTON
+========================================== */
+
 .save-btn {
   flex: 1;
   background: #ff5a00 !important;
   color: #fff !important;
   font-weight: 700;
   border-radius: 10px;
+  min-height: 44px;
   box-shadow: 0 6px 14px rgba(255, 90, 0, 0.25);
+  transition: all 0.25s ease;
 }
 
-/* Hover effect */
 .save-btn:hover {
   background: #ff6a1a !important;
   transform: translateY(-1px);
-  transition: 0.2s ease;
 }
 
-/* Cancel button */
+/* ==========================================
+   CANCEL BUTTON
+========================================== */
+
 .cancel-btn {
   flex: 1;
   border-radius: 10px;
   font-weight: 600;
   color: #777;
+  min-height: 44px;
+  transition: all 0.25s ease;
 }
 
-/* Material outline focus override */
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+.cancel-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================
+   ANGULAR MATERIAL OVERRIDES
+========================================== */
+
+/* Legacy Material */
+
+::ng-deep
+  .mat-form-field-appearance-outline
+  .mat-form-field-outline-thick {
   color: #ff5a00 !important;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* MDC Material */
+
+::ng-deep .mat-mdc-form-field.mat-focused
+  .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field.mat-focused
+  .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field.mat-focused
+  .mdc-notched-outline__trailing {
+  border-color: #ff5a00 !important;
+}
+
+/* ==========================================
+   LARGE DESKTOP
+========================================== */
+
+@media (min-width: 1400px) {
+  .page {
+    padding: 40px 20px;
+  }
+
+  .form-card {
+    max-width: 620px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .content {
+    padding: 22px 28px 28px;
+  }
+}
+
+/* ==========================================
+   DESKTOP / LAPTOP
+========================================== */
+
+@media (max-width: 1200px) {
+  .form-card {
+    max-width: 560px;
+  }
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 992px) {
+  .page {
+    padding: 24px 14px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .content {
+    padding: 14px 18px 20px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px 12px;
+  }
+
+  .form-card {
+    border-radius: 16px;
+  }
+
+  .header {
+    padding-top: 14px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .content {
+    padding: 12px 16px 18px;
+  }
+
+  .form {
+    gap: 14px;
+  }
+
   .actions {
     flex-direction: column;
   }
@@ -116,5 +283,80 @@
   .save-btn,
   .cancel-btn {
     width: 100%;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+  .page {
+    padding: 10px;
+  }
+
+  .form-card {
+    border-radius: 14px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .content {
+    padding: 10px 12px 16px;
+  }
+
+  .error-box,
+  .success-box {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .save-btn,
+  .cancel-btn {
+    font-size: 14px;
+  }
+}
+
+/* ==========================================
+   EXTRA SMALL DEVICES
+========================================== */
+
+@media (max-width: 360px) {
+  .page {
+    padding: 8px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .content {
+    padding: 8px 10px 14px;
+  }
+
+  .form {
+    gap: 12px;
+  }
+
+  .save-btn,
+  .cancel-btn {
+    font-size: 13px;
+  }
+}
+
+/* ==========================================
+   LANDSCAPE PHONES
+========================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .page {
+    align-items: flex-start;
+    padding-top: 10px;
+  }
+
+  .form-card {
+    margin-bottom: 10px;
   }
 }

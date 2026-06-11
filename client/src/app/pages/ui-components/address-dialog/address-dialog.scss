@@ -1,13 +1,16 @@
-/* Dialog */
-
+/* =========================
+   Dialog Container
+========================= */
 .talabat-address-dialog {
   background: white;
   border-radius: 24px;
   overflow: hidden;
+  max-width: 100%;
 }
 
-/* Header */
-
+/* =========================
+   Header
+========================= */
 .dialog-header {
   background: linear-gradient(135deg, #ff5a00, #ff7a00);
 
@@ -26,11 +29,13 @@
 
   border-radius: 18px;
 
-  background: rgba(255,255,255,.18);
+  background: rgba(255, 255, 255, 0.18);
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  flex-shrink: 0;
 }
 
 .header-icon mat-icon {
@@ -43,23 +48,27 @@
   margin: 0;
   font-size: 24px;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .header-content p {
   margin: 4px 0 0;
-  opacity: .9;
+  opacity: 0.9;
   font-size: 14px;
+  line-height: 1.4;
 }
 
-/* Content */
-
+/* =========================
+   Content
+========================= */
 .address-content {
   background: #fafafa;
   padding: 24px !important;
 }
 
-/* Form */
-
+/* =========================
+   Form
+========================= */
 .address-form {
   width: 100%;
 }
@@ -79,15 +88,17 @@ mat-form-field {
   width: 100%;
 }
 
-/* Textarea */
-
+/* =========================
+   Textarea
+========================= */
 textarea {
   resize: none;
   line-height: 1.6;
 }
 
-/* Footer */
-
+/* =========================
+   Footer / Actions
+========================= */
 .dialog-actions {
   display: flex;
   justify-content: flex-end;
@@ -95,12 +106,13 @@ textarea {
 
   padding: 20px 24px !important;
 
-  background: white;
+  background: #fff;
   border-top: 1px solid #eeeeee;
 }
 
-/* Save Button */
-
+/* =========================
+   Buttons
+========================= */
 .btn-save {
   background: #ff5a00 !important;
   color: white !important;
@@ -110,13 +122,14 @@ textarea {
 
   border-radius: 12px !important;
   font-weight: 600;
+
+  transition: 0.2s ease;
 }
 
 .btn-save:hover:not(:disabled) {
   background: #e65100 !important;
+  transform: translateY(-1px);
 }
-
-/* Cancel Button */
 
 .btn-cancel {
   min-width: 140px;
@@ -125,10 +138,31 @@ textarea {
   border-radius: 12px !important;
 }
 
-/* Mobile */
+/* =========================
+   Tablet (<= 992px)
+========================= */
+@media (max-width: 992px) {
+  .dialog-header {
+    padding: 20px;
+  }
 
+  .address-content {
+    padding: 20px !important;
+  }
+
+  .dialog-actions {
+    padding: 16px 20px !important;
+  }
+
+  .header-content h2 {
+    font-size: 22px;
+  }
+}
+
+/* =========================
+   Mobile (<= 768px)
+========================= */
 @media (max-width: 768px) {
-
   .form-grid {
     grid-template-columns: 1fr;
   }
@@ -136,14 +170,55 @@ textarea {
   .dialog-header {
     flex-direction: column;
     text-align: center;
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .header-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .header-content h2 {
+    font-size: 20px;
+  }
+
+  .header-content p {
+    font-size: 13px;
+  }
+
+  .address-content {
+    padding: 16px !important;
   }
 
   .dialog-actions {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 10px;
   }
 
   .btn-save,
   .btn-cancel {
     width: 100%;
+    min-width: unset;
+  }
+}
+
+/* =========================
+   Small Mobile (<= 420px)
+========================= */
+@media (max-width: 420px) {
+  .header-content h2 {
+    font-size: 18px;
+  }
+
+  .header-content p {
+    font-size: 12px;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    height: 44px;
+    font-size: 13px;
   }
 }

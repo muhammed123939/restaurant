@@ -8,6 +8,8 @@
   box-shadow: 0 10px 25px rgba(0,0,0,0.06);
   border: none;
   background: #fff;
+
+  width: 100%;
 }
 
 /* =========================
@@ -27,6 +29,7 @@ app-photoeditor {
   gap: 12px;
 
   padding: 18px;
+  flex-wrap: wrap;
 }
 
 .menu-header mat-icon {
@@ -34,7 +37,7 @@ app-photoeditor {
 }
 
 /* =========================
-   FORM GRID (COMPACT)
+   FORM GRID
 ========================= */
 .menu-form {
   margin-top: 10px;
@@ -44,6 +47,8 @@ app-photoeditor {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  width: 100%;
+  min-width: 0;
 }
 
 /* =========================
@@ -62,6 +67,7 @@ app-photoeditor {
   object-fit: cover;
 
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  max-width: 100%;
 }
 
 /* =========================
@@ -79,6 +85,8 @@ app-photoeditor {
   padding: 10px;
   border-radius: 10px;
   font-size: 13px;
+
+  word-break: break-word;
 }
 
 .msg.error {
@@ -100,6 +108,7 @@ app-photoeditor {
   gap: 10px;
 
   margin-top: 15px;
+  flex-wrap: wrap;
 }
 
 .btn-save {
@@ -113,8 +122,22 @@ app-photoeditor {
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE BREAKPOINTS
 ========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .menu-header {
+    padding: 14px;
+  }
+
+  .image-preview img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .form-grid {
     grid-template-columns: 1fr;
@@ -122,10 +145,37 @@ app-photoeditor {
 
   .actions {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .btn-save,
   .btn-cancel {
     width: 100%;
+  }
+
+  .menu-header {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .menu-card {
+    border-radius: 14px;
+  }
+
+  .menu-header mat-icon {
+    font-size: 28px;
+  }
+
+  .image-preview img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .msg {
+    font-size: 12px;
+    padding: 8px;
   }
 }

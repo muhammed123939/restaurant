@@ -8,6 +8,8 @@
 
   background: #fff;
   box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+
+  width: 100%;
 }
 
 /* =========================
@@ -22,10 +24,13 @@
   gap: 12px;
 
   padding: 18px;
+  flex-wrap: wrap;
 }
 
+/* AVATAR */
 .avatar {
   font-size: 34px;
+  flex-shrink: 0;
 }
 
 /* =========================
@@ -39,6 +44,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+
+  width: 100%;
+  min-width: 0;
 }
 
 /* =========================
@@ -51,28 +59,31 @@
   gap: 6px;
 }
 
+.error,
+.success,
+.info {
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  word-break: break-word;
+}
+
+/* ERROR */
 .error {
   background: #ffe5e5;
   color: #d32f2f;
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 13px;
 }
 
+/* SUCCESS */
 .success {
   background: #e7f7ec;
   color: #2e7d32;
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 13px;
 }
 
+/* INFO */
 .info {
   background: #fff3cd;
   color: #664d03;
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 13px;
 }
 
 /* =========================
@@ -98,8 +109,21 @@
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE BREAKPOINTS
 ========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .employee-header {
+    padding: 14px;
+  }
+
+  .avatar {
+    font-size: 30px;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .form-grid {
     grid-template-columns: 1fr;
@@ -107,10 +131,34 @@
 
   .actions {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .btn-save,
   .btn-cancel {
     width: 100%;
+  }
+
+  .employee-header {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .employee-card {
+    border-radius: 14px;
+  }
+
+  .avatar {
+    font-size: 26px;
+  }
+
+  .error,
+  .success,
+  .info {
+    font-size: 12px;
+    padding: 7px;
   }
 }

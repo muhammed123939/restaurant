@@ -1,13 +1,16 @@
-/* Dialog */
-
+/* =========================
+   Dialog Container
+========================= */
 .talabat-dialog {
   border-radius: 24px;
   overflow: hidden;
   background: #fff;
+  max-width: 100%;
 }
 
-/* Header */
-
+/* =========================
+   Header
+========================= */
 .dialog-header {
   background: linear-gradient(135deg, #ff5a00, #ff7a00);
   color: white;
@@ -24,12 +27,13 @@
   height: 60px;
 
   border-radius: 16px;
-
-  background: rgba(255,255,255,.18);
+  background: rgba(255, 255, 255, 0.18);
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  flex-shrink: 0;
 }
 
 .header-icon mat-icon {
@@ -42,23 +46,27 @@
   margin: 0;
   font-size: 24px;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .header-content p {
   margin: 4px 0 0;
-  opacity: .9;
+  opacity: 0.9;
   font-size: 14px;
+  line-height: 1.4;
 }
 
-/* Content */
-
+/* =========================
+   Content
+========================= */
 .dialog-content {
   padding: 24px !important;
   background: #fafafa;
 }
 
-/* Section Title */
-
+/* =========================
+   Section Title
+========================= */
 .section-title {
   display: flex;
   align-items: center;
@@ -75,8 +83,9 @@
   color: #ff5a00;
 }
 
-/* Fields */
-
+/* =========================
+   Fields
+========================= */
 .talabat-field {
   width: 100%;
 }
@@ -90,8 +99,9 @@
   border-radius: 12px;
 }
 
-/* Actions */
-
+/* =========================
+   Actions
+========================= */
 .dialog-actions {
   display: flex;
   justify-content: flex-end;
@@ -99,12 +109,13 @@
 
   padding: 20px 24px !important;
 
-  background: white;
+  background: #fff;
   border-top: 1px solid #f0f0f0;
 }
 
-/* Save Button */
-
+/* =========================
+   Buttons
+========================= */
 .btn-save {
   background: #ff5a00 !important;
   color: white !important;
@@ -114,13 +125,14 @@
 
   border-radius: 12px !important;
   font-weight: 600;
+
+  transition: 0.2s ease;
 }
 
 .btn-save:hover {
   background: #e65100 !important;
+  transform: translateY(-1px);
 }
-
-/* Cancel Button */
 
 .btn-cancel {
   min-width: 130px;
@@ -129,30 +141,91 @@
   border-radius: 12px !important;
 }
 
-/* Scroll */
-
+/* =========================
+   Scroll Behavior
+========================= */
 .mat-mdc-dialog-content {
   max-height: 65vh;
+  overflow-y: auto;
 }
 
-/* Mobile */
-
-@media (max-width: 600px) {
-
+/* =========================
+   Tablet (<= 960px)
+========================= */
+@media (max-width: 960px) {
   .dialog-header {
-    padding: 18px;
+    padding: 20px;
+  }
+
+  .header-content h2 {
+    font-size: 22px;
+  }
+
+  .dialog-content {
+    padding: 20px !important;
+  }
+
+  .dialog-actions {
+    padding: 16px 20px !important;
+  }
+}
+
+/* =========================
+   Mobile (<= 600px)
+========================= */
+@media (max-width: 600px) {
+  .dialog-header {
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-icon {
+    width: 52px;
+    height: 52px;
   }
 
   .header-content h2 {
     font-size: 20px;
   }
 
+  .header-content p {
+    font-size: 13px;
+  }
+
+  .dialog-content {
+    padding: 16px !important;
+  }
+
   .dialog-actions {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 10px;
   }
 
   .btn-save,
   .btn-cancel {
     width: 100%;
+    min-width: unset;
+  }
+}
+
+/* =========================
+   Very Small Devices (<= 380px)
+========================= */
+@media (max-width: 380px) {
+  .header-content h2 {
+    font-size: 18px;
+  }
+
+  .header-content p {
+    font-size: 12px;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    height: 44px;
+    font-size: 13px;
   }
 }
