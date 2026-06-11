@@ -69,6 +69,7 @@
     <button mat-raised-button color="primary" (click)="openCommentsDialog()">
           {{ 'MENU.ADD_COMMENTS' | translate }}
     </button>
+
     @if(branches.length > 1)
     {
     <!-- Branch Filter -->
@@ -79,6 +80,7 @@
       </mat-select>
     </mat-form-field>
     }
+    
     <!-- Category Filter -->
     <mat-form-field appearance="outline" class="w-250 mb-3">
       <mat-label>{{ 'MENU.SELECT_CATEGORY' | translate }}</mat-label>

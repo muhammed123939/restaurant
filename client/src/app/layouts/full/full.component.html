@@ -10,7 +10,7 @@
       <ng-scrollbar class="position-relative" style="height: 100%">
         <mat-nav-list class="sidebar-list">
           @for(item of navItems; track item) {
-          <app-nav-item style="background-color: rgb(255, 255, 255) !important;" [item]="item" (notify)="sidenav.toggle()">
+          <app-nav-item  [item]="item" (notify)="sidenav.toggle()">
           </app-nav-item>
           }
         </mat-nav-list>
@@ -44,7 +44,7 @@
       <!-- ============================================================== -->
       <app-header [showToggle]="!isOver" (toggleMobileNav)="sidenav.toggle()"></app-header>
 
-      <div class="m-t-30">
+      <div  class="pageWrapper">
         <!-- ============================================================== -->
         <!-- Outlet -->
         <!-- ============================================================== -->
@@ -53,8 +53,8 @@
     </main>
 
     <div class="p-16 p-t-8 p-b-30 text-center">
-      Design & Developed by <a class="text-decoration-none" href=""
-        target="_blank">Muhammed</a>
+     ERP Systems Solution <a class="text-decoration-none" href=""
+        target="_blank"></a>
     </div>
 
   </mat-sidenav-content>

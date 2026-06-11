@@ -102,7 +102,22 @@ export class MenuviewComponent implements OnInit {
 
   /** ================= INIT ================= */
   ngOnInit(): void {
+    this.branchService.getall().subscribe({
+      next: (data: Branch[]) => {
+        this.branches = data;
 
+        if (this.branches.length === 1) {
+          const branchId = this.branches[0].branchID;
+          // لو عندك متغير branchID في الكومبوننت
+          this.branchID = branchId;
+
+          // تحميل المنيو مباشرة
+          this.onBranchSelect();
+        }
+      },
+      error: err => console.error('Branches load error:', err)
+    });
+    
 this.route.url.subscribe(segments => {
   if (segments.length >= 3) {
     const type = segments[1].path;

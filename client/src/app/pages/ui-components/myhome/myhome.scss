@@ -1,0 +1,164 @@
+/* =====================================
+   PAGE WRAPPER
+===================================== */
+.home-container {
+  min-height: calc(100vh - 64px); /* adjust if header height differs */
+  background: linear-gradient(135deg, #f6f7fb, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* =====================================
+   CARD
+===================================== */
+.welcome-card {
+  background: #fff;
+  width: 100%;
+  max-width: 650px;
+  padding: 40px 30px;
+  border-radius: 18px;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+
+  border-top: 5px solid #ff5a00;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* =====================================
+   TITLES
+===================================== */
+.welcome-card h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ff5a00;
+  margin-bottom: 12px;
+}
+
+.welcome-card h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.welcome-card p {
+  font-size: 14px;
+  color: #777;
+  line-height: 1.6;
+}
+
+/* =====================================
+   ICON BADGE
+===================================== */
+.welcome-card::before {
+  content: "🍽️";
+  font-size: 30px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* =====================================
+   ANIMATION
+===================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================
+   TABLET (≤ 992px)
+===================================== */
+@media (max-width: 992px) {
+  .welcome-card {
+    max-width: 85%;
+    padding: 30px 22px;
+  }
+
+  .welcome-card h1 {
+    font-size: 24px;
+  }
+
+  .welcome-card h2 {
+    font-size: 16px;
+  }
+}
+
+/* =====================================
+   MOBILE (≤ 768px)
+===================================== */
+@media (max-width: 768px) {
+  .home-container {
+    min-height: calc(100vh - 56px);
+    padding: 16px;
+    align-items: center; /* keep centered but safer */
+  }
+
+  .welcome-card {
+    padding: 24px 18px;
+    border-radius: 14px;
+    max-width: 100%;
+  }
+
+  .welcome-card h1 {
+    font-size: 22px;
+  }
+
+  .welcome-card h2 {
+    font-size: 15px;
+  }
+
+  .welcome-card p {
+    font-size: 13px;
+  }
+}
+
+/* =====================================
+   SMALL MOBILE (≤ 480px)
+===================================== */
+@media (max-width: 480px) {
+  .home-container {
+    padding: 12px;
+    align-items: flex-start; /* prevents vertical clipping */
+  }
+
+  .welcome-card {
+    padding: 18px 14px;
+    margin-top: 20px;
+  }
+
+  .welcome-card h1 {
+    font-size: 20px;
+  }
+
+  .welcome-card h2 {
+    font-size: 14px;
+  }
+
+  .welcome-card p {
+    font-size: 12px;
+  }
+}
+
+/* =====================================
+   VERY SMALL (≤ 360px)
+===================================== */
+@media (max-width: 360px) {
+  .welcome-card h1 {
+    font-size: 18px;
+  }
+
+  .welcome-card h2 {
+    font-size: 13px;
+  }
+}

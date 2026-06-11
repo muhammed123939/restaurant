@@ -3,12 +3,14 @@ import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { authadminGuard } from './_guards/authadmin.guard';
 import { MenuviewComponent } from 'src/app/pages/ui-components/menuview/menuview';
+import { Myhome } from './pages/ui-components/myhome/myhome';
 export const routes: Routes = [
 
   {
     path: '',
     component: FullComponent,
     children: [
+        { path: '', component: Myhome },
       { path: 'menuview', component: MenuviewComponent },        
       {
         path: 'authentication',

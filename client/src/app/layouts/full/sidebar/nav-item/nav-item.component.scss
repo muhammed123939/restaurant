@@ -1,8 +1,38 @@
-/* ===================================
-   NAVIGATION MENU (RESPONSIVE)
-=================================== */
 
-/* Section title */
+/* ===================================
+   SIDEBAR ROOT (CRITICAL FIX)
+=================================== */
+.sidebarNav {
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* FLEX CONTAINER FIX */
+.sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0; /* CRITICAL FOR SCROLL */
+}
+
+/* ===================================
+   SCROLL AREA (IMPORTANT FIX)
+=================================== */
+.sidebar-wrapper {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  min-height: 0;
+
+  scrollbar-width: thin;
+}
+
+/* ===================================
+   NAV CAPTION
+=================================== */
 .nav-caption {
   font-size: 12px;
   font-weight: 700;
@@ -10,90 +40,74 @@
   padding: 14px 16px 6px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  background-color: transparent;
   opacity: 0.8;
 }
 
 /* ===================================
-   MAIN MENU ITEM
+   MENU ITEM
 =================================== */
-
 .menu-list-item {
   display: flex;
   align-items: center;
   gap: 10px;
+
   padding: 10px 14px;
   margin: 4px 10px;
+
   border-radius: 10px;
   cursor: pointer;
+
   transition: all 0.2s ease;
   color: #ffffff;
+
   font-size: 14px;
   white-space: nowrap;
+  overflow: hidden;
 }
 
-/* Icon */
+/* ICON */
 .routeIcon {
   font-size: 18px;
   color: #ffffff;
-  transition: all 0.2s ease;
   flex-shrink: 0;
 }
 
 /* ===================================
-   HOVER STATE
+   HOVER EFFECT
 =================================== */
-
 .menu-list-item:hover {
   background: rgba(255, 255, 255, 0.12);
   transform: translateX(2px);
 }
 
-.menu-list-item:hover .routeIcon {
-  color: #ffffff;
-}
-
 /* ===================================
    ACTIVE ITEM
 =================================== */
-
 .activeMenu {
   background: #ffffff !important;
   color: #ff5a00 !important;
-  box-shadow: 0 4px 10px rgba(255, 90, 0, 0.25);
   font-weight: 600;
 }
 
-/* Active icon */
 .activeMenu .routeIcon {
   color: #ff5a00 !important;
 }
 
 /* ===================================
-   DISABLED STATE
+   CHIP
 =================================== */
-
-.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-/* ===================================
-   CHIP STYLE
-=================================== */
-
 .item-chip {
   font-size: 11px;
   background: #e0e0e0;
   color: #333;
   padding: 2px 6px;
   border-radius: 10px;
+  flex-shrink: 0;
 }
 
 /* ===================================
-   ARROW ICON
+   ARROW
 =================================== */
-
 .arrow-icon {
   margin-left: auto;
   display: flex;
@@ -102,24 +116,22 @@
 }
 
 /* ===================================
-   CHILD ITEMS (NESTED MENU)
+   CHILD NESTING
 =================================== */
-
-:host ::ng-deep app-nav-item {
-  display: block;
+.children-wrapper {
+  display: flex;
+  flex-direction: column;
   margin-left: 12px;
   border-left: 2px solid rgba(255, 255, 255, 0.15);
   padding-left: 8px;
 }
 
 /* ===================================
-   RESPONSIVE DESIGN
+   TABLET
 =================================== */
-
-/* Tablets */
 @media (max-width: 768px) {
   .menu-list-item {
-    padding: 10px 12px;
+    padding: 9px 12px;
     font-size: 13px;
     margin: 4px 8px;
   }
@@ -134,7 +146,9 @@
   }
 }
 
-/* Mobile */
+/* ===================================
+   MOBILE
+=================================== */
 @media (max-width: 480px) {
   .menu-list-item {
     padding: 9px 10px;
@@ -147,16 +161,25 @@
   }
 
   .arrow-icon {
-    display: none; /* cleaner mobile UI */
+    display: none;
   }
 
   .nav-caption {
     font-size: 11px;
     padding: 10px 12px 5px;
   }
+}
 
-  :host ::ng-deep app-nav-item {
-    margin-left: 8px;
-    padding-left: 6px;
+/* ===================================
+   VERY SMALL DEVICES
+=================================== */
+@media (max-width: 360px) {
+  .menu-list-item {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .routeIcon {
+    font-size: 15px;
   }
 }

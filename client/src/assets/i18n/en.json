@@ -22,6 +22,13 @@
     "PASSWORD_MAX": "Maximum 8 characters allowed.",
     "SIGN_IN": "Sign In"
   },
+  
+  "HOME": {
+    "RESTAURANT_NAME": "Talabat Restaurant System",
+    "WELCOME_MESSAGE": "Welcome to your restaurant management dashboard",
+    "SUBTITLE": "Manage orders, tables, and profits easily"
+  }
+,
   "LOGIN": {
     "WELCOME_BACK": "Welcome Back",
     "USERNAME": "Username",

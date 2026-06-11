@@ -4,12 +4,14 @@ import { Router, RouterOutlet } from '@angular/router';
 import { ClientService } from './_services/client.service';
 import { EmployeeService } from './_services/employee.service';
 import { LanguageService } from './_services/language.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html'
+  imports: [RouterOutlet , TranslateModule],
+  templateUrl: './app.component.html' ,
+       styleUrl: './app.component.scss' 
 })
 export class AppComponent implements OnInit {
 

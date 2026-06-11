@@ -1,59 +1,154 @@
-/* ===== SIDEBAR BACKGROUND ===== */
+/* =====================================
+   PAGE WRAPPER
+===================================== */
+.pageWrapper {
+  padding: 20px;
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+}
+
+/* =====================================
+   SIDEBAR BASE
+===================================== */
 .sidebarNav {
   width: 260px !important;
-}
-mat-sidenav.sidebarNav {
   background-color: rgba(42, 48, 61, 1) !important;
   color: #ffffff;
+  transition: all 0.3s ease;
 }
 
-/* ===== MAT LIST BASE ===== */
+/* =====================================
+   SIDEBAR LIST
+===================================== */
 .sidebarNav .sidebar-list {
   background: transparent !important;
+  padding: 8px 0;
 }
 
-/* ===== MENU ITEM DEFAULT ===== */
+/* =====================================
+   MENU ITEMS
+===================================== */
 .sidebarNav .menu-list-item,
 .sidebarNav a.mat-list-item,
 .sidebarNav mat-list-item {
   color: #ffffff !important;
+  border-radius: 8px;
+  margin: 4px 8px;
+  transition: all 0.2s ease;
 }
 
-/* ===== ICON COLOR ===== */
+/* =====================================
+   ICONS
+===================================== */
 .sidebarNav .routeIcon {
-  color: #cbd5e1 !important; /* soft white */
+  color: #cbd5e1 !important;
+  transition: all 0.2s ease;
 }
 
-/* ===== HOVER STATE ===== */
+/* =====================================
+   HOVER STATE
+===================================== */
 .sidebarNav .menu-list-item:hover,
 .sidebarNav a.mat-list-item:hover,
 .sidebarNav mat-list-item:hover {
   background: rgba(255, 255, 255, 0.08) !important;
   color: #ffffff !important;
+  transform: translateX(2px);
 }
 
-/* icon on hover */
 .sidebarNav .menu-list-item:hover .routeIcon {
   color: #ffffff !important;
 }
 
-/* ===== ACTIVE ITEM ===== */
+/* =====================================
+   ACTIVE ITEM
+===================================== */
 .sidebarNav .activeMenu {
   background: #2196f3 !important;
   color: #ffffff !important;
+  border-radius: 8px;
 }
 
 .sidebarNav .activeMenu .routeIcon {
   color: #ffffff !important;
 }
 
-/* ===== CAPTION ===== */
+/* =====================================
+   CAPTION
+===================================== */
 .sidebarNav .nav-caption {
   color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 12px;
 }
 
-/* ===== CHIP ===== */
+/* =====================================
+   CHIP
+===================================== */
 .sidebarNav .item-chip {
   background: #2196f3;
   color: #fff;
+}
+
+/* =====================================
+   TABLET (≤ 992px)
+===================================== */
+@media (max-width: 992px) {
+  .sidebarNav {
+    width: 220px !important;
+  }
+
+  .pageWrapper {
+    padding: 16px;
+  }
+}
+
+/* =====================================
+   MOBILE (≤ 768px)
+   IMPORTANT: sidenav becomes overlay
+===================================== */
+@media (max-width: 768px) {
+  .sidebarNav {
+    width: 260px !important;
+  }
+
+  /* make content tighter */
+  .pageWrapper {
+    padding: 12px;
+  }
+
+  .sidebarNav .menu-list-item,
+  .sidebarNav a.mat-list-item,
+  .sidebarNav mat-list-item {
+    margin: 3px 6px;
+  }
+}
+
+/* =====================================
+   SMALL MOBILE (≤ 480px)
+===================================== */
+@media (max-width: 480px) {
+  .sidebarNav {
+    width: 240px !important;
+  }
+
+  .pageWrapper {
+    padding: 10px;
+  }
+
+  .sidebarNav .nav-caption {
+    font-size: 11px;
+  }
+}
+
+/* =====================================
+   VERY SMALL DEVICES (≤ 360px)
+===================================== */
+@media (max-width: 360px) {
+  .sidebarNav {
+    width: 220px !important;
+  }
+
+  .pageWrapper {
+    padding: 8px;
+  }
 }

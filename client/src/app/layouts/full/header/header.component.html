@@ -1,44 +1,22 @@
 <style>
-/* ===================================
-   TOPBAR (RESPONSIVE - TALABAT STYLE)
-=================================== */
-
-.topbar {
-  background: #ffffff;
-  height: 64px;
-  padding: 0 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
-  flex-wrap: wrap;
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
+  /* =========================
+   TOPBAR (Talabat Style)
+========================= */
   .topbar {
-    height: auto;
-    padding: 10px 12px;
-    gap: 8px;
+    background: #ffffff;
+    height: 64px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    gap: 10px;
   }
-}
-
-@media (max-width: 480px) {
-  .topbar {
-    padding: 8px 10px;
-    gap: 6px;
-  }
-}
-
-/* ===================================
-   LANGUAGE SWITCHER
-=================================== */
+/* =========================
+   Language Switcher
+========================= */
 
 .language-switcher {
   display: flex;
@@ -48,9 +26,7 @@
   padding: 4px;
   border: 1px solid #ececec;
   margin-right: 12px;
-
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  flex-shrink: 0;
 }
 
 .lang-option {
@@ -58,19 +34,14 @@
   background: transparent;
   color: #666;
   cursor: pointer;
-
   padding: 8px 14px;
   border-radius: 25px;
-
   font-size: 13px;
   font-weight: 700;
-
   display: flex;
   align-items: center;
   gap: 6px;
-
-  transition: all 0.25s ease;
-  white-space: nowrap;
+  transition: all .25s ease;
 }
 
 .lang-option:hover {
@@ -79,7 +50,7 @@
 
 .lang-option.active {
   background: #ff5a00;
-  color: #fff;
+  color: white;
   box-shadow: 0 2px 8px rgba(255,90,0,.3);
 }
 
@@ -87,15 +58,14 @@
   font-size: 15px;
 }
 
-/* Mobile language switcher */
+/* Mobile */
 @media (max-width: 768px) {
   .language-switcher {
     margin-right: 6px;
-    padding: 3px;
   }
 
   .lang-option {
-    padding: 6px 10px;
+    padding: 7px 10px;
     font-size: 12px;
   }
 
@@ -103,152 +73,195 @@
     display: none;
   }
 }
-
-/* ===================================
-   TOPBAR ICONS
-=================================== */
-
-.topbar button mat-icon,
-.topbar i-tabler {
-  color: #333;
-  transition: 0.2s;
-}
-
-.topbar button:hover i-tabler {
-  color: #ff5a00;
-}
-
-/* ===================================
-   FLEX SPACER
-=================================== */
-
-.flex-1-auto {
-  flex: 1 1 auto;
-}
-
-/* ===================================
-   PROFILE BUTTON
-=================================== */
-
-.rounded-pill {
-  background: transparent !important;
-  box-shadow: none !important;
-  padding: 0;
-}
-
-/* Avatar */
-.rounded-circle {
-  border-radius: 50%;
-  border: 2px solid #ff5a00;
-  object-fit: cover;
-  width: 35px;
-  height: 35px;
-}
-
-/* ===================================
-   BADGE
-=================================== */
-
-::ng-deep .mat-badge-content {
-  background: #ff5a00;
-  font-weight: 700;
-}
-
-/* ===================================
-   MENUS
-=================================== */
-
-.notification-menu,
-.topbar-dd {
-  border-radius: 12px;
-  padding: 6px;
-}
-
-/* ===================================
-   TEXT MUTED
-=================================== */
-
-.text-muted {
-  font-size: 13px;
-  color: #666;
-}
-
-/* ===================================
-   LOGOUT SECTION
-=================================== */
-
-.p-x-12 {
-  padding: 10px;
-}
-
-.p-x-12 button {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid #ff5a00 !important;
-  color: #ff5a00 !important;
-  font-weight: 600;
-  transition: 0.2s ease;
-}
-
-.p-x-12 button:hover {
-  background: #ff5a00 !important;
-  color: #fff !important;
-}
-
-/* ===================================
-   ICON HOVER
-=================================== */
-
-mat-toolbar i-tabler {
-  transition: 0.2s;
-}
-
-mat-toolbar i-tabler:hover {
-  color: #ff5a00;
-}
-
-/* ===================================
-   RESPONSIVE BEHAVIOR
-=================================== */
-
-/* Tablet */
-@media (max-width: 992px) {
-  .language-switcher {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    margin-top: 8px;
+  /* Mobile menu button */
+  .topbar button mat-icon,
+  .topbar i-tabler {
+    color: #333;
+    transition: 0.2s;
   }
-}
 
-/* Mobile */
-@media (max-width: 768px) {
+  .topbar button:hover i-tabler {
+    color: #ff5a00;
+  }
 
+  /* Spacer */
   .flex-1-auto {
-    display: none; /* reduce empty spacing on small screens */
+    flex: 1;
   }
 
-  .topbar {
-    flex-direction: row;
-    justify-content: space-between;
+  /* Profile button */
+  .rounded-pill {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0;
   }
 
+  /* Avatar */
+  .rounded-circle {
+    border-radius: 50%;
+    border: 2px solid #ff5a00;
+    object-fit: cover;
+  }
+
+  /* Notification badge */
+  ::ng-deep .mat-badge-content {
+    background: #ff5a00;
+    font-weight: 700;
+  }
+
+  /* Menus */
   .notification-menu,
   .topbar-dd {
-    width: 90vw;
-  }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-
-  .lang-option {
-    font-size: 11px;
+    border-radius: 12px;
+    padding: 6px;
   }
 
-  .rounded-circle {
-    width: 32px;
-    height: 32px;
+  /* Notification text */
+  .text-muted {
+    font-size: 13px;
+    color: #666;
   }
-}
+
+  /* Logout container */
+  .p-x-12 {
+    padding: 10px;
+  }
+
+  /* Logout button */
+  .p-x-12 button {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ff5a00 !important;
+    color: #ff5a00 !important;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+
+  .p-x-12 button:hover {
+    background: #ff5a00 !important;
+    color: #fff !important;
+  }
+
+  /* Hover effect for icons */
+  mat-toolbar i-tabler {
+    transition: 0.2s;
+  }
+
+  mat-toolbar i-tabler:hover {
+    color: #ff5a00;
+  }
 </style>
+
+
+<mat-toolbar class="topbar">
+
+  <!-- Mobile Menu -->
+  <button mat-icon-button
+          (click)="toggleMobileNav.emit()"
+          class="d-flex d-md-none justify-content-center">
+    <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
+  </button>
+
+  <!-- 🔔 NOTIFICATION (ONLY LOGGED IN) -->
+  <button *ngIf="getCurrentUser() as user"
+          mat-icon-button
+          [matMenuTriggerFor]="notificationMenu"
+          aria-label="Notifications"
+          (click)="onBellClick()">
+
+    <i-tabler name="bell"
+              class="d-flex"
+              [matBadge]="unreadCount > 0 ? unreadCount : null"
+              matBadgeColor="warn">
+    </i-tabler>
+
+  </button>
+
+  <!-- Notifications Menu -->
+  <mat-menu #notificationMenu="matMenu" class="notification-menu">
+
+    <button mat-menu-item disabled *ngIf="notifications.length === 0">
+      🔔 {{ 'TOPBAR.NO_NOTIFICATIONS' | translate }}
+    </button>
+
+    <button mat-menu-item *ngIf="notifications.length > 0">
+      ✅ {{ 'TOPBAR.MARK_ALL_READ' | translate }} ({{ unreadCount }})
+    </button>
+
+    <mat-divider *ngIf="notifications.length > 0"></mat-divider>
+
+    <button mat-menu-item *ngFor="let notification of notifications">
+      <div class="d-flex flex-column">
+        <small class="text-muted">
+          {{ notification.message }}
+        </small>
+      </div>
+    </button>
+
+  </mat-menu>
+
+  <span class="flex-1-auto"></span>
+
+  <!-- LANGUAGE (ALWAYS SHOWN) -->
+  <div class="language-switcher">
+
+    <button class="lang-option"
+            [class.active]="currentLang === 'en'"
+            (click)="changeLanguage('en')">
+      <span class="flag">🇺🇸</span>
+      {{ 'TOPBAR.ENGLISH' | translate }}
+    </button>
+
+    <button class="lang-option"
+            [class.active]="currentLang === 'ar'"
+            (click)="changeLanguage('ar')">
+      <span class="flag">🇪🇬</span>
+      {{ 'TOPBAR.ARABIC' | translate }}
+    </button>
+
+  </div>
+
+  <!-- 👤 PROFILE (ONLY LOGGED IN) -->
+  <ng-container *ngIf="getCurrentUser() as user">
+
+    <button class="rounded-pill"
+            mat-mini-fab
+            [matMenuTriggerFor]="profilemenu">
+
+      <img src="/assets/images/profile/user-1.jpg"
+           class="rounded-circle object-cover d-block"
+           width="35" />
+
+    </button>
+
+    <!-- Profile Menu -->
+    <mat-menu #profilemenu="matMenu"
+              class="cardWithShadow topbar-dd"
+              xPosition="before">
+
+      <button mat-menu-item (click)="editProfile()">
+        <i-tabler name="user" class="icon-18"></i-tabler>
+        <span>{{ 'TOPBAR.EDIT_PROFILE' | translate }}</span>
+      </button>
+
+      <button mat-menu-item>
+        <i-tabler name="mail" class="icon-18"></i-tabler>
+        <span>{{ 'TOPBAR.MY_ACCOUNT' | translate }}</span>
+      </button>
+
+      <button mat-menu-item>
+        <i-tabler name="list-check" class="icon-18"></i-tabler>
+        <span>{{ 'TOPBAR.MY_TASKS' | translate }}</span>
+      </button>
+
+      <div class="p-x-12 m-t-12">
+        <button mat-stroked-button class="w-100" (click)="logout()">
+          {{ 'TOPBAR.LOGOUT' | translate }}
+        </button>
+      </div>
+
+    </mat-menu>
+
+  </ng-container>
+
+</mat-toolbar>

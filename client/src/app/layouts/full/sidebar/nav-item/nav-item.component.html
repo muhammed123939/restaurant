@@ -23,12 +23,12 @@
       matListItemIcon>
     </i-tabler>
 
-    <span style="color:white" class="hide-menu">
+    <span class="hide-menu">
       {{ item.displayName | translate }}
     </span>
 
     @if(item.children && item.children.length) {
-      <span class="arrow-icon" fxFlex>
+      <span class="arrow-icon">
 
         @if(item.chip) {
           <span class="item-chip">
@@ -68,12 +68,14 @@
   }
 
   @if(expanded) {
-    @for(child of item.children; track child) {
-      <app-nav-item
-        [item]="child"
-        [depth]="depth + 1">
-      </app-nav-item>
-    }
+    <div class="children-wrapper">
+      @for(child of item.children; track child) {
+        <app-nav-item
+          [item]="child"
+          [depth]="depth + 1">
+        </app-nav-item>
+      }
+    </div>
   }
 
 </div>
