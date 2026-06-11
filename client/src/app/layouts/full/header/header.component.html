@@ -153,19 +153,18 @@
 </style>
 
 
-<!-- ===================== -->
-<!-- TALABAT TOPBAR -->
-<!-- ===================== -->
-
-<mat-toolbar *ngIf="getCurrentUser() as user" class="topbar">
+<mat-toolbar class="topbar">
 
   <!-- Mobile Menu -->
-  <button mat-icon-button (click)="toggleMobileNav.emit()" class="d-flex d-md-none justify-content-center">
+  <button mat-icon-button
+          (click)="toggleMobileNav.emit()"
+          class="d-flex d-md-none justify-content-center">
     <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
   </button>
 
-  <!-- Notifications -->
-  <button mat-icon-button
+  <!-- 🔔 NOTIFICATION (ONLY LOGGED IN) -->
+  <button *ngIf="getCurrentUser() as user"
+          mat-icon-button
           [matMenuTriggerFor]="notificationMenu"
           aria-label="Notifications"
           (click)="onBellClick()">
@@ -203,68 +202,66 @@
 
   <span class="flex-1-auto"></span>
 
-  <!-- Language Switcher -->
+  <!-- LANGUAGE (ALWAYS SHOWN) -->
   <div class="language-switcher">
 
-    <button
-      class="lang-option"
-      [class.active]="currentLang === 'en'"
-      (click)="changeLanguage('en')">
-
+    <button class="lang-option"
+            [class.active]="currentLang === 'en'"
+            (click)="changeLanguage('en')">
       <span class="flag">🇺🇸</span>
       {{ 'TOPBAR.ENGLISH' | translate }}
-
     </button>
 
-    <button
-      class="lang-option"
-      [class.active]="currentLang === 'ar'"
-      (click)="changeLanguage('ar')">
-
+    <button class="lang-option"
+            [class.active]="currentLang === 'ar'"
+            (click)="changeLanguage('ar')">
       <span class="flag">🇪🇬</span>
       {{ 'TOPBAR.ARABIC' | translate }}
-
     </button>
 
   </div>
 
-  <!-- Profile -->
-  <button class="rounded-pill"
-          mat-mini-fab
-          [matMenuTriggerFor]="profilemenu">
+  <!-- 👤 PROFILE (ONLY LOGGED IN) -->
+  <ng-container *ngIf="getCurrentUser() as user">
 
-    <img src="/assets/images/profile/user-1.jpg"
-         class="rounded-circle object-cover d-block"
-         width="35" />
+    <button class="rounded-pill"
+            mat-mini-fab
+            [matMenuTriggerFor]="profilemenu">
 
-  </button>
+      <img src="/assets/images/profile/user-1.jpg"
+           class="rounded-circle object-cover d-block"
+           width="35" />
 
-  <!-- Profile Menu -->
-  <mat-menu #profilemenu="matMenu"
-            class="cardWithShadow topbar-dd"
-            xPosition="before">
-
-    <button mat-menu-item (click)="editProfile()">
-      <i-tabler name="user" class="icon-18"></i-tabler>
-      <span>{{ 'TOPBAR.EDIT_PROFILE' | translate }}</span>
     </button>
 
-    <button mat-menu-item>
-      <i-tabler name="mail" class="icon-18"></i-tabler>
-      <span>{{ 'TOPBAR.MY_ACCOUNT' | translate }}</span>
-    </button>
+    <!-- Profile Menu -->
+    <mat-menu #profilemenu="matMenu"
+              class="cardWithShadow topbar-dd"
+              xPosition="before">
 
-    <button mat-menu-item>
-      <i-tabler name="list-check" class="icon-18"></i-tabler>
-      <span>{{ 'TOPBAR.MY_TASKS' | translate }}</span>
-    </button>
-
-    <div class="p-x-12 m-t-12">
-      <button mat-stroked-button class="w-100" (click)="logout()">
-        {{ 'TOPBAR.LOGOUT' | translate }}
+      <button mat-menu-item (click)="editProfile()">
+        <i-tabler name="user" class="icon-18"></i-tabler>
+        <span>{{ 'TOPBAR.EDIT_PROFILE' | translate }}</span>
       </button>
-    </div>
 
-  </mat-menu>
+      <button mat-menu-item>
+        <i-tabler name="mail" class="icon-18"></i-tabler>
+        <span>{{ 'TOPBAR.MY_ACCOUNT' | translate }}</span>
+      </button>
+
+      <button mat-menu-item>
+        <i-tabler name="list-check" class="icon-18"></i-tabler>
+        <span>{{ 'TOPBAR.MY_TASKS' | translate }}</span>
+      </button>
+
+      <div class="p-x-12 m-t-12">
+        <button mat-stroked-button class="w-100" (click)="logout()">
+          {{ 'TOPBAR.LOGOUT' | translate }}
+        </button>
+      </div>
+
+    </mat-menu>
+
+  </ng-container>
 
 </mat-toolbar>
