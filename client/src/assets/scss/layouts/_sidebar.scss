@@ -1,7 +1,7 @@
 @use "../variables" as *;
 
 /* ===================================
-   SIDEBAR CONTAINER (FIXED CORE)
+   SIDEBAR DRAWER CORE FIX
 =================================== */
 
 .mat-drawer.sidebarNav {
@@ -16,19 +16,19 @@
 
   overflow: hidden;
 
-  /* 🔴 IMPORTANT FIX */
-  position: relative !important;  /* FIXED (was absolute) */
+  /* IMPORTANT FIX FOR MOBILE OVERLAY */
+  position: relative;
   left: 0;
   top: 0;
 
   border: 0 !important;
   box-shadow: var(--mat-sys-level2) !important;
 
-  transition: width 0.35s ease;
+  transition: width 0.3s ease;
 }
 
 /* ===================================
-   FIX CONTAINER ALIGNMENT
+   CONTAINER FIX
 =================================== */
 
 mat-sidenav-container {
@@ -37,6 +37,7 @@ mat-sidenav-container {
   display: flex;
 }
 
+/* REMOVE SIDE OFFSET BUG */
 mat-sidenav-content {
   flex: 1;
   min-width: 0;
@@ -46,7 +47,7 @@ mat-sidenav-content {
 }
 
 /* ===================================
-   FLEX LAYOUT FIX
+   FLEX STRUCTURE INSIDE SIDEBAR
 =================================== */
 
 .flex-layout {
@@ -58,7 +59,7 @@ mat-sidenav-content {
 }
 
 /* ===================================
-   SCROLL AREA
+   SCROLLABLE MENU AREA
 =================================== */
 
 .sidebar-list.mdc-list {
@@ -70,8 +71,7 @@ mat-sidenav-content {
 
   padding-bottom: 12px;
   scrollbar-width: thin;
-
-  margin-top: 0 !important; /* FIX: removes hidden shift */
+  margin-top: 0 !important;
 }
 
 /* ===================================
@@ -91,22 +91,17 @@ mat-sidenav-content {
 }
 
 /* ===================================
-   REMOVE CONTENT SHIFT BUG
+   CONTENT WRAPPER FIX (NO SHIFT)
 =================================== */
 
-/* 🔴 REMOVE THIS COMPLETELY (IMPORTANT)
-.contentWrapper margin-left calc(...) MUST NOT EXIST
-*/
-
-/* Instead use clean layout */
 .contentWrapper {
-  margin: 0;
+  margin: 0 !important;
   padding: 0;
   width: 100%;
 }
 
 /* ===================================
-   MENU SYSTEM
+   MENU ITEMS
 =================================== */
 
 .sidebar-list.mdc-list {
@@ -122,8 +117,8 @@ mat-sidenav-content {
 
   .menu-list-item {
     position: relative;
-    height: 50px;
 
+    height: 50px;
     display: flex;
     align-items: center;
 
@@ -133,35 +128,8 @@ mat-sidenav-content {
     border-radius: 10px;
     transition: all 0.25s ease;
 
-    overflow: hidden;
     width: calc(100% - 12px);
-  }
-
-  .menu-list-item .mdc-list-item__primary-text {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .mdc-list-item__start {
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .item-chip {
-    font-size: 10px;
-    height: 18px;
-  }
-
-  .arrow-icon .mat-icon {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
+    overflow: hidden;
   }
 
   .menu-list-item:hover {
@@ -176,24 +144,49 @@ mat-sidenav-content {
     opacity: 0.38;
     pointer-events: none;
   }
-}
 
-/* ===================================
-   RESPONSIVE BREAKPOINTS
-=================================== */
+  .mdc-list-item__start {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-@media (max-width: 1024px) {
-  .mat-drawer.sidebarNav {
-    width: 240px;
+  .arrow-icon .mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
   }
 }
 
+/* ===================================
+   IMPORTANT: MOBILE FIX (KEY PART)
+=================================== */
+
 @media (max-width: 768px) {
+
+  /* Make drawer behave like overlay */
   .mat-drawer.sidebarNav {
-    width: 220px;
-    position: fixed;
+    width: 260px !important;
+
+    position: fixed !important;
     z-index: 1000;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25) !important;
+
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+
+    background: #fff;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  /* prevent content shrink gap issue */
+  mat-sidenav-content {
+    margin-left: 0 !important;
   }
 
   .menu-list-item {
@@ -202,12 +195,27 @@ mat-sidenav-content {
   }
 }
 
+/* ===================================
+   SMALL MOBILE
+=================================== */
+
 @media (max-width: 480px) {
+
   .mat-drawer.sidebarNav {
-    width: 85vw;
+    width: 85vw !important;
   }
 
   .menu-list-item {
     font-size: 13px;
+  }
+}
+
+/* ===================================
+   TABLET ADJUSTMENT
+=================================== */
+
+@media (max-width: 1024px) {
+  .mat-drawer.sidebarNav {
+    width: 240px;
   }
 }
