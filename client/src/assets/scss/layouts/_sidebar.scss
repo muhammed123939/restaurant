@@ -11,13 +11,15 @@
   display: flex;
   flex-direction: column;
 
-  height: 100vh;              /* FIXED */
-  max-height: 100vh;          /* SAFETY */
-  overflow: hidden;           /* PREVENT PAGE SCROLL */
+  height: 100vh;
+  max-height: 100vh;
 
-  position: absolute;
-  top: 0 !important;
+  overflow: hidden;
+
+  /* 🔴 IMPORTANT FIX */
+  position: relative !important;  /* FIXED (was absolute) */
   left: 0;
+  top: 0;
 
   border: 0 !important;
   box-shadow: var(--mat-sys-level2) !important;
@@ -26,28 +28,50 @@
 }
 
 /* ===================================
-   CRITICAL FLEX FIX
+   FIX CONTAINER ALIGNMENT
 =================================== */
+
+mat-sidenav-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+mat-sidenav-content {
+  flex: 1;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: auto;
+}
+
+/* ===================================
+   FLEX LAYOUT FIX
+=================================== */
+
 .flex-layout {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 0; /* IMPORTANT for scroll */
+  min-height: 0;
   overflow: hidden;
 }
 
 /* ===================================
-   SCROLL AREA (FIXED - MOST IMPORTANT)
+   SCROLL AREA
 =================================== */
 
 .sidebar-list.mdc-list {
   flex: 1;
-  min-height: 0;              /* CRITICAL */
+  min-height: 0;
+
   overflow-y: auto;
   overflow-x: hidden;
 
   padding-bottom: 12px;
   scrollbar-width: thin;
+
+  margin-top: 0 !important; /* FIX: removes hidden shift */
 }
 
 /* ===================================
@@ -67,27 +91,25 @@
 }
 
 /* ===================================
-   CONTENT SHIFT FIX
+   REMOVE CONTENT SHIFT BUG
 =================================== */
 
-@media (min-width: 1024px) {
-  .contentWrapper {
-    margin-left: calc(#{$sidenav-desktop} + #{$layout-padding}) !important;
-  }
-}
+/* 🔴 REMOVE THIS COMPLETELY (IMPORTANT)
+.contentWrapper margin-left calc(...) MUST NOT EXIST
+*/
 
-@media (max-width: 1023px) {
-  .contentWrapper {
-    margin-left: 0 !important;
-  }
+/* Instead use clean layout */
+.contentWrapper {
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 /* ===================================
-   MENU ITEM SYSTEM (UNCHANGED LOGIC + FIXES)
+   MENU SYSTEM
 =================================== */
 
 .sidebar-list.mdc-list {
-  margin-top: -24px;
 
   .mdc-list-group__subheader {
     margin: 24px 0 8px;
@@ -111,7 +133,8 @@
     border-radius: 10px;
     transition: all 0.25s ease;
 
-    overflow: hidden; /* FIX OVERFLOW BUG */
+    overflow: hidden;
+    width: calc(100% - 12px);
   }
 
   .menu-list-item .mdc-list-item__primary-text {
@@ -121,7 +144,6 @@
     width: 100%;
   }
 
-  /* ICON FIX */
   .mdc-list-item__start {
     width: 20px;
     height: 20px;
@@ -131,30 +153,25 @@
     justify-content: center;
   }
 
-  /* CHIP */
   .item-chip {
     font-size: 10px;
     height: 18px;
   }
 
-  /* ARROW */
   .arrow-icon .mat-icon {
     font-size: 18px;
     width: 18px;
     height: 18px;
   }
 
-  /* HOVER */
   .menu-list-item:hover {
     transform: translateX(2px);
   }
 
-  /* ACTIVE */
   .menu-list-item.activeMenu {
     font-weight: 600;
   }
 
-  /* DISABLED */
   .menu-list-item.disabled {
     opacity: 0.38;
     pointer-events: none;
@@ -165,14 +182,12 @@
    RESPONSIVE BREAKPOINTS
 =================================== */
 
-/* TABLET */
 @media (max-width: 1024px) {
   .mat-drawer.sidebarNav {
     width: 240px;
   }
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
   .mat-drawer.sidebarNav {
     width: 220px;
@@ -187,7 +202,6 @@
   }
 }
 
-/* SMALL MOBILE */
 @media (max-width: 480px) {
   .mat-drawer.sidebarNav {
     width: 85vw;

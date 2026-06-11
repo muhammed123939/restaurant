@@ -1,31 +1,44 @@
-
 /* ===================================
-   SIDEBAR ROOT (CRITICAL FIX)
+   SIDEBAR ROOT (FIXED)
 =================================== */
+
 .sidebarNav {
-  height: 100vh;
-  max-height: 100vh;
+  height: 100%;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
+
+  overflow: hidden;
+
+  /* 🔴 IMPORTANT FIX: prevents layout shifting */
+  width: 260px !important;
+  flex-shrink: 0;
+
+  background-color: rgba(42, 48, 61, 1);
+  color: #ffffff;
+}
+
+/* ===================================
+   FLEX WRAPPER (SCROLL FIX)
+=================================== */
+
+.sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+
+  /* 🔴 FIX: ensures no overflow pushes layout */
   overflow: hidden;
 }
 
-/* FLEX CONTAINER FIX */
-.sidebar-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0; /* CRITICAL FOR SCROLL */
-}
-
 /* ===================================
-   SCROLL AREA (IMPORTANT FIX)
+   SCROLL AREA
 =================================== */
+
 .sidebar-wrapper {
   overflow-y: auto;
   overflow-x: hidden;
-  flex: 1;
-  min-height: 0;
 
   scrollbar-width: thin;
 }
@@ -33,6 +46,7 @@
 /* ===================================
    NAV CAPTION
 =================================== */
+
 .nav-caption {
   font-size: 12px;
   font-weight: 700;
@@ -46,13 +60,14 @@
 /* ===================================
    MENU ITEM
 =================================== */
+
 .menu-list-item {
   display: flex;
   align-items: center;
   gap: 10px;
 
   padding: 10px 14px;
-  margin: 4px 10px;
+  margin: 4px 8px;
 
   border-radius: 10px;
   cursor: pointer;
@@ -61,11 +76,16 @@
   color: #ffffff;
 
   font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
+
+  /* 🔴 FIX: prevents overflow causing layout shift */
+  box-sizing: border-box;
+  width: calc(100% - 16px);
 }
 
-/* ICON */
+/* ===================================
+   ICON
+=================================== */
+
 .routeIcon {
   font-size: 18px;
   color: #ffffff;
@@ -73,8 +93,9 @@
 }
 
 /* ===================================
-   HOVER EFFECT
+   HOVER
 =================================== */
+
 .menu-list-item:hover {
   background: rgba(255, 255, 255, 0.12);
   transform: translateX(2px);
@@ -83,6 +104,7 @@
 /* ===================================
    ACTIVE ITEM
 =================================== */
+
 .activeMenu {
   background: #b0a9a9 !important;
   color: #ff5a00 !important;
@@ -96,6 +118,7 @@
 /* ===================================
    CHIP
 =================================== */
+
 .item-chip {
   font-size: 11px;
   background: #e0e0e0;
@@ -108,6 +131,7 @@
 /* ===================================
    ARROW
 =================================== */
+
 .arrow-icon {
   margin-left: auto;
   display: flex;
@@ -116,8 +140,9 @@
 }
 
 /* ===================================
-   CHILD NESTING
+   CHILD MENU
 =================================== */
+
 .children-wrapper {
   display: flex;
   flex-direction: column;
@@ -129,27 +154,32 @@
 /* ===================================
    TABLET
 =================================== */
+
 @media (max-width: 768px) {
+  .sidebarNav {
+    width: 240px !important;
+  }
+
   .menu-list-item {
     padding: 9px 12px;
     font-size: 13px;
-    margin: 4px 8px;
+    margin: 4px 6px;
   }
 
   .routeIcon {
     font-size: 17px;
-  }
-
-  .nav-caption {
-    font-size: 11px;
-    padding: 12px 14px 6px;
   }
 }
 
 /* ===================================
    MOBILE
 =================================== */
+
 @media (max-width: 480px) {
+  .sidebarNav {
+    width: 85vw !important;
+  }
+
   .menu-list-item {
     padding: 9px 10px;
     font-size: 12.5px;
@@ -163,16 +193,12 @@
   .arrow-icon {
     display: none;
   }
-
-  .nav-caption {
-    font-size: 11px;
-    padding: 10px 12px 5px;
-  }
 }
 
 /* ===================================
    VERY SMALL DEVICES
 =================================== */
+
 @media (max-width: 360px) {
   .menu-list-item {
     font-size: 12px;

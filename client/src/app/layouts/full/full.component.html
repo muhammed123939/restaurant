@@ -1,5 +1,7 @@
-<app-topstrip></app-topstrip>
-<mat-sidenav-container class="mainWrapper blue_theme light-theme" autosize autoFocus dir="ltr">
+<!-- <app-topstrip></app-topstrip> -->
+<mat-sidenav-container class="mainWrapper blue_theme light-theme"
+                        autoFocus
+                        dir="ltr">
   <!-- ============================================================== -->
   <!-- Vertical Sidebar -->
   <!-- ============================================================== -->
@@ -39,18 +41,13 @@
 
     <main class="pageWrapper maxWidth">
 
-      <!-- ============================================================== -->
-      <!-- VerticalHeader -->
-      <!-- ============================================================== -->
-      <app-header [showToggle]="!isOver" (toggleMobileNav)="sidenav.toggle()"></app-header>
+  <app-header></app-header>
 
-      <div  class="pageWrapper">
-        <!-- ============================================================== -->
-        <!-- Outlet -->
-        <!-- ============================================================== -->
-        <router-outlet></router-outlet>
-      </div>
-    </main>
+  <div class="contentWrapper">
+    <router-outlet></router-outlet>
+  </div>
+
+</main>
 
     <div class="p-16 p-t-8 p-b-30 text-center">
      ERP Systems Solution <a class="text-decoration-none" href=""

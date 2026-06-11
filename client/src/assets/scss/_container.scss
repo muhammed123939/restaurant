@@ -1,15 +1,21 @@
 @use "variables" as *;
 
 /* =========================
-   GLOBAL RESET
+   GLOBAL RESET (CLEAN)
 ========================= */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html {
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* 🔴 CRITICAL FIX */
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
 }
@@ -18,204 +24,163 @@ body {
   font-family: $font-family;
   line-height: 1.4rem;
   font-size: 14px;
-  overflow-x: hidden;
   color: var(--mat-sys-on-background);
-  margin: 0;
 }
 
 /* =========================
-   MAIN WRAPPER
-   (RESPONSIVE SAFE LAYOUT)
+   MAIN WRAPPER (FIXED LAYOUT)
 ========================= */
+
 .mainWrapper {
   display: flex;
-  min-height: calc(100vh - 72px);
   width: 100%;
-  flex: 1;
-  margin-top: 72px;
+  min-height: 100vh; /* 🔴 FIX: no subtraction */
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden; /* prevents side scroll/gap */
+}
 
-  font-size: 14px;
+/* =========================
+   SIDENAV FIX (IMPORTANT)
+========================= */
 
-  @media (max-width: 992px) {
-    margin-top: 120px;
-    font-size: 13px;
-  }
+.sidebarNav {
+  width: 260px !important;
+  flex-shrink: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
 
-  @media (max-width: 576px) {
-    margin-top: 140px;
-    font-size: 12.5px;
-  }
+/* =========================
+   CONTENT WRAPPER (FIXED)
+========================= */
+
+.contentWrapper {
+  flex: 1;              /* 🔴 CRITICAL: fills remaining space */
+  min-width: 0;         /* 🔴 prevents overflow gap */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   PAGE WRAPPER (NO GAPS)
+========================= */
+
+.pageWrapper {
+  padding: 16px;
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
 }
 
 /* =========================
    CONTAINER
 ========================= */
+
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-left: 24px;
-  padding-right: 24px;
-
-  @media (max-width: 768px) {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  @media (max-width: 480px) {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  &.full-width {
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
-}
-
-/* =========================
-   PAGE WRAPPER
-========================= */
-.pageWrapper {
-  padding: 16px;
-  min-height: calc(100vh - 70px);
-  margin: 0 auto;
-
-  &.maxWidth {
-    max-width: $boxedWidth;
-  }
-
-  @media (max-width: 768px) {
-    padding: 12px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 10px;
-  }
+  padding: 0 24px;
 }
 
 /* =========================
    UTILITIES
 ========================= */
+
 .w-100 { width: 100%; }
 .h-100 { height: 100%; }
 
-.shadow-none { box-shadow: none !important; }
-
-.rounded { border-radius: $border-radius !important; }
-.rounded-circle { border-radius: 50% !important; }
-.rounded-pill { border-radius: 25px !important; }
-
 .overflow-hidden { overflow: hidden; }
-
+.position-relative { position: relative; }
+.cursor-pointer { cursor: pointer; }
 .text-decoration-none { text-decoration: none; }
 
-.position-relative { position: relative; }
-
-.op-5 { opacity: 0.5; }
-
-.cursor-pointer { cursor: pointer; }
-
 /* =========================
-   TABLE RESPONSIVE FIX
+   TABLE FIX
 ========================= */
+
 .table-responsive {
   width: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-
-  td,
-  mat-cell {
-    white-space: nowrap;
-    padding: 14px;
-
-    @media (max-width: 768px) {
-      padding: 10px;
-    }
-
-    @media (max-width: 480px) {
-      padding: 8px;
-      font-size: 12px;
-    }
-  }
 }
 
 /* =========================
    LINKS
 ========================= */
+
 a {
   color: var(--mat-sys-on-background);
-  transition: color 0.2s ease;
+  text-decoration: none;
+}
 
-  &:hover {
-    color: $primary;
-  }
+a:hover {
+  color: $primary;
 }
 
 /* =========================
-   CODE / PRE
+   ANGULAR MATERIAL FIX
 ========================= */
-pre {
-  margin: 0;
-  white-space: pre-wrap;
-  word-break: break-word;
+
+mat-sidenav-container {
+  width: 100%;
+  height: 100vh;
+}
+
+mat-sidenav-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: auto;
+  min-width: 0;
 }
 
 /* =========================
-   FLEX HELPERS
+   SIDEBAR RESPONSIVE
 ========================= */
-@media (min-width: 768px) {
-  html .flex-sm-row {
-    flex-direction: row !important;
-  }
-}
 
-/* =========================
-   ANGULAR MATERIAL FIXES
-========================= */
-.mat-drawer[style*="visibility: hidden"] {
-  display: none;
-}
-
-/* scrollbar fix */
-.ng-scroll-viewport > .ng-scroll-content,
-.ng-scrollbar-external-viewport .ng-scroll-viewport > .ng-scroll-content {
-  width: 100% !important;
-}
-
-/* =========================
-   SIDEBAR WIDTH (RESPONSIVE)
-========================= */
 .sidebarNav {
   width: 260px !important;
-
-  @media (max-width: 992px) {
-    width: 240px !important;
-  }
-
-  @media (max-width: 576px) {
-    width: 220px !important;
-  }
 }
 
-/* =========================
-   MOBILE LAYOUT ADJUSTMENTS
-========================= */
 @media (max-width: 992px) {
-  .mainWrapper {
-    margin-top: 120px;
+  .sidebarNav {
+    width: 240px !important;
   }
 }
 
 @media (max-width: 768px) {
-  .mainWrapper {
-    margin-top: 110px;
+  .sidebarNav {
+    width: 260px !important;
+  }
+
+  .pageWrapper {
+    padding: 12px;
   }
 }
 
-@media (max-width: 576px) {
-  .mainWrapper {
-    margin-top: 100px;
+@media (max-width: 480px) {
+  .sidebarNav {
+    width: 85vw !important;
   }
+
+  .pageWrapper {
+    padding: 10px;
+  }
+}
+
+/* =========================
+   CRITICAL FIXES (IMPORTANT)
+========================= */
+
+/* prevent hidden horizontal scroll gap */
+body, html {
+  overflow-x: hidden;
+}
+
+/* ensure Angular flex doesn't create spacing */
+.mainWrapper > * {
+  min-width: 0;
 }
