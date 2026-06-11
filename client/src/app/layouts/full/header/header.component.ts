@@ -45,10 +45,9 @@ currentLang = localStorage.getItem('lang') || 'en';
   ) { }
 
 
+  @Input() drawer!: any; // MatSidenav
   @Input() showToggle = true;
   @Input() toggleChecked = false;
-  @Output() toggleMobileNav = new EventEmitter<void>();
-
 
 ngOnInit(): void {
     const user = this.getCurrentUser();

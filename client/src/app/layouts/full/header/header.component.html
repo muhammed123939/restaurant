@@ -156,11 +156,13 @@
 <mat-toolbar class="topbar">
 
   <!-- Mobile Menu -->
-  <button mat-icon-button
-          (click)="toggleMobileNav.emit()"
-          class="d-flex d-md-none justify-content-center">
-    <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
-  </button>
+
+
+<button mat-icon-button
+        (click)="drawer.toggle()"
+        class="d-flex d-md-none justify-content-center">
+  <i-tabler name="menu-2"></i-tabler>
+</button>
 
   <!-- 🔔 NOTIFICATION (ONLY LOGGED IN) -->
   <button *ngIf="getCurrentUser() as user"
