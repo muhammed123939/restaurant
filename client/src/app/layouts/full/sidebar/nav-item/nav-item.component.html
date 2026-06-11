@@ -1,173 +1,79 @@
-<style>
-/* =========================
-   NAV ITEM (Talabat Style)
-========================= */
+<div class="sidebar-wrapper">
 
-.nav-caption {
-  font-size: 12px;
-  font-weight: 700;
-  color: #999;
-  padding: 14px 16px 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+  @if(item.navCap){
+    <div class="nav-caption">
+      {{ item.navCap }}
+    </div>
+  }
 
-/* Main item */
-.menu-list-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  margin: 4px 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: #333;
-}
+  @if(!item.navCap && !item.external) {
 
-/* Icon */
-.routeIcon {
-  font-size: 18px;
-  color: #666;
-  transition: 0.2s;
-}
+  <a mat-list-item
+     (click)="onItemSelected(item)"
+     class="menu-list-item"
+     [ngClass]="{
+        activeMenu: item.route ? router.isActive(item.route, true) : false,
+        expanded: expanded,
+        disabled: item.disabled
+     }">
 
-/* Hover effect (Talabat orange) */
-.menu-list-item:hover {
-  background: #fff3ed;
-  color: #ff5a00;
-}
+    <i-tabler
+      class="routeIcon"
+      [name]="item.iconName ?? ''"
+      matListItemIcon>
+    </i-tabler>
 
-.menu-list-item:hover .routeIcon {
-  color: #ff5a00;
-}
+    <span class="hide-menu">
+      {{ item.displayName | translate }}
+    </span>
 
-/* ACTIVE ITEM */
-.activeMenu {
-  background: #ff5a00 !important;
-  color: #fff !important;
-  box-shadow: 0 4px 10px rgba(255, 90, 0, 0.25);
-}
+    @if(item.children && item.children.length) {
+      <span class="arrow-icon" fxFlex>
 
-/* Active icon */
-.activeMenu .routeIcon {
-  color: #fff !important;
-}
+        @if(item.chip) {
+          <span class="item-chip">
+            {{ item.chipContent }}
+          </span>
+        }
 
-/* Disabled */
-.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
+        <mat-icon [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'">
+          expand_more
+        </mat-icon>
 
-/* Chip */
-.item-chip {
-  font-size: 11px;
-  background: #ff5a00;
-  color: #fff;
-}
-
-/* Arrow */
-.arrow-icon {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-}
-
-/* Child indentation */
-:host ::ng-deep app-nav-item {
-  display: block;
-  margin-left: 12px;
-  border-left: 2px solid #f2f2f2;
-  padding-left: 6px;
-}
-</style>
-
-<!-- =========================
-     NAV ITEM TEMPLATE
-========================= -->
-
-@if(item.navCap){
-  <div class="nav-caption">
-    {{ item.navCap }}
-  </div>
-}
-
-@if(!item.navCap && !item.external) {
-
-<a mat-list-item
-   (click)="onItemSelected(item)"
-   class="menu-list-item"
-   [ngClass]="{
-      activeMenu: item.route ? router.isActive(item.route, true) : false,
-      expanded: expanded,
-      disabled: item.disabled
-   }">
-
-  <i-tabler class="routeIcon"
-             [name]="item.iconName ?? ''"
-            matListItemIcon>
-  </i-tabler>
-
-  <span class="hide-menu">
-    {{ item.displayName| translate }}
-  </span>
-
-  @if(item.children && item.children.length) {
-
-  <span class="arrow-icon" fxFlex>
-
-    @if(item.chip) {
-      <span class="item-chip p-x-8 p-y-4 f-w-500 rounded-pill">
-        {{ item.chipContent }}
       </span>
     }
 
-    <mat-icon [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'">
-      expand_more
-    </mat-icon>
-
-  </span>
+  </a>
 
   }
 
-</a>
+  @if(!item.navCap && item.external) {
 
-}
+  <mat-list-item
+    (click)="openExternalLink(item.route)"
+    class="menu-list-item">
 
-<!-- External link -->
-@if(!item.navCap && item.external) {
+    <i-tabler
+      class="routeIcon"
+      [name]="item.iconName ?? ''"
+      matListItemIcon>
+    </i-tabler>
 
-<mat-list-item (click)="openExternalLink(item.route)"
-               class="menu-list-item"
-               target="_blank">
-
-  <i-tabler class="routeIcon"
-             [name]="item.iconName ?? ''"
-            matListItemIcon>
-  </i-tabler>
-
-  <span class="hide-menu">
-    {{ item.displayName }}
-  </span>
-
-  @if(item.chip) {
-    <span class="item-chip p-x-8 p-y-4 f-w-500 rounded-pill">
-      {{ item.chipContent }}
+    <span class="hide-menu">
+      {{ item.displayName }}
     </span>
+
+  </mat-list-item>
+
   }
 
-</mat-list-item>
-
-}
-
-<!-- Children -->
-@if(expanded) {
-  @for(child of item.children; track child) {
-    <app-nav-item
-      [item]="child"
-      (click)="onSubItemSelected(child)"
-      [depth]="depth + 1">
-    </app-nav-item>
+  @if(expanded) {
+    @for(child of item.children; track child) {
+      <app-nav-item
+        [item]="child"
+        [depth]="depth + 1">
+      </app-nav-item>
+    }
   }
-}
+
+</div>

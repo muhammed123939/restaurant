@@ -54,7 +54,7 @@ const commonItems: NavItem[] = [
 ];
 
 const driverItems: NavItem[] = [
-  { navCap: 'Driver Panel' },
+  // { navCap: 'Driver Panel' },
   {
     displayName: 'ORDERS FOR DELIVERY',
     iconName: 'table',
@@ -66,7 +66,7 @@ const driverItems: NavItem[] = [
 
 // Admin-only items
 const ownerItems: NavItem[] = [
-  { navCap: 'Owner Panel' },
+  // { navCap: 'Owner Panel' },
   {
     displayName: 'EMPLOYEES',
     iconName: 'table',
@@ -94,7 +94,7 @@ const ownerItems: NavItem[] = [
 
 // Admin-only items
 const adminItems: NavItem[] = [
-  { navCap: 'Admin Panel' },
+  // { navCap: 'Admin Panel' },
   {
     displayName: 'BRANCHES2',
     iconName: 'table',
@@ -201,7 +201,7 @@ const adminItems: NavItem[] = [
 
 // Client-only items
 const clientItems: NavItem[] = [
-  { navCap: 'Client Panel' },
+  // { navCap: 'Client Panel' },
   {
     displayName: 'Orders',
     iconName: 'table',
@@ -214,29 +214,29 @@ const clientItems: NavItem[] = [
 // Build dynamic nav
 let dynamicNavItems: NavItem[] = [];
 if (isOwnerLoggedIn || isDeveloperLoggedIn) {
-  dynamicNavItems.push({ navCap: `Welcome, ${employee?.name || null}` });
+  // dynamicNavItems.push({ navCap: `Welcome, ${employee?.name || null}` });
   dynamicNavItems = [...dynamicNavItems, ...adminItems, ...ownerItems];
 }
 // Add user-specific items at the top
 else if (isAdminLoggedIn) {
 
-  dynamicNavItems.push({ navCap: `Welcome, ${employee?.name || null}` });
+  // dynamicNavItems.push({ navCap: `Welcome, ${employee?.name || null}` });
   dynamicNavItems = [...dynamicNavItems, ...adminItems];
 }
 else if (client) {
 
-  dynamicNavItems.push({ navCap: `Welcome, ${client?.name || 'Client'}` });
+  // dynamicNavItems.push({ navCap: `Welcome, ${client?.name || 'Client'}` });
   dynamicNavItems = [...dynamicNavItems, ...clientItems];
 }
 
 else if(isDriverLoggedIn)
 {
   
-  dynamicNavItems.push({ navCap: `Welcome, ${employee?.name || 'employee'}` });
+  // dynamicNavItems.push({ navCap: `Welcome, ${employee?.name || 'employee'}` });
   dynamicNavItems = [...dynamicNavItems, ...driverItems];
 }
 else {
-  dynamicNavItems.push({ navCap: `Welcome` });
+  // dynamicNavItems.push({ navCap: `Welcome` });
   dynamicNavItems = [
     {
       displayName: 'LOGIN2',

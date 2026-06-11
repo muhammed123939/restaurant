@@ -30,6 +30,7 @@ import { MaterialModule } from 'src/app/material.module';
     MaterialModule
   ],
   templateUrl: './nav-item.component.html',
+    styleUrl: './nav-item.component.scss'
 })
 export class AppNavItemComponent implements  OnChanges {
 

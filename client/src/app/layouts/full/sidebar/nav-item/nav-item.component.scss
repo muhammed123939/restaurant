@@ -1,0 +1,82 @@
+
+.nav-caption {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 14px 16px 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+    background-color: white;
+}
+
+/* Main item */
+.menu-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  margin: 4px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #ffffff;
+
+}
+
+/* Icon */
+.routeIcon {
+  font-size: 18px;
+  color: #ffffff;
+  transition: 0.2s;
+
+}
+
+/* Hover effect (Talabat orange) */
+.menu-list-item:hover {
+  background: #ffffff;
+  color: #ffffff;
+}
+
+.menu-list-item:hover .routeIcon {
+  color: #ffffff;
+}
+
+/* ACTIVE ITEM */
+.activeMenu {
+  background: #ffffff !important;
+  color: #fff !important;
+  box-shadow: 0 4px 10px rgba(255, 90, 0, 0.25);
+}
+
+/* Active icon */
+.activeMenu .routeIcon {
+  color: #fff !important;
+}
+
+/* Disabled */
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Chip */
+.item-chip {
+  font-size: 11px;
+  background: #dadada;
+  color: #fff;
+}
+
+/* Arrow */
+.arrow-icon {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Child indentation */
+:host ::ng-deep app-nav-item {
+  display: block;
+  margin-left: 12px;
+  border-left: 2px solid #f2f2f2;
+  padding-left: 6px;
+}

@@ -36,7 +36,7 @@ const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
     AppTopstripComponent
 ],
   templateUrl: './full.component.html',
-  styleUrls: [],
+       styleUrl: './full.component.scss' ,
   encapsulation: ViewEncapsulation.None
 })
 export class FullComponent implements OnInit {

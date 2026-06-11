@@ -1,5 +1,8 @@
 @use "variables" as *;
 
+/* =========================
+   GLOBAL RESET
+========================= */
 *,
 :after,
 :before {
@@ -8,25 +11,31 @@
 
 body {
   font-family: $font-family;
-  line-height: 1.334rem;
+  line-height: 1.3rem;
+  font-size: 14px;
   overflow-x: hidden;
   color: var(--mat-sys-on-background);
+  margin: 0;
 }
 
+/* =========================
+   MAIN WRAPPER
+   (SAFE "ZOOM OUT" EFFECT)
+========================= */
 .mainWrapper {
   display: flex;
   min-height: calc(100vh - 72px);
   width: 100%;
   flex: 1;
   margin-top: 72px;
+
+  /* instead of transform scale (safe) */
+  font-size: 14px;
 }
 
-@media (max-width: 991px) {
-  .mainWrapper {
-    margin-top: 154px;
-  }
-}
-
+/* =========================
+   CONTAINER
+========================= */
 .container {
   max-width: 1200px;
   padding-left: 24px;
@@ -40,10 +49,12 @@ body {
   }
 }
 
+/* =========================
+   PAGE WRAPPER
+========================= */
 .pageWrapper {
-  padding: 24px;
+  padding: 16px; /* reduced for zoom-out effect */
   min-height: calc(100vh - 70px);
-
   margin: 0 auto;
 
   &.maxWidth {
@@ -51,60 +62,44 @@ body {
   }
 }
 
-.w-100 {
-  width: 100%;
-}
+/* =========================
+   UTILITIES
+========================= */
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
 
-.h-100 {
-  height: 100%;
-}
+.shadow-none { box-shadow: none !important; }
 
-.shadow-none {
-  box-shadow: none !important;
-}
+.rounded { border-radius: $border-radius !important; }
+.rounded-circle { border-radius: 50% !important; }
+.rounded-pill { border-radius: 25px !important; }
 
-.rounded {
-  border-radius: $border-radius !important;
-}
+.overflow-hidden { overflow: hidden; }
 
-.rounded-circle {
-  border-radius: 50% !important;
-}
+.text-decoration-none { text-decoration: none; }
 
-.rounded-pill {
-  border-radius: 25px !important;
-}
+.position-relative { position: relative; }
 
-.overflow-hidden {
-  overflow: hidden;
-}
+.op-5 { opacity: 0.5; }
 
-.text-decoration-none {
-  text-decoration: none;
-}
+.cursor-pointer { cursor: pointer; }
 
-.position-relative {
-  position: relative;
-}
-
+/* =========================
+   TABLE
+========================= */
 .table-responsive {
   overflow-x: auto;
 
   td,
   mat-cell {
     white-space: nowrap;
-    padding: 16px;
+    padding: 14px;
   }
 }
 
-.op-5 {
-  opacity: 0.5;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
+/* =========================
+   LINKS
+========================= */
 a {
   color: var(--mat-sys-on-background);
 
@@ -113,6 +108,9 @@ a {
   }
 }
 
+/* =========================
+   CODE / PRE
+========================= */
 pre {
   margin: 0;
   white-space: nowrap;
@@ -122,17 +120,59 @@ td.hljs-ln-line.hljs-ln-numbers {
   padding-right: 10px;
 }
 
+/* =========================
+   FLEX HELPERS
+========================= */
 @media (min-width: 768px) {
   html .flex-sm-row {
     flex-direction: row !important;
   }
 }
 
+/* =========================
+   ANGULAR MATERIAL FIXES
+========================= */
 .mat-drawer[style*="visibility: hidden"] {
   display: none;
 }
 
-.ng-scroll-viewport[_nghost-ng-c2407083653]>.ng-scroll-content[_ngcontent-ng-c2407083653],
-.ng-scrollbar-external-viewport[_nghost-ng-c2407083653] .ng-scroll-viewport>.ng-scroll-content {
+/* scrollbar fix */
+.ng-scroll-viewport > .ng-scroll-content,
+.ng-scrollbar-external-viewport .ng-scroll-viewport > .ng-scroll-content {
   width: 100% !important;
+}
+
+/* =========================
+   SIDEBAR WIDTH (IMPORTANT)
+========================= */
+.sidebarNav {
+  width: 260px !important;
+}
+
+/* =========================
+   HEADER OFFSET MOBILE FIX
+========================= */
+@media (max-width: 991px) {
+  .mainWrapper {
+    margin-top: 154px;
+  }
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+@media (max-width: 768px) {
+
+  .pageWrapper {
+    padding: 12px;
+  }
+
+  .sidebarNav {
+    width: 240px !important;
+  }
+
+  .mainWrapper {
+    margin-top: 120px;
+    font-size: 13px;
+  }
 }
