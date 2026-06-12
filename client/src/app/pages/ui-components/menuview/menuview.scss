@@ -135,6 +135,36 @@ mat-form-field {
 /* ===========================
    TABLE WRAPPER
 =========================== */
+
+.product-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+  
+.product-name {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 400;
+
+  white-space: normal;      /* allow normal wrapping */
+  word-break: normal;       /* remove aggressive breaking */
+  overflow-wrap: break-word; /* only break if needed */
+}
+
+// .product-category {
+//   font-size: 12px;
+//   color: #777;
+// }
+
 .table-responsive {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
