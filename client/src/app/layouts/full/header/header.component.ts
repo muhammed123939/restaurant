@@ -128,7 +128,7 @@ changeLanguage(lang: string) {
       this.clientService.logout();
     }
         this.router.navigate(['/authentication/login']);  
-    setTimeout(() => window.location.reload(), 100);
+    setTimeout(() => window.location.reload(), 200);
 
   }
 

@@ -49,8 +49,8 @@ export class Loginclient {
     next: (res: any) => {
 
       // ✅ Navigate only (NO reload)
-      this.router.navigate(['/dashboard']);
-setTimeout(() => window.location.reload(), 100); 
+      this.router.navigate(['']);
+setTimeout(() => window.location.reload(), 200); 
 this.isLoading = false;
      
     },
