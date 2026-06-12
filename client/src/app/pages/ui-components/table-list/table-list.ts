@@ -26,13 +26,13 @@ import { TranslateModule } from '@ngx-translate/core';
     MatIconModule,
     MatCardModule,
     MatSelectModule,
-    MatFormFieldModule , TranslateModule
+    MatFormFieldModule, TranslateModule
   ],
   templateUrl: './table-list.html',
   styleUrl: './table-list.scss',
 })
 export class TableList implements OnInit {
-
+  branchID!: number;
   tables: Table[] = [];
   branches: Branch[] = [];
 
@@ -57,9 +57,22 @@ export class TableList implements OnInit {
 
     if (this.authService.isDeveloperLoggedIn || this.authService.isOwnerLoggedIn) {
 
-      // ✅ FIX: subscribe
-      this.branchService.getall().subscribe(res => {
-        this.branches = res;
+      this.branchService.getall().subscribe({
+        next: (data: Branch[]) => {
+          this.branches = data;
+
+
+          if (this.branches.length === 1) {
+            const branchId = this.branches[0].branchID;
+            // لو عندك متغير branchID في الكومبوننت
+            this.selectedBranchId = branchId;
+
+            // تحميل المنيو مباشرة
+            this.loadTables();
+          }
+
+        },
+        error: err => console.error('Branches load error:', err)
       });
 
     }
@@ -116,7 +129,7 @@ export class TableList implements OnInit {
     this.router.navigate(['/ui-components', 'editTable', table.tableID]);
   }
 
-  addTable(branchID:number): void {
-    this.router.navigate(['/ui-components', 'tableRegister' , branchID]);
+  addTable(branchID: number): void {
+    this.router.navigate(['/ui-components', 'tableRegister', branchID]);
   }
 }

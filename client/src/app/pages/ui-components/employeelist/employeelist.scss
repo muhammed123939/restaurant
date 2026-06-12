@@ -4,11 +4,21 @@
 .employees-card {
   border-radius: 22px;
   overflow: hidden;
-
   background: #fff;
   box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-
   width: 100%;
+}
+
+.edit-btn mat-icon {
+  color: #ff9800;
+}
+
+.edit2-btn mat-icon {
+  color: blue;
+}
+
+.delete-btn mat-icon {
+  color: #f44336;
 }
 
 /* =========================

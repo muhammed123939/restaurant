@@ -9,6 +9,23 @@
   overflow-x: hidden;
 }
 
+/* header style */
+th {
+  background: #fff3e6;
+  color: #ff5a00;
+  font-weight: 600;
+
+  white-space: nowrap;
+  padding: 10px;
+}
+.edit-btn mat-icon {
+  color: #ff9800;
+}
+
+.delete-btn mat-icon {
+  color: #f44336;
+}
+
 /* =========================
    HEADER
 ========================= */
@@ -65,11 +82,7 @@
 /* =========================
    TABLE
 ========================= */
-table {
-  width: 100%;
-  min-width: 700px;
-  border-collapse: collapse;
-}
+
 
 /* =========================
    HEADER ROW
@@ -108,12 +121,10 @@ table {
    IDS
 ========================= */
 .id {
-  color: #ff5a00;
   font-weight: 700;
 }
 
 .order-id {
-  color: #00b14f;
   font-weight: 700;
 }
 
@@ -212,13 +223,8 @@ button[mat-icon-button]:hover {
   }
 
   table {
-    min-width: 600px;
-    font-size: 13px;
-  }
-
-  .mat-mdc-cell,
-  .mat-mdc-header-cell {
-    padding: 12px;
+    width: 100%;
+    min-width: auto;
   }
 
   .badge {
@@ -253,10 +259,6 @@ button[mat-icon-button]:hover {
     font-size: 13px;
   }
 
-  table {
-    min-width: 550px;
-    font-size: 12px;
-  }
 
   .mat-mdc-cell,
   .mat-mdc-header-cell {

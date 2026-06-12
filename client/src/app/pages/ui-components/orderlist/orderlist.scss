@@ -1,6 +1,13 @@
 /* =========================
    CARD
 ========================= */
+th,
+.mat-mdc-header-cell {
+  background: #fff4ee !important;
+  color: #ff5a00 !important;
+  font-weight: 600;
+}
+
 .talabat-card {
   border-radius: 18px;
   background: #fafafa;
@@ -10,6 +17,13 @@
   width: 100%;
 }
 
+.edit-btn mat-icon {
+  color: #ff9800;
+}
+
+.delete-btn mat-icon {
+  color: #f44336;
+}
 /* =========================
    HEADER
 ========================= */
@@ -82,7 +96,7 @@ mat-form-field {
 ========================= */
 table {
   width: 100%;
-  min-width: 700px;
+  min-width: auto;
   border-collapse: collapse;
 }
 

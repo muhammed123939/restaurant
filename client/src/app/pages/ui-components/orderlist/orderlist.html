@@ -64,7 +64,7 @@
         <!-- No -->
         <ng-container matColumnDef="orderNo">
           <th mat-header-cell *matHeaderCellDef>#</th>
-          <td mat-cell *matCellDef="let order; let i = index">
+          <td style="color:red" mat-cell *matCellDef="let order; let i = index">
             {{ currentPage * pageSize + i + 1 }}
           </td>
         </ng-container>
@@ -73,7 +73,7 @@
         <ng-container matColumnDef="orderID">
           <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.ORDER_ID' | translate }}</th>
           <td mat-cell *matCellDef="let order">
-            <span class="order-id">#{{ order.orderID }}</span>
+            <span style="color:red" class="order-id">#{{ order.orderID }}</span>
           </td>
         </ng-container>
 
@@ -82,10 +82,10 @@
           <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.CUSTOMER' | translate }}</th>
           <td mat-cell *matCellDef="let order">
 
-            <span *ngIf="order.customerID; else guest">
+            <span style="color:red" *ngIf="order.customerID; else guest">
               {{ order.customerID }}
 
-              <button mat-icon-button
+              <button style="color:red" mat-icon-button
                       (click)="openCustomerDetails(order.customerID)">
                 <mat-icon>person</mat-icon>
               </button>
@@ -120,7 +120,7 @@
           <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.DETAILS' | translate }}</th>
           <td mat-cell *matCellDef="let order">
             <button mat-icon-button (click)="openDetails(order)">
-              <mat-icon>visibility</mat-icon>
+              <mat-icon style="color:red" >visibility</mat-icon>
             </button>
           </td>
         </ng-container>
@@ -130,11 +130,11 @@
           <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.ACTIONS' | translate }}</th>
           <td mat-cell *matCellDef="let order">
 
-            <button mat-icon-button (click)="editorder(order)">
+            <button class="edit-btn" mat-icon-button (click)="editorder(order)">
               <mat-icon>edit</mat-icon>
             </button>
 
-            <button mat-icon-button color="warn"
+            <button class="delete-btn" mat-icon-button color="warn"
                     (click)="deleteOrder(order.orderID)">
               <mat-icon>delete</mat-icon>
             </button>
@@ -170,7 +170,7 @@
         <ng-container matColumnDef="comment">
           <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.COMMENT' | translate }}</th>
           <td mat-cell *matCellDef="let order">
-            <button *ngIf="order.comment" (click)="viewComment(order.comment)">
+            <button style="color:red" *ngIf="order.comment" (click)="viewComment(order.comment)">
               💬
             </button>
           </td>

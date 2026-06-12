@@ -1,6 +1,7 @@
 /* =========================
    Page Container
 ========================= */
+
 .branches-page {
   padding: 24px;
   background: #f8f8f8;
@@ -35,6 +36,15 @@
 .add-btn mat-icon {
   margin-right: 0;
 }
+
+.edit-btn mat-icon {
+  color: #ff9800;
+}
+
+.delete-btn mat-icon {
+  color: #f44336;
+}
+
 
 /* =========================
    Grid

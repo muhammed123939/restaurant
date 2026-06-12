@@ -12,17 +12,17 @@
     <div class="filters">
 
       <div class="field">
-        <label>{{ 'PROFIT_DASHBOARD.FROM' | translate }}</label>
+        <label style="color:red" >{{ 'PROFIT_DASHBOARD.FROM' | translate }}</label>
         <input type="date" [(ngModel)]="fromDate">
       </div>
 
       <div class="field">
-        <label>{{ 'PROFIT_DASHBOARD.TO' | translate }}</label>
+        <label style="color:red" >{{ 'PROFIT_DASHBOARD.TO' | translate }}</label>
         <input type="date" [(ngModel)]="toDate">
       </div>
 
       <div class="field">
-        <label>{{ 'PROFIT_DASHBOARD.BRANCH' | translate }}</label>
+        <label style="color:red" >{{ 'PROFIT_DASHBOARD.BRANCH' | translate }}</label>
         <select [(ngModel)]="branchID">
           <option *ngFor="let b of branches" [value]="b.branchID">
             {{ b.name }}

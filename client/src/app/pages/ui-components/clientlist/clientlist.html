@@ -86,7 +86,7 @@
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef>{{ 'CLIENTS.ID' | translate }}</th>
           <td mat-cell *matCellDef="let client">
-            <span class="badge">#{{ client.userID }}</span>
+            <span style="color:red" class="badge">#{{ client.userID }}</span>
           </td>
         </ng-container>
 
@@ -95,7 +95,7 @@
           <th mat-header-cell *matHeaderCellDef>{{ 'CLIENTS.NAME' | translate }}</th>
           <td mat-cell *matCellDef="let client">
             <div class="client-name">
-              <mat-icon>person</mat-icon>
+              <mat-icon style="color:red"  >person</mat-icon>
               {{ client.name }}
             </div>
           </td>

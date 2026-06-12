@@ -5,7 +5,7 @@
   <div class="top-bar">
 
     <mat-form-field appearance="outline" class="branch-select">
-      <mat-label>{{ 'TABLES.SELECT_BRANCH' | translate }}</mat-label>
+      <mat-label style="color:red" >{{ 'TABLES.SELECT_BRANCH' | translate }}</mat-label>
 
       <mat-select [(value)]="selectedBranchId" (selectionChange)="loadTables()">
         <mat-option *ngFor="let b of branches" [value]="b.branchID">
@@ -32,21 +32,21 @@
 
       <ng-container matColumnDef="tableID">
         <th mat-header-cell *matHeaderCellDef>#</th>
-        <td mat-cell *matCellDef="let table">{{ table.tableID }}</td>
+        <td style="color:red" mat-cell *matCellDef="let table">{{ table.tableID }}</td>
       </ng-container>
 
       <ng-container matColumnDef="tableNo">
         <th mat-header-cell *matHeaderCellDef>
           {{ 'TABLES.TABLE_NO' | translate }}
         </th>
-        <td mat-cell *matCellDef="let table">{{ table.tableNo }}</td>
+        <td style="color:red" mat-cell *matCellDef="let table">{{ table.tableNo }}</td>
       </ng-container>
 
       <ng-container matColumnDef="capacity">
         <th mat-header-cell *matHeaderCellDef>
           {{ 'TABLES.CAPACITY' | translate }}
         </th>
-        <td mat-cell *matCellDef="let table">{{ table.capacity }}</td>
+        <td style="color:red" mat-cell *matCellDef="let table">{{ table.capacity }}</td>
       </ng-container>
 
       <ng-container matColumnDef="status">
