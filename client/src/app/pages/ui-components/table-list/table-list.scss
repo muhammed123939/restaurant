@@ -208,7 +208,7 @@
   }
 
   .modern-table {
-    min-width: 900px;
+    min-width: auto;
   }
 }
 
@@ -236,7 +236,7 @@
   }
 
   .modern-table {
-    min-width: 650px;
+    min-width: auto;
   }
 
   .table-card {
@@ -272,7 +272,7 @@
   }
 
   .modern-table {
-    min-width: 600px;
+    min-width: auto;
   }
 
   ::ng-deep th.mat-header-cell,
@@ -337,7 +337,7 @@
   }
 
   .modern-table {
-    min-width: 500px;
+    min-width: auto;
   }
 
   .status-pill {
