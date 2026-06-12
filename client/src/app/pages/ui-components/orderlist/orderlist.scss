@@ -97,6 +97,7 @@ mat-form-field {
 table {
   width: 100%;
   min-width: auto;
+      table-layout: fixed;
   border-collapse: collapse;
 }
 
@@ -199,7 +200,8 @@ button[mat-icon-button]:hover {
   }
 
   table {
-    min-width: auto;
+  min-width: auto;
+
   }
 }
 
@@ -221,7 +223,9 @@ button[mat-icon-button]:hover {
   }
 
   table {
-    min-width: auto;
+
+  min-width: auto;
+
   }
 
   .badge {

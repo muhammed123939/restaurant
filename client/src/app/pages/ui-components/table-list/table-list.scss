@@ -80,10 +80,15 @@
 /* ==========================================
    TABLE RESPONSIVE WRAPPER
 ========================================== */
-
-.table-wrapper {
+table {
   width: 100%;
   min-width: auto;
+      table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table-wrapper {
+
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -94,7 +99,6 @@
 ========================================== */
 
 .modern-table {
-  width: 100%;
   min-width: auto;
   border-radius: 12px;
   border-collapse: collapse;

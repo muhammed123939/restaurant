@@ -54,8 +54,14 @@ th {
 /* =========================
    TABLE WRAPPER
 ========================= */
-.table-wrapper {
+table {
   width: 100%;
+  min-width: auto;
+      table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table-wrapper {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -223,7 +229,6 @@ button[mat-icon-button]:hover {
   }
 
   table {
-    width: 100%;
     min-width: auto;
   }
 

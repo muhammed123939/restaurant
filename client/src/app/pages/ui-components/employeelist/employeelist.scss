@@ -123,6 +123,7 @@
 table {
   width: 100%;
   min-width: auto;
+      table-layout: fixed;
   border-collapse: collapse;
 }
 

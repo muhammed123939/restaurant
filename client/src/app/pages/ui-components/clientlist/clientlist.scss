@@ -128,14 +128,21 @@
 /* =========================
    Table
 ========================= */
+table {
+  width: 100%;
+  min-width: auto;
+      table-layout: fixed;
+  border-collapse: collapse;
+}
+
 .table-wrapper {
   padding: 20px;
   overflow-x: auto;
+      table-layout: fixed;
 }
 
 .clients-table {
-  width: 100%;
-  min-width: auto;
+
   border-radius: 16px;
 }
 
