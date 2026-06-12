@@ -36,6 +36,6 @@ export const routes: Routes = [
   },
 
   // Fallback
-  { path: '**', redirectTo: 'authentication/login' },
+  { path: '**', redirectTo: '' },
 ];
 
