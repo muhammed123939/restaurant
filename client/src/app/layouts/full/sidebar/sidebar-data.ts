@@ -44,20 +44,30 @@ else if (position == "Driver" && role == "Employee") {
 
 // Base items visible to all
 const commonItems: NavItem[] = [
+    {
+    displayName: 'HOME2',
+    iconName: 'home',
+    route: '/myhome',
+    bgcolor: 'success',
+
+  }
+   ,
+
   {
     displayName: 'MENU2',
-    iconName: 'table',
+    iconName: 'book',
     route: '/menuview',
     bgcolor: 'success',
 
   }
+  
 ];
 
 const driverItems: NavItem[] = [
   // { navCap: 'Driver Panel' },
   {
     displayName: 'ORDERS FOR DELIVERY',
-    iconName: 'table',
+    iconName: 'truck',
     route: '/ui-components/OrdersForDeliveryList',
     bgcolor: 'success',
 
@@ -69,7 +79,7 @@ const ownerItems: NavItem[] = [
   // { navCap: 'Owner Panel' },
   {
     displayName: 'EMPLOYEES',
-    iconName: 'table',
+    iconName: 'users',
     route: '/ui-components/employeelist',
     bgcolor: 'success',
 
@@ -77,7 +87,7 @@ const ownerItems: NavItem[] = [
 
    {
     displayName: 'PROFIT',
-    iconName: 'table',
+    iconName: 'currency-dollar',
     route: '/ui-components/profit',
     bgcolor: 'success',
 
@@ -97,21 +107,21 @@ const adminItems: NavItem[] = [
   // { navCap: 'Admin Panel' },
   {
     displayName: 'BRANCHES2',
-    iconName: 'table',
+    iconName: 'building-store',
     route: '/ui-components/branchlist',
     bgcolor: 'success',
 
   },
   {
     displayName: 'CLIENTS2',
-    iconName: 'table',
+    iconName: 'user',
     route: '/ui-components/clientlist',
     bgcolor: 'success',
 
   },
   {
     displayName: 'ORDERS2',
-    iconName: 'table',
+    iconName: 'clipboard-list',
     route: '/ui-components/orderlist',
     bgcolor: 'success',
 
@@ -119,7 +129,7 @@ const adminItems: NavItem[] = [
   ,
   {
     displayName: 'ORDERS_FOR_DELIVERY',
-    iconName: 'table',
+    iconName: 'truck',
     route: '/ui-components/OrdersForDeliveryList',
     bgcolor: 'success',
 
@@ -204,7 +214,7 @@ const clientItems: NavItem[] = [
   // { navCap: 'Client Panel' },
   {
     displayName: 'Orders',
-    iconName: 'table',
+    iconName: 'shopping-cart',
     route: '/ui-components/orderlist',
     bgcolor: 'success',
 
@@ -254,4 +264,4 @@ else {
 }
 
 // Export the final nav
-export const navItems: NavItem[] = [...dynamicNavItems, ...commonItems];
+export const navItems: NavItem[] = [...commonItems,...dynamicNavItems];

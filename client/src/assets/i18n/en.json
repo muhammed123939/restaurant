@@ -1,5 +1,7 @@
 {
-  "MENU2": "Menu",
+  "NAV_MENU_LOGO" : "ERP System Solution" , 
+  "MENU2": "Menu", 
+  "HOME2" :"Home" ,
   "EMPLOYEES": "Employees",
   "PROFIT": "Profit",
   "TABLES2": "Tables",

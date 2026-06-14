@@ -1,5 +1,5 @@
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 import { CoreService } from 'src/app/_services/core.service';
@@ -17,6 +17,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AppNavItemComponent } from './sidebar/nav-item/nav-item.component';
 import { navItems } from './sidebar/sidebar-data';
 import { AppTopstripComponent } from './top-strip/topstrip.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 
 
 const MOBILE_VIEW = 'screen and (max-width: 768px)';
@@ -33,31 +35,36 @@ const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
     NgScrollbarModule,
     TablerIconsModule,
     HeaderComponent,
-    AppTopstripComponent
+    AppTopstripComponent ,
+    TranslateModule , CommonModule
 ],
   templateUrl: './full.component.html',
        styleUrl: './full.component.scss' ,
   encapsulation: ViewEncapsulation.None
 })
-export class FullComponent implements OnInit {
+
+export class FullComponent implements OnInit , AfterViewInit {
+
+
+  sidenavReady = false;
+
+
   navItems = navItems;
 
   @ViewChild('leftsidenav')
-  public sidenav: MatSidenav;
   resView = false;
   @ViewChild('content', { static: true }) content!: MatSidenavContent;
   //get options from service
   options = this.settings.getOptions();
   private layoutChangesSubscription = Subscription.EMPTY;
-  private isMobileScreen = false;
+  public isMobileScreen = false;
   private isContentWidthFixed = true;
   private isCollapsedWidthFixed = false;
   private htmlElement!: HTMLHtmlElement;
 
-  get isOver(): boolean {
-    return this.isMobileScreen;
-  }
-
+ get isOver(): boolean {
+  return this.isMobileScreen;
+}
 
   constructor(
     private settings: CoreService,
@@ -87,12 +94,17 @@ export class FullComponent implements OnInit {
       });
   }
 
+  ngAfterViewInit() {
+    this.sidenavReady = true;
+  }
+  
   ngOnInit(): void { }
 
   ngOnDestroy() {
     this.layoutChangesSubscription.unsubscribe();
   }
 
+ 
   toggleCollapsed() {
     this.isContentWidthFixed = false;
     this.options.sidenavCollapsed = !this.options.sidenavCollapsed;

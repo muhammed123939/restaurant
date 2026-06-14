@@ -1,3 +1,90 @@
+
+.mobile-bottom-nav .icon {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.8;
+  color: inherit;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 768px) {
+  mat-sidenav-content {
+    overflow-y: auto;
+    height: calc(100vh - 65px);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    overflow: hidden;
+  }
+}
+.mobile-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 70px;
+    background: #ffffff;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border-top: 1px solid #e5e7eb;
+    z-index: 1000;
+
+    padding-bottom: env(safe-area-inset-bottom); /* iPhone safe area */
+  }
+
+  .mobile-bottom-nav a {
+    flex: 1;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    font-size: 11px;
+    text-decoration: none;
+
+    color: #64748b;
+
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-bottom-nav a i-tabler {
+    width: 22px;
+    height: 22px;
+    stroke-width: 1.8;
+  }
+
+  /* ACTIVE STATE */
+  .mobile-bottom-nav a.active {
+    color: #2196f3;
+    font-weight: 500;
+  }
+
+  .mobile-bottom-nav a.active i-tabler {
+    color: #2196f3;
+  }
+
+  /* TOUCH FEEDBACK */
+  .mobile-bottom-nav a:active {
+    transform: scale(0.95);
+  }
+}
+
+
 mat-sidenav-container.mainWrapper {
   height: 100vh;
   width: 100%;

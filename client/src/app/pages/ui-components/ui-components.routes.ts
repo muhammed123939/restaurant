@@ -23,6 +23,7 @@ import { TableList } from 'src/app/pages/ui-components/table-list/table-list';
 import { ReceiptPrint } from 'src/app/pages/ui-components/receipt-print/receipt-print';
 import { AppProfitExpensesComponent } from 'src/app/components/profit-expenses/profit-expenses.component';
 import { Profit } from './profit/profit';
+import { Myhome } from './myhome/myhome';
 
 
 export const UiComponentsRoutes: Routes = [
@@ -76,7 +77,8 @@ export const UiComponentsRoutes: Routes = [
       { path: 'employeelist', component: Employeelist },
       { path: 'orderlist', component: Orderlist },
       { path: 'tableList', component: TableList },
-      { path: 'OrdersForDeliveryList', component: OrdersForDeliveryList }
+      { path: 'OrdersForDeliveryList', component: OrdersForDeliveryList } ,
+      { path: 'myhome', component: Myhome }
 
     ],
   },

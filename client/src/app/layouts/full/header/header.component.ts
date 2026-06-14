@@ -1,135 +1,118 @@
-import {
+
+  import {
   Component,
-  Output,
-  EventEmitter,
   Input,
   ViewEncapsulation,
   OnInit,
 } from '@angular/core';
-import { TablerIconsModule } from 'angular-tabler-icons';
-import { MaterialModule } from 'src/app/material.module';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ClientService } from 'src/app/_services/client.service';
 import { NotificationService } from 'src/app/_services/notification.service';
-import { NgScrollbarModule } from 'ngx-scrollbar';
-import { CommonModule } from '@angular/common';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { Appnotification } from 'src/app/_models/appnotification';
 import { LanguageService } from 'src/app/_services/language.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material.module';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { MatSidenav } from '@angular/material/sidenav';
+import { TablerIconsModule } from 'angular-tabler-icons';
 
 @Component({
   selector: 'app-header',
-  imports: [
-    RouterModule, CommonModule ,
-    NgScrollbarModule,
-    TablerIconsModule,
-    MaterialModule ,TranslateModule
+    imports: [
+RouterModule,
+  CommonModule,
+  MaterialModule,
+  NgScrollbarModule,
+  TranslateModule , TablerIconsModule   
   ],
   templateUrl: './header.component.html',
   encapsulation: ViewEncapsulation.None,
 })
-
 export class HeaderComponent implements OnInit {
+
+  // ================= INPUTS =================
+  @Input() drawer!: MatSidenav;
+  @Input() isOver = false;
+
+  // ================= STATE =================
   unreadCount = 0;
-notifications: Appnotification[] = [];
-currentLang = localStorage.getItem('lang') || 'en';
+  notifications: Appnotification[] = [];
+  currentLang = localStorage.getItem('lang') || 'en';
 
   constructor(
     private clientService: ClientService,
     private employeeService: EmployeeService,
     private notificationService: NotificationService,
     private languageService: LanguageService,
-    public router: Router
-  ) { }
+    private router: Router
+  ) {}
 
-
-  @Input() drawer!: any; // MatSidenav
-  @Input() showToggle = true;
-  @Input() toggleChecked = false;
-
-ngOnInit(): void {
+  // ================= INIT =================
+  ngOnInit(): void {
     const user = this.getCurrentUser();
 
-  if (user?.id != null) {
+    if (user?.id) {
+      this.notificationService.loadUnread(Number(user.id));
+    }
 
-    this.notificationService.loadUnread(Number(user.id));
+    this.notificationService.notifications$
+      .subscribe(n => this.notifications = n);
 
-    
+    this.notificationService.unreadCount$
+      .subscribe(c => this.unreadCount = c);
   }
 
-  this.notificationService.notifications$
-    .subscribe(notifs => {
-      this.notifications = notifs;
-    });
+  // ================= USER =================
+  getCurrentUser(): any {
+    return this.employeeService.currentEmployee()
+        || this.clientService.currentClient()
+        || null;
+  }
 
-  this.notificationService.unreadCount$
-    .subscribe(count => {
-      this.unreadCount = count;
-    });
-}
-
+  // ================= PROFILE =================
   editProfile(): void {
     const user = this.getCurrentUser();
 
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([
-        '/ui-components',
-        'edituser',
-        user.id,
-        user.role
-      ]);
-    });
+    if (!user) return;
+
+    this.router.navigate([
+      '/ui-components',
+      'edituser',
+      user.id,
+      user.role
+    ]);
   }
 
-  getCurrentUser(): any | null {
-    const employee = this.employeeService.currentEmployee();
-    if (employee) return employee;
-    const client = this.clientService.currentClient();
-    if (client) return client;
-     return null;
-  }
-
+  // ================= NOTIFICATIONS =================
   onBellClick(): void {
+    const user = this.getCurrentUser();
 
-  const user = this.getCurrentUser();
-
-  if (user?.id != null) {
+    if (!user?.id) return;
 
     this.notificationService.loadUnread(Number(user.id));
 
     setTimeout(() => {
       this.notificationService.markAllAsRead(Number(user.id));
     }, 20000);
-
   }
-}
- 
-  // markAllAsRead(): void {
-  //   const user = this.getCurrentUser();
-  //   if (user?.id != null) {
-  //     this.notificationService.markAllAsRead(Number(user.id));
-  //   }
-  // }
 
-changeLanguage(lang: string) {
-  this.currentLang = lang;
-  this.languageService.changeLanguage(lang);
-}
+  // ================= LANGUAGE =================
+  changeLanguage(lang: string): void {
+    this.currentLang = lang;
+    this.languageService.changeLanguage(lang);
+  }
 
+  // ================= LOGOUT =================
   logout(): void {
-    const employee= this.employeeService.currentEmployee();
+    const emp = this.employeeService.currentEmployee();
     const client = this.clientService.currentClient();
 
-    if (employee) {
-      this.employeeService.logout();
-    } else if (client) {
-      this.clientService.logout();
-    }
-        this.router.navigate(['/authentication/login']);  
+    if (emp) this.employeeService.logout();
+    else if (client) this.clientService.logout();
+
+    this.router.navigate(['/authentication/login']);
     setTimeout(() => window.location.reload(), 200);
-
   }
-
 }

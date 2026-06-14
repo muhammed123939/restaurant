@@ -1,23 +1,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<mat-sidenav-container class="mainWrapper blue_theme light-theme"
-                        autoFocus
-                        dir="ltr">
+<mat-sidenav-container class="mainWrapper blue_theme light-theme" autoFocus dir="ltr">
 
   <!-- ================= SIDEBAR ================= -->
-  <mat-sidenav
-    #leftsidenav
-    class="sidebarNav"
-    [mode]="isOver ? 'over' : 'side'"
-    [opened]="!isOver"
-    (openedChange)="onSidenavOpenedChange($event)"
-    (closedStart)="onSidenavClosedStart()">
+<mat-sidenav
+  #leftsidenav
+  class="sidebarNav"
+  [mode]="isOver ? 'over' : 'side'"
+  [opened]="!isOver">>
+
 
     <div class="flex-layout">
 
       <!-- Sidebar component -->
-      <app-sidebar
-        (toggleMobileNav)="leftsidenav.toggle()"
-        [showToggle]="isOver">
+      <app-sidebar (toggleMobileNav)="leftsidenav.toggle()" [showToggle]="isOver">
       </app-sidebar>
 
       <!-- Navigation -->
@@ -26,10 +21,8 @@
         <mat-nav-list class="sidebar-list">
 
           @for(item of navItems; track item) {
-            <app-nav-item
-              [item]="item"
-              (notify)="leftsidenav.toggle()">
-            </app-nav-item>
+          <app-nav-item [item]="item" (notify)="leftsidenav.toggle()">
+          </app-nav-item>
           }
 
         </mat-nav-list>
@@ -45,19 +38,34 @@
     <main class="pageWrapper maxWidth">
 
       <!-- 🔥 FIX: PASS DRAWER TO HEADER -->
-      <app-header
-        [drawer]="leftsidenav">
-      </app-header>
-
+<app-header [drawer]="leftsidenav"></app-header>
       <div class="contentWrapper">
         <router-outlet></router-outlet>
       </div>
 
-    </main>
 
-<div style="color:red; font-family: 'Inter', sans-serif;"
-     class="p-16 p-t-8 p-b-30 text-center">
-  ERP Systems Solution
+    </main>
+<div class="mobile-bottom-nav" [class.show]="isMobileScreen">
+
+  @for (item of navItems; track item) {
+    <a
+      class="mobile-nav-item"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+      (click)="leftsidenav.close()"
+    >
+<i-tabler
+  *ngIf="item.iconName"
+  [name]="item.iconName"
+  class="icon"
+></i-tabler>
+
+      <!-- <span class="label">
+        {{ item.displayName }}
+      </span> -->
+    </a>
+  }
+
 </div>
   </mat-sidenav-content>
 
