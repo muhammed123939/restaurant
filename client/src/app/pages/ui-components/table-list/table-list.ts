@@ -126,6 +126,7 @@ export class TableList implements OnInit {
   }
 
   edititem(table: Table): void {
+    
     this.router.navigate(['/ui-components', 'editTable', table.tableID]);
   }
 

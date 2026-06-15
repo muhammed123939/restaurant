@@ -17,11 +17,11 @@
         disabled: item.disabled
      }">
 
-    <i-tabler
-      class="routeIcon"
-      [name]="item.iconName ?? ''"
-      matListItemIcon>
-    </i-tabler>
+<i
+  class="routeIcon"
+  [class]="item.iconName"
+  matListItemIcon>
+</i>
 
     <span style="color:rgb(255, 255, 255)"  class="hide-menu">
       {{ item.displayName | translate }}
@@ -53,11 +53,11 @@
     (click)="openExternalLink(item.route)"
     class="menu-list-item">
 
-    <i-tabler
-      class="routeIcon"
-      [name]="item.iconName ?? ''"
-      matListItemIcon>
-    </i-tabler>
+<i
+  class="routeIcon"
+  [class]="item.iconName"
+  matListItemIcon>
+</i>
 
     <span  class="hide-menu">
       {{ item.displayName }}

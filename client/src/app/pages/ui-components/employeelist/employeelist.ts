@@ -128,6 +128,12 @@ export class Employeelist implements OnInit {
 }
 
   edititem(employee: Employee): void {
+            const hasAccess =
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
+
     this.router.navigate([
       '/ui-components',
       'edituser',

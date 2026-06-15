@@ -73,6 +73,12 @@ export class Branchedit implements OnInit {
   }
 
   edit(): void {
+        const hasAccess =
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
+
     this.errorMessage = '';
     this.successMessage = '';
 

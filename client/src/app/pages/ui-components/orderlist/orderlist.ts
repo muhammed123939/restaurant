@@ -150,6 +150,14 @@ export class Orderlist implements OnInit {
 
   // Delete order
   deleteOrder(id: number) {
+    const hasAccess =
+    this.authService.isAdminwithPermissionLoggedIn ||
+    this.authService.isNormalAdminLoggedIn ||
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
+
     Swal.fire({
       title: 'Are you sure?',
       text: `You are about to delete order ID = ${id}. This action cannot be undone.`,
@@ -186,9 +194,19 @@ export class Orderlist implements OnInit {
     });
   }
 
+
+  
   // Edit order
   editorder(order: Order) {
     if (!order.orderID) return;
+
+    const hasAccess =
+    this.authService.isAdminwithPermissionLoggedIn ||
+    this.authService.isNormalAdminLoggedIn ||
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
     this.router.navigate(['/menuview/order', order.orderID]);
   }
 

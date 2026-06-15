@@ -66,6 +66,13 @@ export class Branchlist implements OnInit {
   }
 
   deleteitem(branch: Branch): void {
+        const hasAccess =
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
+
+
     Swal.fire({
       title: 'Are you sure?',
       text: `You are about to delete ${branch.name}. This action cannot be undone.`,
@@ -105,6 +112,7 @@ export class Branchlist implements OnInit {
   }
 
   edititem(branch: Branch): void {
+
     this.router.navigate(['/ui-components', 'editbranch', branch.branchID]);
   }
 

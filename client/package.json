@@ -27,6 +27,7 @@
     "@tailwindcss/postcss": "^4.1.18",
     "angular-tabler-icons": "^3.26.0",
     "apexcharts": "^4.7.0",
+    "bootstrap-icons": "^1.13.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
     "ng-apexcharts": "^1.16.0",

@@ -54,12 +54,12 @@
       routerLinkActive="active"
       (click)="leftsidenav.close()"
     >
-<i-tabler
-  *ngIf="item.iconName"
-  [name]="item.iconName"
-  class="icon"
-></i-tabler>
 
+<i
+  class="routeIcon"
+  [class]="item.iconName"
+  matListItemIcon>
+</i>
       <!-- <span class="label">
         {{ item.displayName }}
       </span> -->

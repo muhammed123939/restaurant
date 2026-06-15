@@ -97,6 +97,13 @@ employee : any ;
   }
 
   deleteitem(client: UserData) {
+        const hasAccess =
+    this.authService.isAdminwithPermissionLoggedIn ||
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
+
   Swal.fire({
     title: 'Are you sure?',
     text: `You are about to delete ${client.name}.`,

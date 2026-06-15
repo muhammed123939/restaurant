@@ -46,16 +46,16 @@ else if (position == "Driver" && role == "Employee") {
 const commonItems: NavItem[] = [
     {
     displayName: 'HOME2',
-    iconName: 'home',
+    iconName: 'bi bi-house',
     route: '/myhome',
     bgcolor: 'success',
-
+  
   }
    ,
 
   {
     displayName: 'MENU2',
-    iconName: 'book',
+    iconName: 'bi bi-cart',
     route: '/menuview',
     bgcolor: 'success',
 
@@ -67,7 +67,7 @@ const driverItems: NavItem[] = [
   // { navCap: 'Driver Panel' },
   {
     displayName: 'ORDERS FOR DELIVERY',
-    iconName: 'truck',
+    iconName: 'bi bi-truck',
     route: '/ui-components/OrdersForDeliveryList',
     bgcolor: 'success',
 
@@ -79,7 +79,7 @@ const ownerItems: NavItem[] = [
   // { navCap: 'Owner Panel' },
   {
     displayName: 'EMPLOYEES',
-    iconName: 'users',
+    iconName: 'bi bi-person-workspace',
     route: '/ui-components/employeelist',
     bgcolor: 'success',
 
@@ -87,7 +87,7 @@ const ownerItems: NavItem[] = [
 
    {
     displayName: 'PROFIT',
-    iconName: 'currency-dollar',
+    iconName: 'bi bi-currency-dollar',
     route: '/ui-components/profit',
     bgcolor: 'success',
 
@@ -95,7 +95,7 @@ const ownerItems: NavItem[] = [
 
   {
     displayName: 'TABLES2',
-    iconName: 'table',
+    iconName: 'bi bi-grid-3x3',
     route: '/ui-components/tableList',
     bgcolor: 'success',
 
@@ -107,21 +107,21 @@ const adminItems: NavItem[] = [
   // { navCap: 'Admin Panel' },
   {
     displayName: 'BRANCHES2',
-    iconName: 'building-store',
+    iconName: 'bi bi-shop',
     route: '/ui-components/branchlist',
     bgcolor: 'success',
 
   },
   {
     displayName: 'CLIENTS2',
-    iconName: 'user',
+    iconName: 'bi bi-people-fill',
     route: '/ui-components/clientlist',
     bgcolor: 'success',
 
   },
   {
     displayName: 'ORDERS2',
-    iconName: 'clipboard-list',
+    iconName: 'bi bi-cart-check',
     route: '/ui-components/orderlist',
     bgcolor: 'success',
 
@@ -129,7 +129,7 @@ const adminItems: NavItem[] = [
   ,
   {
     displayName: 'ORDERS_FOR_DELIVERY',
-    iconName: 'truck',
+    iconName: 'bi bi-truck',
     route: '/ui-components/OrdersForDeliveryList',
     bgcolor: 'success',
 
@@ -213,8 +213,8 @@ const adminItems: NavItem[] = [
 const clientItems: NavItem[] = [
   // { navCap: 'Client Panel' },
   {
-    displayName: 'Orders',
-    iconName: 'shopping-cart',
+    displayName: 'ORDERS2',
+    iconName: 'bi bi-cart-check',
     route: '/ui-components/orderlist',
     bgcolor: 'success',
 
@@ -250,13 +250,13 @@ else {
   dynamicNavItems = [
     {
       displayName: 'LOGIN2',
-      iconName: 'login',
+      iconName: 'bi bi-box-arrow-in-right',
       bgcolor: 'secondary',
       route: '/authentication/loginClient'
     },
     {
       displayName: 'REGISTER2',
-      iconName: 'user-plus',
+      iconName: 'bi bi-plus-square',
       bgcolor: 'warning',
       route: '/authentication/clientRegister'
     }

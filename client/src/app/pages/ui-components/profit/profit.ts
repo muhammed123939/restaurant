@@ -56,6 +56,13 @@ export class Profit implements OnInit {
   getBranchProfit(): void {
     if (!this.branchID || !this.fromDate || !this.toDate) return;
 
+            const hasAccess =
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
+
+
     this.orderService.getBranchProfit(
       this.branchID,
       this.fromDate,
@@ -70,7 +77,13 @@ export class Profit implements OnInit {
 
   // 🔵 Get all branches profit
   getAllBranchesProfit(): void {
+
     if (!this.fromDate || !this.toDate) return;
+        const hasAccess =
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
 
     this.orderService.getAllBranchesProfit(
       this.fromDate,

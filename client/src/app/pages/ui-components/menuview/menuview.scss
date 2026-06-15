@@ -2,6 +2,170 @@
    CARD
 =========================== */
 
+/* =========================
+   MENU GRID CONTAINER
+========================= */
+.cart-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sold-text {
+  font-size: 12px;
+  color: red;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+  padding: 10px;
+}
+
+/* =========================
+   CARD STYLE
+========================= */
+.menu-card {
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  transition: 0.2s ease-in-out;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.menu-card:hover {
+  transform: translateY(-3px);
+}
+
+/* =========================
+   IMAGE
+========================= */
+.img-wrapper {
+  width: 100%;
+  height: 130px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   CONTENT
+========================= */
+.content {
+  padding-top: 8px;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  color: #222;
+}
+
+/* PRICE + QTY ROW */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 6px;
+  color: #555;
+}
+
+.price {
+  font-weight: 700;
+  color: #ff5a00;
+}
+
+.qty {
+  color: #777;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* Button styling */
+.actions button {
+  background: #f5f5f5;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.actions button:hover {
+  background: #ff5a00;
+  color: #fff;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .img-wrapper {
+    height: 120px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .img-wrapper {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+
+  .content {
+    flex: 1;
+    padding-top: 0;
+  }
+
+  .name {
+    font-size: 13px;
+  }
+
+  .info-row {
+    font-size: 11px;
+  }
+
+  .actions {
+    margin-top: 0;
+  }
+}
+
+
 .edit-btn mat-icon {
   color: #ff9800;
 }
@@ -10,9 +174,10 @@
   color: #f44336;
 }
 
-.tdmorewidth{
-    min-width:140px;
+z .tdmorewidth {
+  min-width: 140px;
 }
+
 .cardWithShadow {
   border-radius: 20px;
   border: none;
@@ -149,15 +314,18 @@ mat-form-field {
   object-fit: cover;
   border-radius: 8px;
 }
-  
+
 .product-name {
   margin: 0;
   font-size: 10px;
   font-weight: 400;
 
-  white-space: normal;      /* allow normal wrapping */
-  word-break: normal;       /* remove aggressive breaking */
-  overflow-wrap: break-word; /* only break if needed */
+  white-space: normal;
+  /* allow normal wrapping */
+  word-break: normal;
+  /* remove aggressive breaking */
+  overflow-wrap: break-word;
+  /* only break if needed */
 }
 
 // .product-category {
@@ -180,7 +348,7 @@ mat-form-field {
 table {
   width: 100%;
   min-width: auto;
-    table-layout: fixed;
+  table-layout: fixed;
   border-collapse: collapse;
 }
 
@@ -345,7 +513,7 @@ span[style*="color: #d32f2f"] {
   }
 
   table {
-  min-width:auto;
+    min-width: auto;
 
   }
 }

@@ -80,6 +80,12 @@ export class Employeedataedit implements OnInit {
 }
 
   edit(form: NgForm) {
+            const hasAccess =
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
+
     if (!this.selecteduser || !this.originalUser) return;
 
     if (!this.hasChanges()) {

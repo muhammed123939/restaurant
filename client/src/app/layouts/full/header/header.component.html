@@ -253,12 +253,12 @@
 
       <button mat-menu-item (click)="editProfile()">
         <i-tabler name="user"></i-tabler>
-        Edit Profile
+               <span>{{ 'TOPBAR.EDIT_PROFILE' | translate }}</span>
       </button>
 
       <div class="p-x-12 m-t-12">
         <button mat-stroked-button class="w-100" (click)="logout()">
-          Logout
+          {{ 'TOPBAR.LOGOUT' | translate }}
         </button>
       </div>
 

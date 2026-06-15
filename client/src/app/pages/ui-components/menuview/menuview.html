@@ -103,30 +103,31 @@
 
     <!-- Menu Table -->
     <div class="table-responsive">
-      <table mat-table [dataSource]="dataSource" class="w-100">
+      <table mat-table [dataSource]="dataSource" class="w-100"
+        *ngIf="authService.isNormalAdminLoggedIn || authService.isAdminwithPermissionLoggedIn || authService.isOwnerLoggedIn || authService.isDeveloperLoggedIn">
 
         <!-- Product Column -->
-     
+
         <ng-container matColumnDef="product">
-  <th mat-header-cell *matHeaderCellDef>
-    {{ 'MENU.PRODUCT' | translate }}
-  </th>
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'MENU.PRODUCT' | translate }}
+          </th>
 
-  <td mat-cell *matCellDef="let item">
-    <div class="product-cell">
+          <td mat-cell *matCellDef="let item">
+            <div class="product-cell">
 
-      <img [src]="item.imageUrl" class="product-img" alt="Menu Item">
+              <img [src]="item.imageUrl" class="product-img" alt="Menu Item">
 
-      <h4 class="product-name">{{ item.name }}</h4>
+              <h4 class="product-name">{{ item.name }}</h4>
 
-      <!-- <small class="product-category">
+              <!-- <small class="product-category">
         
           {{ category.name }}
       </small> -->
 
-    </div>
-  </td>
-</ng-container>
+            </div>
+          </td>
+        </ng-container>
 
         <!-- Sell Price Column -->
         <ng-container matColumnDef="sell_price">
@@ -160,7 +161,7 @@
               <mat-icon>add_shopping_cart</mat-icon>
             </button> -->
 
-            <button  style="color:red" mat-icon-button [matMenuTriggerFor]="cartMenu" #cartTrigger="matMenuTrigger"
+            <button style="color:red" mat-icon-button [matMenuTriggerFor]="cartMenu" #cartTrigger="matMenuTrigger"
               (click)="openCartMenu(item) ">
               <mat-icon>add_shopping_cart</mat-icon>
             </button>
@@ -204,6 +205,93 @@
 
       </table>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+       <div class="menu-grid" *ngIf="authService.isClientLoggedIn" >
+
+
+<mat-card class="menu-card"
+  *ngFor="let item of dataSource">
+
+        <!-- IMAGE -->
+        <div class="img-wrapper">
+          <img [src]="item.imageUrl" />
+        </div>
+
+        <!-- INFO -->
+        <div class="content">
+
+          <h3 class="name">{{ item.name }}</h3>
+
+          <div class="info-row">
+            <div class="price">
+              {{ item.sell_price }} {{ 'MENU.EGP' | translate }}
+            </div>
+>
+          </div>
+
+        </div>
+
+                   <!-- Cart Menu Popup -->
+            <mat-menu #cartMenu="matMenu">
+              <div style="padding:12px;width:220px;" (click)="$event.stopPropagation()">
+                <b>{{ selectedItem?.name }}</b>
+                <mat-form-field appearance="outline" class="w-100 mt-2">
+                  <mat-label>{{ 'MENU.QUANTITY' | translate }}</mat-label>
+                  <input matInput type="number" min="1" [max]="selectedItem?.quantity ?? 0" [(ngModel)]="selectedQty">
+                </mat-form-field>
+                <button mat-raised-button color="accent" class="w-100" (click)="addToCart(); cartTrigger.closeMenu()">
+                  {{ 'MENU.CONFIRM' | translate }}
+                </button>
+              </div>
+            </mat-menu>
+
+<div class="cart-action">
+  <button
+    mat-icon-button
+    style="color:red"
+    [matMenuTriggerFor]="cartMenu"
+    #cartTrigger="matMenuTrigger"
+    (click)="openCartMenu(item)"
+    [disabled]="item.quantity === 0"
+  >
+    <mat-icon>add_shopping_cart</mat-icon>
+  </button>
+
+  <div class="sold-text" *ngIf="item.quantity === 0">
+    Sold
+  </div>
+</div>
+            
+      </mat-card>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </mat-card-content>
 </mat-card>

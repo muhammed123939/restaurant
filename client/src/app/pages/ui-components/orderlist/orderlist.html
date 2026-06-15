@@ -1,16 +1,15 @@
 <mat-card class="talabat-card">
   <mat-card-content>
 
-    <!-- Header -->
+    <!-- HEADER -->
     <div class="page-header">
       <mat-icon>receipt_long</mat-icon>
       <h2>{{ 'ORDERS.TITLE' | translate }}</h2>
       <span class="count">({{ filteredOrders?.length || 0 }})</span>
     </div>
 
-    <!-- Filters -->
+    <!-- FILTERS (keep same) -->
     <div class="filters">
-
       <!-- Order ID -->
       <mat-form-field appearance="outline">
         <mat-label>{{ 'ORDERS.SEARCH_ORDER_ID' | translate }}</mat-label>
@@ -27,11 +26,9 @@
         || authService.isNormalAdminLoggedIn">
 
         <mat-label>{{ 'ORDERS.CUSTOMER_ID' | translate }}</mat-label>
-
         <input matInput type="number"
                [(ngModel)]="customerIdSearch"
                (ngModelChange)="filterOrders()">
-
       </mat-form-field>
 
       <!-- Start Date -->
@@ -53,13 +50,14 @@
         <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
         <mat-datepicker #endPicker></mat-datepicker>
       </mat-form-field>
-
     </div>
 
-    <!-- TABLE -->
-    <div class="table-wrapper">
+    <!-- ===================== -->
+    <!-- 🖥 ADMIN TABLE VIEW -->
+    <!-- ===================== -->
+    <div class="table-wrapper" *ngIf="!authService.isClientLoggedIn">
 
-      <table mat-table [dataSource]="pagedOrders" class="talabat-table">
+            <table mat-table [dataSource]="pagedOrders" class="talabat-table">
 
         <!-- No -->
         <ng-container matColumnDef="orderNo">
@@ -180,6 +178,33 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
       </table>
+
+    </div>
+
+    <!-- ===================== -->
+    <!-- 📱 CLIENT CARD VIEW -->
+    <!-- ===================== -->
+    <div class="client-orders" *ngIf="authService.isClientLoggedIn">
+
+      <div class="order-card" *ngFor="let order of pagedOrders">
+
+        <div class="order-top">
+          <div class="order-id">#{{ order.orderID }}</div>
+          <div class="badge orange">{{ order.orderPosition }}</div>
+        </div>
+
+        <div class="order-body">
+          <div><strong>{{ 'ORDERS.DATE' | translate }}: </strong> {{ order.orderDate | date:'short' }}</div>
+          <div><strong>{{ 'ORDERS.TOTAL' | translate }}</strong> {{ order.totalAmount }} {{ 'COMMON.CURRENCY' | translate }}</div>
+        </div>
+
+        <div class="order-actions">
+          <button mat-icon-button (click)="openDetails(order)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </div>
+
+      </div>
 
     </div>
 

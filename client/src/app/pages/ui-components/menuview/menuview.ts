@@ -585,6 +585,13 @@ this.orderService.addOrder(this.order, this.orderfordelivery ?? null)
 
   deleteItem(item: Menu): void {
     if (!item.menuItemID) return;
+        const hasAccess =
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
+
+
     Swal.fire({
       title: 'Are you sure?',
       text: `You are about to delete ${item.name}. This action cannot be undone.`,
@@ -608,6 +615,12 @@ this.orderService.addOrder(this.order, this.orderfordelivery ?? null)
 
   editItem(item: Menu): void {
     if (!item.menuItemID || !item.branchID) return;
+        const hasAccess =
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
+
     this.router.navigate(['/ui-components', 'edititem', item.menuItemID, item.branchID]);
   }
 
@@ -754,4 +767,6 @@ this.orderService.addOrder(this.order, this.orderfordelivery ?? null)
       (this.authService.isClientLoggedIn || (item.quantity ?? 0) > 0)
     );
   }
+
+  
 }

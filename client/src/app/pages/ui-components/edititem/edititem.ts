@@ -96,6 +96,12 @@ export class EdititemComponent implements OnInit {
   }
 
   edit() {
+            const hasAccess =
+    this.authService.isOwnerLoggedIn ||
+    this.authService.isDeveloperLoggedIn;
+
+  if (!hasAccess) return;
+
     this.errorMessage = null;
     this.successMessage = null;
 
