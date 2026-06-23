@@ -215,7 +215,11 @@
       !authService.isNormalAdminLoggedIn
      ">
 
-      <mat-card class="menu-card" *ngFor="let item of dataSource">
+<mat-card
+  class="menu-card"
+  [class.last-card]="last"
+  *ngFor="let item of dataSource; let last = last">
+
 
         <!-- IMAGE -->
         <div class="img-wrapper">

@@ -186,7 +186,11 @@
     <!-- ===================== -->
     <div class="client-orders" *ngIf="authService.isClientLoggedIn">
 
-      <div class="order-card" *ngFor="let order of pagedOrders">
+<div
+  class="order-card"
+  [class.last-card]="last"
+  *ngFor="let order of pagedOrders; let last = last">
+
 
         <div class="order-top">
           <div class="order-id">#{{ order.orderID }}</div>

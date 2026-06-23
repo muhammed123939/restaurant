@@ -102,7 +102,10 @@ button[mat-icon-button] {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 20px;
+}
+
+.last-card {
+  margin-bottom:30px; /* Adjust as needed */
 }
 
 .order-top {
