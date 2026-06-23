@@ -304,9 +304,11 @@ else if(client){
       return;
     }
 
+
     // 2️⃣ Determine client ID
     const clientId = this.authService.isClientLoggedIn ? this.clientService.currentClient()?.id : this.orderforclientid;
 
+    
     // 3️⃣ If a client ID exists, check address
     if (clientId) {
       this.clientService.getAddressStatus(clientId).subscribe({
@@ -314,8 +316,8 @@ else if(client){
           if (hasAddress) {
             this.completeCheckout();
           } else {
-            this.openAddressDialog();
-                        this.completeCheckout();
+            this.openAddressDialog(clientId);
+          
           }
         },
         error: err => console.error('Error checking address status', err)
@@ -702,16 +704,15 @@ this.orderService.addOrder(this.order, this.orderfordelivery ?? null)
     });
   }
 
-  private openAddressDialog(): void {
+private openAddressDialog(clientId?: number): void {
   this.dialog.open(AddressDialogComponent, {
     width: '700px',
-  maxWidth: '95vw',
-  panelClass: 'talabat-dialog-panel' ,
-    data: this.orderforclientid  ,
-            direction: document.documentElement.dir as 'rtl' | 'ltr'
+    maxWidth: '95vw',
+    panelClass: 'talabat-dialog-panel',
+    data: clientId ?? this.orderforclientid,
+    direction: document.documentElement.dir as 'rtl' | 'ltr'
   });
 }
-
   openTableDialog() {
 
     // ✅ FIX: make sure order exists

@@ -75,7 +75,10 @@ export class AddressDialogComponent implements OnInit {
             },
             error: () => this.initEmptyAddress()
           });
-        } else {
+        } 
+        
+        
+        else {
           this.initEmptyAddress();
         }
       },
@@ -109,33 +112,50 @@ export class AddressDialogComponent implements OnInit {
     };
   }
 
-  // Save button only triggers API
+
   saveAddress(): void {
-    if (!this.isValid() || !this.clientId) return;
+  if (!this.isValid() || !this.clientId) {
+    return;
+  }
 
-    this.isSaving = true;
+  this.isSaving = true;
 
-    this.clientService.getAddressStatus(this.clientId).subscribe({
-      next: (hasAddress) => {
-        const apiCall = hasAddress
-          ? this.clientService.updateAddress(this.clientId, this.address)
-          : this.clientService.saveAddress(this.clientId, this.address);
+  this.clientService.getAddressStatus(this.clientId).subscribe({
+    next: (hasAddress: boolean) => {
+      const apiCall = hasAddress
+        ? this.clientService.updateAddress(this.clientId!, this.address)
+        : this.clientService.saveAddress(this.clientId!, this.address);
 
-        apiCall.subscribe({
+      apiCall.subscribe({
+        next: () => {
+          this.isSaving = false;
+          this.dialogRef.close(true);
+        },
+        error: (err) => {
+          this.isSaving = false;
+          console.error('Save/update failed', err);
+        }
+      });
+    },
+
+    error: (err) => {
+      // No address exists yet (404) -> save a new one
+      if (err.status === 404) {
+        this.clientService.saveAddress(this.clientId!, this.address).subscribe({
           next: () => {
             this.isSaving = false;
-            this.dialogRef.close(true); // ✅ close dialog after saving
+            this.dialogRef.close(true);
           },
-          error: (err) => {
+          error: (saveErr) => {
             this.isSaving = false;
-            console.error('Save/update failed', err);
+            console.error('Save failed', saveErr);
           }
         });
-      },
-      error: (err) => {
+      } else {
         this.isSaving = false;
         console.error('Failed to check address status', err);
       }
-    });
-  }
+    }
+  });
+}
 }
