@@ -207,21 +207,15 @@
     </div>
 
 
+<div class="menu-grid"
+     *ngIf="
+      !authService.isAdminwithPermissionLoggedIn &&
+      !authService.isOwnerLoggedIn &&
+      !authService.isDeveloperLoggedIn &&
+      !authService.isNormalAdminLoggedIn
+     ">
 
-
-
-
-
-
-
-
-
-
-       <div class="menu-grid" *ngIf="authService.isClientLoggedIn" >
-
-
-<mat-card class="menu-card"
-  *ngFor="let item of dataSource">
+      <mat-card class="menu-card" *ngFor="let item of dataSource">
 
         <!-- IMAGE -->
         <div class="img-wrapper">
@@ -237,42 +231,36 @@
             <div class="price">
               {{ item.sell_price }} {{ 'MENU.EGP' | translate }}
             </div>
->
+            >
           </div>
 
         </div>
 
-                   <!-- Cart Menu Popup -->
-            <mat-menu #cartMenu="matMenu">
-              <div style="padding:12px;width:220px;" (click)="$event.stopPropagation()">
-                <b>{{ selectedItem?.name }}</b>
-                <mat-form-field appearance="outline" class="w-100 mt-2">
-                  <mat-label>{{ 'MENU.QUANTITY' | translate }}</mat-label>
-                  <input matInput type="number" min="1" [max]="selectedItem?.quantity ?? 0" [(ngModel)]="selectedQty">
-                </mat-form-field>
-                <button mat-raised-button color="accent" class="w-100" (click)="addToCart(); cartTrigger.closeMenu()">
-                  {{ 'MENU.CONFIRM' | translate }}
-                </button>
-              </div>
-            </mat-menu>
+        <!-- Cart Menu Popup -->
+        <mat-menu #cartMenu="matMenu">
+          <div style="padding:12px;width:220px;" (click)="$event.stopPropagation()">
+            <b>{{ selectedItem?.name }}</b>
+            <mat-form-field appearance="outline" class="w-100 mt-2">
+              <mat-label>{{ 'MENU.QUANTITY' | translate }}</mat-label>
+              <input matInput type="number" min="1" [max]="selectedItem?.quantity ?? 0" [(ngModel)]="selectedQty">
+            </mat-form-field>
+            <button mat-raised-button color="accent" class="w-100" (click)="addToCart(); cartTrigger.closeMenu()">
+              {{ 'MENU.CONFIRM' | translate }}
+            </button>
+          </div>
+        </mat-menu>
 
-<div class="cart-action">
-  <button
-    mat-icon-button
-    style="color:red"
-    [matMenuTriggerFor]="cartMenu"
-    #cartTrigger="matMenuTrigger"
-    (click)="openCartMenu(item)"
-    [disabled]="item.quantity === 0"
-  >
-    <mat-icon>add_shopping_cart</mat-icon>
-  </button>
+        <div class="cart-action">
+          <button mat-icon-button style="color:red" [matMenuTriggerFor]="cartMenu" #cartTrigger="matMenuTrigger"
+            (click)="openCartMenu(item)" [disabled]="item.quantity === 0">
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
 
-  <div class="sold-text" *ngIf="item.quantity === 0">
-    Sold
-  </div>
-</div>
-            
+          <div class="sold-text" *ngIf="item.quantity === 0">
+            Sold
+          </div>
+        </div>
+
       </mat-card>
 
     </div>
