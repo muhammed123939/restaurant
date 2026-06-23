@@ -687,7 +687,7 @@ this.orderService.addOrder(this.order, this.orderfordelivery ?? null)
       data: {
         orderComment: this.order?.comment,
         deliveryComment: this.orderfordelivery?.comment,
-        hasDelivery: !!this.orderforclientid   // 🔥 key line
+        hasDelivery: !!this.orderforclientid ||this.authService.isClientLoggedIn  // 🔥 key line
       },
               direction: document.documentElement.dir as 'rtl' | 'ltr'
     });
@@ -696,7 +696,7 @@ this.orderService.addOrder(this.order, this.orderfordelivery ?? null)
       if (result) {
         this.ordercomment = result.orderComment;
 
-        if (this.orderforclientid) {
+        if (this.orderforclientid||this.authService.isClientLoggedIn) {
 
           this.orderfordelivery.comment = result.deliveryComment;
         }
