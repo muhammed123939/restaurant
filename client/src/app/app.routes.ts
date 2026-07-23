@@ -10,8 +10,9 @@ export const routes: Routes = [
     path: '',
     component: FullComponent,
     children: [
-        { path: '', component: Myhome },
-      { path: 'menuview', component: MenuviewComponent },        
+      { path: '', component: Myhome },
+      { path: 'menuview', component: MenuviewComponent },
+      { path: 'menuview/:id', component: MenuviewComponent },
       {
         path: 'authentication',
         loadChildren: () =>

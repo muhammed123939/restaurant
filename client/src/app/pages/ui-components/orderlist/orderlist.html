@@ -13,30 +13,23 @@
       <!-- Order ID -->
       <mat-form-field appearance="outline">
         <mat-label>{{ 'ORDERS.SEARCH_ORDER_ID' | translate }}</mat-label>
-        <input matInput type="number"
-               [(ngModel)]="orderIdSearch"
-               (input)="filterOrders()">
+        <input matInput type="number" [(ngModel)]="orderIdSearch" (input)="filterOrders()">
       </mat-form-field>
 
       <!-- Customer ID -->
-      <mat-form-field appearance="outline"
-        *ngIf="authService.isAdminwithPermissionLoggedIn 
+      <mat-form-field appearance="outline" *ngIf="authService.isAdminwithPermissionLoggedIn 
         || authService.isOwnerLoggedIn 
         || authService.isDeveloperLoggedIn 
         || authService.isNormalAdminLoggedIn">
 
         <mat-label>{{ 'ORDERS.CUSTOMER_ID' | translate }}</mat-label>
-        <input matInput type="number"
-               [(ngModel)]="customerIdSearch"
-               (ngModelChange)="filterOrders()">
+        <input matInput type="number" [(ngModel)]="customerIdSearch" (ngModelChange)="filterOrders()">
       </mat-form-field>
 
       <!-- Start Date -->
       <mat-form-field appearance="outline">
         <mat-label>{{ 'ORDERS.START_DATE' | translate }}</mat-label>
-        <input matInput [matDatepicker]="startPicker"
-               [(ngModel)]="startDate"
-               (dateChange)="filterOrders()">
+        <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" (dateChange)="filterOrders()">
         <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
         <mat-datepicker #startPicker></mat-datepicker>
       </mat-form-field>
@@ -44,9 +37,7 @@
       <!-- End Date -->
       <mat-form-field appearance="outline">
         <mat-label>{{ 'ORDERS.END_DATE' | translate }}</mat-label>
-        <input matInput [matDatepicker]="endPicker"
-               [(ngModel)]="endDate"
-               (dateChange)="filterOrders()">
+        <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" (dateChange)="filterOrders()">
         <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
         <mat-datepicker #endPicker></mat-datepicker>
       </mat-form-field>
@@ -57,7 +48,7 @@
     <!-- ===================== -->
     <div class="table-wrapper" *ngIf="!authService.isClientLoggedIn">
 
-            <table mat-table [dataSource]="pagedOrders" class="talabat-table">
+      <table mat-table [dataSource]="pagedOrders" class="talabat-table">
 
         <!-- No -->
         <ng-container matColumnDef="orderNo">
@@ -83,8 +74,7 @@
             <span style="color:red" *ngIf="order.customerID; else guest">
               {{ order.customerID }}
 
-              <button style="color:red" mat-icon-button
-                      (click)="openCustomerDetails(order.customerID)">
+              <button style="color:red" mat-icon-button (click)="openCustomerDetails(order.customerID)">
                 <mat-icon>person</mat-icon>
               </button>
 
@@ -118,7 +108,7 @@
           <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.DETAILS' | translate }}</th>
           <td mat-cell *matCellDef="let order">
             <button mat-icon-button (click)="openDetails(order)">
-              <mat-icon style="color:red" >visibility</mat-icon>
+              <mat-icon style="color:red">visibility</mat-icon>
             </button>
           </td>
         </ng-container>
@@ -132,8 +122,7 @@
               <mat-icon>edit</mat-icon>
             </button>
 
-            <button class="delete-btn" mat-icon-button color="warn"
-                    (click)="deleteOrder(order.orderID)">
+            <button class="delete-btn" mat-icon-button color="warn" (click)="deleteOrder(order.orderID)">
               <mat-icon>delete</mat-icon>
             </button>
 
@@ -178,7 +167,9 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
       </table>
-
+      <mat-paginator *ngIf="!authService.isClientLoggedIn" [length]="filteredOrders.length" [pageSize]="pageSize"
+        [pageIndex]="currentPage" [pageSizeOptions]="[5,10,20,50]" (page)="onPageChange($event)" showFirstLastButtons>
+      </mat-paginator>
     </div>
 
     <!-- ===================== -->
@@ -186,10 +177,7 @@
     <!-- ===================== -->
     <div class="client-orders" *ngIf="authService.isClientLoggedIn">
 
-<div
-  class="order-card"
-  [class.last-card]="last"
-  *ngFor="let order of pagedOrders; let last = last">
+      <div class="order-card" [class.last-card]="last" *ngFor="let order of pagedOrders; let last = last">
 
 
         <div class="order-top">
@@ -199,7 +187,8 @@
 
         <div class="order-body">
           <div><strong>{{ 'ORDERS.DATE' | translate }}: </strong> {{ order.orderDate | date:'short' }}</div>
-          <div><strong>{{ 'ORDERS.TOTAL' | translate }}</strong> {{ order.totalAmount }} {{ 'COMMON.CURRENCY' | translate }}</div>
+          <div><strong>{{ 'ORDERS.TOTAL' | translate }}</strong> {{ order.totalAmount }} {{ 'COMMON.CURRENCY' |
+            translate }}</div>
         </div>
 
         <div class="order-actions">

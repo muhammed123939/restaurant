@@ -6,11 +6,78 @@
     <h2>{{ 'DELIVERIES.TITLE' | translate }}</h2>
     <span class="count">({{ filteredDeliveries?.length || 0 }})</span>
   </div>
+<!-- FILTERS -->
+<div class="filters">
+
+  <!-- Order ID -->
+  <mat-form-field appearance="outline">
+    <mat-label>{{ 'ORDERS.SEARCH_ORDER_ID' | translate }}</mat-label>
+    <input
+      matInput
+      type="number"
+      [(ngModel)]="orderIdSearch"
+      (input)="filterDeliveries()">
+  </mat-form-field>
+
+  <!-- Customer ID -->
+  <mat-form-field appearance="outline"
+    *ngIf="authService.isAdminwithPermissionLoggedIn
+        || authService.isOwnerLoggedIn
+        || authService.isDeveloperLoggedIn
+        || authService.isNormalAdminLoggedIn">
+
+    <mat-label>{{ 'ORDERS.CUSTOMER_ID' | translate }}</mat-label>
+
+    <input
+      matInput
+      type="number"
+      [(ngModel)]="customerIdSearch"
+      (ngModelChange)="filterDeliveries()">
+
+  </mat-form-field>
+
+  <!-- Start Date -->
+  <mat-form-field appearance="outline">
+    <mat-label>{{ 'ORDERS.START_DATE' | translate }}</mat-label>
+
+    <input
+      matInput
+      [matDatepicker]="startPicker"
+      [(ngModel)]="startDate"
+      (dateChange)="filterDeliveries()">
+
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="startPicker">
+    </mat-datepicker-toggle>
+
+    <mat-datepicker #startPicker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- End Date -->
+  <mat-form-field appearance="outline">
+    <mat-label>{{ 'ORDERS.END_DATE' | translate }}</mat-label>
+
+    <input
+      matInput
+      [matDatepicker]="endPicker"
+      [(ngModel)]="endDate"
+      (dateChange)="filterDeliveries()">
+
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="endPicker">
+    </mat-datepicker-toggle>
+
+    <mat-datepicker #endPicker></mat-datepicker>
+  </mat-form-field>
+
+</div>
 
   <!-- TABLE -->
   <div class="table-wrapper">
 
-    <table mat-table [dataSource]="filteredDeliveries" class="talabat-table mat-elevation-z8">
+<table mat-table [dataSource]="pagedDeliveries" class="talabat-table mat-elevation-z8">
 
       <!-- ID -->
       <ng-container matColumnDef="ordersForDeliveryId">
@@ -148,6 +215,13 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
     </table>
-
+    <mat-paginator
+  [length]="filteredDeliveries.length"
+  [pageSize]="pageSize"
+  [pageIndex]="currentPage"
+  [pageSizeOptions]="[5,10,20,50]"
+  showFirstLastButtons
+  (page)="onPageChange($event)">
+</mat-paginator>
   </div>
 </div>

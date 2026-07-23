@@ -1,10 +1,10 @@
 
 export interface Menu {
-    menuItemID? : number
+    menuItemID : number
     branchID? : number
-    name? : string
+    name : string
     categoryID :number
-    sell_price? :number
+    sell_price :number
     buy_price? :number
     imageUrl? :string
     quantity?:number

@@ -2,7 +2,7 @@
   "MENU2": "المنيو",
   "EMPLOYEES": "الموظفين",
   "PROFIT": "الأرباح",
-    "HOME2" :"الرئيسيه" ,
+  "HOME2": "الرئيسيه",
   "TABLES2": "الطاولات",
   "BRANCHES2": "الفروع",
   "CLIENTS2": "العملاء",
@@ -23,13 +23,13 @@
     "PASSWORD_MAX": "يجب ألا يزيد عن 8 أحرف.",
     "SIGN_IN": "تسجيل الدخول"
   },
-  
   "HOME": {
     "RESTAURANT_NAME": "نظام مطعم طلبات",
     "WELCOME_MESSAGE": "مرحباً بك في لوحة إدارة المطعم",
-    "SUBTITLE": "إدارة الطلبات والطاولات والأرباح بسهولة"
-  }
-,
+    "SUBTITLE": "إدارة الطلبات والطاولات والأرباح بسهولة",
+    "POPULAR_MENU": "🔥 الأطباق الأكثر طلبًا",
+    "POPULAR_MENU_SUBTITLE": "اكتشف الأطباق المفضلة لدى عملائنا."
+  },
   "LOGIN": {
     "WELCOME_BACK": "مرحباً بعودتك",
     "USERNAME": "اسم المستخدم",
@@ -269,8 +269,7 @@
     "CONFIRM": "تأكيد",
     "EDIT": "تعديل",
     "DELETE": "حذف"
-  } ,
-
+  },
   "ORDER_DIALOG": {
     "TITLE": "تفاصيل الطلب",
     "STEP_PREPARING": "قيد التحضير",
@@ -282,11 +281,10 @@
     "ITEM_LABEL": "عنصر",
     "CLOSE": "إغلاق"
   },
-  "COMMON":{
+  "COMMON": {
     "CURRENCY": "جنيه",
     "CLOSE": "إغلاق"
-  }
-,
+  },
   "ORDERS": {
     "TITLE": "الطلبات",
     "SEARCH_ORDER_ID": "بحث برقم الطلب",
@@ -304,8 +302,7 @@
     "TABLE": "الطاولة",
     "STATUS": "الحالة",
     "COMMENT": "تعليق"
-  }
-  ,
+  },
   "DELIVERIES": {
     "TITLE": "التوصيلات",
     "ID": "الرقم",
@@ -324,15 +321,13 @@
     "VIEW_DRIVER": "عرض السائق",
     "VIEW_CUSTOMER": "عرض العميل",
     "VIEW_ADDRESS": "عرض العنوان"
-  }
-,
+  },
   "PHOTO_EDITOR": {
     "UPLOAD_ITEM_PHOTO": "رفع صورة المنتج",
     "FILE_TYPES": "JPG, PNG حتى 10 ميجابايت",
     "UPLOAD_PHOTO": "رفع الصورة",
     "REMOVE": "إزالة"
-  }
-,
+  },
   "PROFIT_DASHBOARD": {
     "TITLE": "لوحة الأرباح",
     "FROM": "من",
@@ -345,9 +340,7 @@
     "TABLE_BRANCH": "الفرع",
     "TABLE_PROFIT": "الربح",
     "CURRENCY": "جنيه"
-  }
-
-  ,
+  },
   "RECEIPT": {
     "RESTAURANT_NAME": "مطعمي",
     "ORDER_NUMBER": "رقم الطلب",
@@ -374,8 +367,7 @@
     "THANK_YOU": "شكراً لك 🙏",
     "PRINT": "طباعة",
     "NOT_AVAILABLE": "غير متوفر"
-  }
-,
+  },
   "ITEM_REGISTRATION": {
     "TITLE": "تسجيل صنف",
     "ITEM_NAME": "اسم الصنف",
@@ -388,10 +380,7 @@
     "QUANTITY": "الكمية",
     "REGISTER_ITEM": "تسجيل الصنف",
     "CANCEL": "إلغاء"
-  }
-
-  ,
-  
+  },
   "TABLE_DIALOG": {
     "TITLE": "اختر الطاولة",
     "TABLE": "طاولة",
@@ -399,9 +388,7 @@
     "OCCUPIED": "مشغولة",
     "CANCEL": "إلغاء",
     "SELECT": "اختيار"
-  }
-
-,
+  },
   "TABLES": {
     "SELECT_BRANCH": "اختر الفرع",
     "ADD_TABLE": "إضافة طاولة",
@@ -412,8 +399,7 @@
     "OCCUPIED": "مشغولة",
     "ACTIONS": "الإجراءات",
     "NO_TABLES_FOUND": "لا توجد طاولات."
-  }
-,
+  },
   "TABLE_REGISTER": {
     "TITLE": "إضافة طاولة جديدة",
     "TABLE_NUMBER": "رقم الطاولة",
@@ -424,9 +410,7 @@
     "CAPACITY_REQUIRED": "السعة مطلوبة",
     "SAVE_TABLE": "حفظ الطاولة",
     "CANCEL": "إلغاء"
-  }
-,
-
+  },
   "TOPBAR": {
     "NO_NOTIFICATIONS": "لا توجد إشعارات جديدة",
     "MARK_ALL_READ": "تحديد الكل كمقروء",
@@ -437,5 +421,4 @@
     "MY_TASKS": "مهامي",
     "LOGOUT": "تسجيل الخروج"
   }
-
 }

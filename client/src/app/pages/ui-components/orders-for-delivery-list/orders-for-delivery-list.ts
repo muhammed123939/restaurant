@@ -16,14 +16,18 @@ import { DriversDialog } from '../drivers-dialog/drivers-dialog';
 import { NgIf } from '@angular/common';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CustomerAddress } from 'src/app/_models/customer-address';
-import { Order } from 'src/app/_models/order';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @Component({
   selector: 'app-orders-for-delivery-list',
   standalone: true,
   imports: [
+     MatDatepickerModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
     FormsModule, CommonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -38,13 +42,21 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 
 export class OrdersForDeliveryList implements OnInit {
-
+  filteredDeliveries: Orderfordelivery[] = [];
+pageSize = 10;
+currentPage = 0;
+pagedDeliveries: Orderfordelivery[] = [];
   searchText: string = '';
   Orderfordelivery: Orderfordelivery[] = []; // should be array
   displayedColumns: string[] = [];
+startDate: Date | null = null;
+endDate: Date | null = null;
+
+orderIdSearch: number | null = null;
+customerIdSearch: number | null = null;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     public clientService: ClientService,
     private dialog: MatDialog,
     private employeeService: EmployeeService,
@@ -188,28 +200,76 @@ export class OrdersForDeliveryList implements OnInit {
     });
   }
 
-  get filteredDeliveries(): Orderfordelivery[] {
-    if (!this.Orderfordelivery) return [];
+  filterDeliveries(): void {
 
-    let data = this.Orderfordelivery;
+  this.currentPage = 0;
 
-    if (this.searchText) {
-      const text = this.searchText.toLowerCase();
+  this.updatePagedDeliveries();
+}
 
-      data = data.filter(d => {
-        const orderIdMatch = d.order?.orderID?.toString().includes(text);
-        const customerMatch = d.order?.customerID?.toString().includes(text);
-        const statusMatch = d.status?.toLowerCase().includes(text) || false;
 
-        return orderIdMatch || customerMatch || statusMatch;
-      });
-    }
+updatePagedDeliveries(): void {
 
-    // 🔥 SORT (reverse = newest first)
-    return data.sort((a, b) =>
-      new Date(b.assignedAt).getTime() - new Date(a.assignedAt).getTime()
+  this.filteredDeliveries = [...this.Orderfordelivery];
+
+  // Search
+  if (this.searchText) {
+    const text = this.searchText.toLowerCase();
+
+    this.filteredDeliveries = this.filteredDeliveries.filter(d =>
+      d.order?.orderID?.toString().includes(text) ||
+      d.order?.customerID?.toString().includes(text) ||
+      d.status?.toLowerCase().includes(text)
     );
   }
+
+  // Order ID
+  if (this.orderIdSearch != null) {
+    this.filteredDeliveries = this.filteredDeliveries.filter(
+      d => d.order?.orderID === this.orderIdSearch
+    );
+  }
+
+  // Customer ID
+  if (this.customerIdSearch != null) {
+    this.filteredDeliveries = this.filteredDeliveries.filter(
+      d => d.order?.customerID === this.customerIdSearch
+    );
+  }
+
+  // Start Date
+  if (this.startDate) {
+    this.filteredDeliveries = this.filteredDeliveries.filter(
+      d => new Date(d.assignedAt) >= this.startDate!
+    );
+  }
+
+  // End Date
+  if (this.endDate) {
+    this.filteredDeliveries = this.filteredDeliveries.filter(
+      d => new Date(d.assignedAt) <= this.endDate!
+    );
+  }
+
+  // Sort
+  this.filteredDeliveries.sort((a, b) =>
+    new Date(b.assignedAt).getTime() -
+    new Date(a.assignedAt).getTime()
+  );
+
+  const start = this.currentPage * this.pageSize;
+  const end = start + this.pageSize;
+
+  this.pagedDeliveries = this.filteredDeliveries.slice(start, end);
+}
+
+onPageChange(event: PageEvent): void {
+
+  this.pageSize = event.pageSize;
+  this.currentPage = event.pageIndex;
+
+  this.updatePagedDeliveries();
+}
 
   loadOrdersBasedOnRole() {
 
@@ -230,18 +290,24 @@ export class OrdersForDeliveryList implements OnInit {
   loadDriverOrdersforDelivery(branchID: number) {
     this.orderService.getAllOrdersForDeliveryForDriver(branchID).subscribe(res => {
       this.Orderfordelivery = res;
+      this.currentPage = 0;
+this.updatePagedDeliveries();
     });
   }
 
   loadAllOrdersforDelivery() {
     this.orderService.getAllOrdersForDeliveries().subscribe(res => {
       this.Orderfordelivery = res;
+      this.currentPage = 0;
+this.updatePagedDeliveries();
     });
   }
 
   loadBranchOrdersforDelivery(id: number) {
     this.orderService.getBranchOrderForDeliveries(this.employeeService.currentEmployee()?.branchID!).subscribe(res => {
       this.Orderfordelivery = res;
+      this.currentPage = 0;
+this.updatePagedDeliveries();
     });
   }
 

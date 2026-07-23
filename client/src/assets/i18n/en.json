@@ -1,7 +1,7 @@
 {
-  "NAV_MENU_LOGO" : "ERP System Solution" , 
-  "MENU2": "Menu", 
-  "HOME2" :"Home" ,
+  "NAV_MENU_LOGO": "ERP System Solution",
+  "MENU2": "Menu",
+  "HOME2": "Home",
   "EMPLOYEES": "Employees",
   "PROFIT": "Profit",
   "TABLES2": "Tables",
@@ -24,13 +24,13 @@
     "PASSWORD_MAX": "Maximum 8 characters allowed.",
     "SIGN_IN": "Sign In"
   },
-  
   "HOME": {
     "RESTAURANT_NAME": "Talabat Restaurant System",
     "WELCOME_MESSAGE": "Welcome to your restaurant management dashboard",
-    "SUBTITLE": "Manage orders, tables, and profits easily"
-  }
-,
+    "SUBTITLE": "Manage orders, tables, and profits easily",
+    "POPULAR_MENU": "🔥 Popular Menu",
+    "POPULAR_MENU_SUBTITLE": "Discover our customers' favorite dishes."
+  },
   "LOGIN": {
     "WELCOME_BACK": "Welcome Back",
     "USERNAME": "Username",
@@ -304,7 +304,6 @@
     "STATUS": "Status",
     "COMMENT": "Comment"
   },
-
   "DELIVERIES": {
     "TITLE": "Deliveries",
     "ID": "ID",
@@ -412,8 +411,7 @@
     "CAPACITY_REQUIRED": "Capacity is required",
     "SAVE_TABLE": "Save Table",
     "CANCEL": "Cancel"
-  } ,
-  
+  },
   "TOPBAR": {
     "NO_NOTIFICATIONS": "No new notifications",
     "MARK_ALL_READ": "Mark all as read",
@@ -424,5 +422,4 @@
     "MY_TASKS": "My Tasks",
     "LOGOUT": "Logout"
   }
-
 }

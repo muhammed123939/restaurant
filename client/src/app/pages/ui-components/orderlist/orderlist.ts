@@ -193,8 +193,6 @@ export class Orderlist implements OnInit {
       }
     });
   }
-
-
   
   // Edit order
   editorder(order: Order) {

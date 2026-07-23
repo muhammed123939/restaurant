@@ -26,8 +26,6 @@ import { Order } from 'src/app/_models/order';
 import { Table } from 'src/app/_models/table';
 import { Orderfordelivery } from 'src/app/_models/orderfordelivery';
 import { AuthService } from 'src/app/_services/auth.service';
-import { User } from 'src/app/_models/employee';
-import { UserData } from 'src/app/_models/user-data';
 import { TranslateModule } from '@ngx-translate/core';
 
 
@@ -87,10 +85,10 @@ export class MenuviewComponent implements OnInit {
   ordercomment: string;
   selectedTable!: Table;
   orderfordelivery!: Orderfordelivery;
+   itemSelectedId: number | null = null;
 
   constructor(
     private menuService: MenuService,
-
     private branchService: BranchService,
     public authService: AuthService,
     public clientService: ClientService,
@@ -102,6 +100,13 @@ export class MenuviewComponent implements OnInit {
 
   /** ================= INIT ================= */
   ngOnInit(): void {
+
+ const id = this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+      this.itemSelectedId = +id;
+    }
+
     this.branchService.getall().subscribe({
       next: (data: Branch[]) => {
         this.branches = data;
@@ -175,8 +180,27 @@ this.clientService.getuserbyid(this.orderforclientid)
 
 else if(client){
    this.branchID = client?.branchID;
+   
+ 
+   if (this.itemSelectedId) {
+  this.menuService.getItembyid(this.itemSelectedId, this.branchID).subscribe({
+    next: (item) => {
+
+      this.cart.push({
+        itemId: item.menuItemID,
+        name : item.name,
+        price : item.sell_price,      // or item.sell_price depending on your model
+        quantity: 1
+      });
+
+    },
+    error: (err) => console.error(err)
+  });
+}
+
 }
            this.onBranchSelect();
+           
 }
     this.displayedColumns = [...this.baseColumns];
 
