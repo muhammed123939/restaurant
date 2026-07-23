@@ -286,6 +286,11 @@
     "CLOSE": "إغلاق"
   },
   "ORDERS": {
+    "ORDER_TYPE": "نوع الطلب",
+    "ALL": "الكل",
+    "RESTAURANT": "داخل المطعم",
+    "TAKEAWAY": "تيك أواي",
+    "DELIVERY": "توصيل",
     "TITLE": "الطلبات",
     "SEARCH_ORDER_ID": "بحث برقم الطلب",
     "CUSTOMER_ID": "رقم العميل",

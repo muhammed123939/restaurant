@@ -20,11 +20,13 @@ import { CustomerDetailsDialog } from '../customer-details-dialog/customer-detai
 import { AuthService } from 'src/app/_services/auth.service';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-orderlist',
   standalone: true,
   imports: [
+    MatSelectModule , 
     FormsModule,
     CommonModule,
     MatTableModule,
@@ -35,7 +37,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatPaginatorModule ,
+    MatPaginatorModule,
     TranslateModule
   ],
   templateUrl: './orderlist.html',
@@ -49,7 +51,7 @@ export class Orderlist implements OnInit {
   customerIdSearch: number | null = null;
 
   orderIdSearch: number | null = null;
-
+  orderTypeSearch: string = '';
   // Orders
   orders: Order[] = [];
   filteredOrders: Order[] = [];
@@ -151,12 +153,12 @@ export class Orderlist implements OnInit {
   // Delete order
   deleteOrder(id: number) {
     const hasAccess =
-    this.authService.isAdminwithPermissionLoggedIn ||
-    this.authService.isNormalAdminLoggedIn ||
-    this.authService.isOwnerLoggedIn ||
-    this.authService.isDeveloperLoggedIn;
+      this.authService.isAdminwithPermissionLoggedIn ||
+      this.authService.isNormalAdminLoggedIn ||
+      this.authService.isOwnerLoggedIn ||
+      this.authService.isDeveloperLoggedIn;
 
-  if (!hasAccess) return;
+    if (!hasAccess) return;
 
     Swal.fire({
       title: 'Are you sure?',
@@ -193,53 +195,65 @@ export class Orderlist implements OnInit {
       }
     });
   }
-  
+
   // Edit order
   editorder(order: Order) {
     if (!order.orderID) return;
 
     const hasAccess =
-    this.authService.isAdminwithPermissionLoggedIn ||
-    this.authService.isNormalAdminLoggedIn ||
-    this.authService.isOwnerLoggedIn ||
-    this.authService.isDeveloperLoggedIn;
+      this.authService.isAdminwithPermissionLoggedIn ||
+      this.authService.isNormalAdminLoggedIn ||
+      this.authService.isOwnerLoggedIn ||
+      this.authService.isDeveloperLoggedIn;
 
-  if (!hasAccess) return;
+    if (!hasAccess) return;
     this.router.navigate(['/menuview/order', order.orderID]);
   }
 
-  // Update filterOrders to include orderID search
-  filterOrders() {
-    this.filteredOrders = this.orders.filter(order => {
-      // Date filter
-      const orderDate = new Date(order.orderDate);
-      const afterStart = this.startDate ? orderDate >= this.startDate : true;
-      const beforeEnd = this.endDate ? orderDate <= this.endDate : true;
+filterOrders() {
+  this.filteredOrders = this.orders.filter(order => {
 
-      // OrderID search filter
-      const matchesOrderId = this.orderIdSearch ? order.orderID === this.orderIdSearch : true;
+    // Date filter
+    const orderDate = new Date(order.orderDate);
+    const afterStart = this.startDate ? orderDate >= this.startDate : true;
+    const beforeEnd = this.endDate ? orderDate <= this.endDate : true;
 
-      const matchesCustomerId =
-        this.customerIdSearch != null
-          ? order.customerID === this.customerIdSearch
-          : true;
+    // Order ID filter
+    const matchesOrderId =
+      this.orderIdSearch != null
+        ? order.orderID === this.orderIdSearch
+        : true;
 
-      return afterStart &&
-        beforeEnd &&
-        matchesOrderId &&
-        matchesCustomerId;
-    });
+    // Customer ID filter
+    const matchesCustomerId =
+      this.customerIdSearch != null
+        ? order.customerID === this.customerIdSearch
+        : true;
 
-    this.currentPage = 0;
-    this.updatePagedOrders();
-  }
+    // Order Type filter (Restaurant / Takeaway / Delivery)
+    const matchesOrderType =
+      this.orderTypeSearch
+        ? order.orderPosition === this.orderTypeSearch
+        : true;
 
+    return (
+      afterStart &&
+      beforeEnd &&
+      matchesOrderId &&
+      matchesCustomerId &&
+      matchesOrderType
+    );
+  });
+
+  this.currentPage = 0;
+  this.updatePagedOrders();
+}
   // Open order details
   openDetails(order: Order) {
     this.dialog.open(OrderDetailsDialog, {
       width: '600px',
-      data: order ,
-        direction: document.documentElement.dir as 'rtl' | 'ltr'
+      data: order,
+      direction: document.documentElement.dir as 'rtl' | 'ltr'
     });
   }
 
@@ -247,8 +261,8 @@ export class Orderlist implements OnInit {
   openCustomerDetails(customerId: number) {
     this.dialog.open(CustomerDetailsDialog, {
       width: '400px',
-      data: customerId ,
-              direction: document.documentElement.dir as 'rtl' | 'ltr'
+      data: customerId,
+      direction: document.documentElement.dir as 'rtl' | 'ltr'
     });
   }
 

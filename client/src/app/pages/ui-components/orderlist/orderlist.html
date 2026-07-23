@@ -8,40 +8,51 @@
       <span class="count">({{ filteredOrders?.length || 0 }})</span>
     </div>
 
-    <!-- FILTERS (keep same) -->
-    <div class="filters">
-      <!-- Order ID -->
-      <mat-form-field appearance="outline">
-        <mat-label>{{ 'ORDERS.SEARCH_ORDER_ID' | translate }}</mat-label>
-        <input matInput type="number" [(ngModel)]="orderIdSearch" (input)="filterOrders()">
-      </mat-form-field>
+      <!-- FILTERS (keep same) -->
+      <div class="filters">
 
-      <!-- Customer ID -->
-      <mat-form-field appearance="outline" *ngIf="authService.isAdminwithPermissionLoggedIn 
-        || authService.isOwnerLoggedIn 
-        || authService.isDeveloperLoggedIn 
-        || authService.isNormalAdminLoggedIn">
+        <mat-form-field appearance="outline">
+  <mat-label>{{ 'ORDERS.ORDER_TYPE' | translate }}</mat-label>
+  <mat-select [(ngModel)]="orderTypeSearch" (selectionChange)="filterOrders()">
+    <mat-option value="">{{ 'ORDERS.ALL' | translate }}</mat-option>
+    <mat-option value="in-restaurant">{{ 'ORDERS.RESTAURANT' | translate }}</mat-option>
+    <mat-option value="take-away">{{ 'ORDERS.TAKEAWAY' | translate }}</mat-option>
+    <mat-option value="Delivery">{{ 'ORDERS.DELIVERY' | translate }}</mat-option>
+  </mat-select>
+</mat-form-field>
 
-        <mat-label>{{ 'ORDERS.CUSTOMER_ID' | translate }}</mat-label>
-        <input matInput type="number" [(ngModel)]="customerIdSearch" (ngModelChange)="filterOrders()">
-      </mat-form-field>
+        <!-- Order ID -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'ORDERS.SEARCH_ORDER_ID' | translate }}</mat-label>
+          <input matInput type="number" [(ngModel)]="orderIdSearch" (input)="filterOrders()">
+        </mat-form-field>
 
-      <!-- Start Date -->
-      <mat-form-field appearance="outline">
-        <mat-label>{{ 'ORDERS.START_DATE' | translate }}</mat-label>
-        <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" (dateChange)="filterOrders()">
-        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-        <mat-datepicker #startPicker></mat-datepicker>
-      </mat-form-field>
+        <!-- Customer ID -->
+        <mat-form-field appearance="outline" *ngIf="authService.isAdminwithPermissionLoggedIn 
+          || authService.isOwnerLoggedIn 
+          || authService.isDeveloperLoggedIn 
+          || authService.isNormalAdminLoggedIn">
 
-      <!-- End Date -->
-      <mat-form-field appearance="outline">
-        <mat-label>{{ 'ORDERS.END_DATE' | translate }}</mat-label>
-        <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" (dateChange)="filterOrders()">
-        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-        <mat-datepicker #endPicker></mat-datepicker>
-      </mat-form-field>
-    </div>
+          <mat-label>{{ 'ORDERS.CUSTOMER_ID' | translate }}</mat-label>
+          <input matInput type="number" [(ngModel)]="customerIdSearch" (ngModelChange)="filterOrders()">
+        </mat-form-field>
+
+        <!-- Start Date -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'ORDERS.START_DATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" (dateChange)="filterOrders()">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- End Date -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'ORDERS.END_DATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" (dateChange)="filterOrders()">
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
 
     <!-- ===================== -->
     <!-- 🖥 ADMIN TABLE VIEW -->

@@ -24,9 +24,16 @@ export class MenuService {
     return this.http.delete(this.baseUrl + `menu/DeletePhoto/${menuItemId}`, this.httpOptions);
   }
 
-  
-    getTopOrderedItems() {
-  return this.http.get<Menu[]>(this.baseUrl + `menu/top-ordered`, this.httpOptions);
+ 
+
+getTopOrderedItems(branchID?: number) {
+  if (branchID != null) {
+    return this.http.get<Menu[]>(this.baseUrl + `menu/top-ordered?branchID=${branchID}`
+    );
+  }
+
+  return this.http.get<Menu[]>(this.baseUrl + `menu/top-ordered`
+  );
 }
 
   getItembyid(id: number, id2: number): Observable<Menu> {

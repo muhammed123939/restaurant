@@ -287,6 +287,11 @@
     "CLOSE": "Close"
   },
   "ORDERS": {
+    "ORDER_TYPE": "Order Type",
+    "ALL": "All",
+    "RESTAURANT": "Restaurant",
+    "TAKEAWAY": "Takeaway",
+    "DELIVERY": "Delivery",
     "TITLE": "Orders",
     "SEARCH_ORDER_ID": "Search Order ID",
     "CUSTOMER_ID": "Customer ID",
