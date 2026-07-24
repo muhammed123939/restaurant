@@ -21,10 +21,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-orders-for-delivery-list',
   standalone: true,
-  imports: [
+  imports: [MatSelectModule , 
      MatDatepickerModule,
   MatNativeDateModule,
   MatPaginatorModule,
@@ -42,6 +47,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 })
 
 export class OrdersForDeliveryList implements OnInit {
+  statusSearch: string = '';
   filteredDeliveries: Orderfordelivery[] = [];
 pageSize = 10;
 currentPage = 0;
@@ -49,13 +55,14 @@ pagedDeliveries: Orderfordelivery[] = [];
   searchText: string = '';
   Orderfordelivery: Orderfordelivery[] = []; // should be array
   displayedColumns: string[] = [];
-startDate: Date | null = null;
-endDate: Date | null = null;
+
+  startDate: string = '';
+endDate: string = '';
 
 orderIdSearch: number | null = null;
 customerIdSearch: number | null = null;
 
-  constructor(
+  constructor( public translate: TranslateService ,
     public authService: AuthService,
     public clientService: ClientService,
     private dialog: MatDialog,
@@ -208,6 +215,7 @@ customerIdSearch: number | null = null;
 }
 
 
+
 updatePagedDeliveries(): void {
 
   this.filteredDeliveries = [...this.Orderfordelivery];
@@ -237,26 +245,36 @@ updatePagedDeliveries(): void {
     );
   }
 
-  // Start Date
-  if (this.startDate) {
+  // Status
+  if (this.statusSearch) {
     this.filteredDeliveries = this.filteredDeliveries.filter(
-      d => new Date(d.assignedAt) >= this.startDate!
+      d => (d.status ?? 'Pending').toLowerCase() === this.statusSearch.toLowerCase()
     );
   }
 
-  // End Date
-  if (this.endDate) {
-    this.filteredDeliveries = this.filteredDeliveries.filter(
-      d => new Date(d.assignedAt) <= this.endDate!
-    );
-  }
+  // Date Range
+  this.filteredDeliveries = this.filteredDeliveries.filter(item => {
 
-  // Sort
+    const assignedDate = new Date(item.assignedAt);
+
+    const afterStart = this.startDate
+      ? assignedDate >= new Date(this.startDate)
+      : true;
+
+    const beforeEnd = this.endDate
+      ? assignedDate <= new Date(this.endDate + 'T23:59:59')
+      : true;
+
+    return afterStart && beforeEnd;
+  });
+
+  // Sort newest first
   this.filteredDeliveries.sort((a, b) =>
     new Date(b.assignedAt).getTime() -
     new Date(a.assignedAt).getTime()
   );
 
+  // Pagination
   const start = this.currentPage * this.pageSize;
   const end = start + this.pageSize;
 
@@ -408,6 +426,218 @@ this.updatePagedDeliveries();
       confirmButtonText: 'Close'
     });
   }
+
+exportDeliveriesPdf() {
+
+  const doc = new jsPDF('landscape');
+
+  const L = {
+    title: this.translate.instant('DELIVERIES.TITLE'),
+    generated: this.translate.instant('REPORT.GENERATED'),
+    totalRecords: this.translate.instant('REPORT.TOTAL_RECORDS'),
+
+    orderId: this.translate.instant('ORDERS.ORDER_ID'),
+    customerId: this.translate.instant('ORDERS.CUSTOMER_ID'),
+    customer: this.translate.instant('DELIVERIES.CUSTOMER'),
+    guest: this.translate.instant('ORDERS.GUEST'),
+    driver: this.translate.instant('DELIVERIES.DRIVER'),
+    status: this.translate.instant('DELIVERIES.STATUS'),
+    date: this.translate.instant('ORDERS.DATE'),
+    deliveredAt: this.translate.instant('DELIVERIES.DELIVERED'),
+    branch: this.translate.instant('DELIVERIES.BRANCH'),
+
+    startDate: this.translate.instant('ORDERS.START_DATE'),
+    endDate: this.translate.instant('ORDERS.END_DATE'),
+
+    pending: this.translate.instant('DELIVERIES.PENDING'),
+    outForDelivery: this.translate.instant('DELIVERIES.OutForDelivery'),
+    delivered: this.translate.instant('DELIVERIES.DELIVERED'),
+
+    page: this.translate.instant('COMMON.PAGE'),
+
+    fileName: this.translate.currentLang === 'ar'
+      ? 'تقرير_طلبات_التوصيل'
+      : 'Delivery_Report'
+  };
+
+
+  doc.setFontSize(18);
+  doc.setTextColor(255, 90, 0);
+  doc.text(L.title, 14, 15);
+
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
+
+
+  doc.text(
+    `${L.generated}: ${new Date().toLocaleString()}`,
+    14,
+    23
+  );
+
+
+  doc.text(
+    `${L.totalRecords}: ${this.filteredDeliveries.length}`,
+    14,
+    30
+  );
+
+
+  let y = 38;
+
+
+  if (this.orderIdSearch) {
+    doc.text(`${L.orderId}: ${this.orderIdSearch}`, 14, y);
+    y += 6;
+  }
+
+
+  if (this.customerIdSearch) {
+    doc.text(`${L.customerId}: ${this.customerIdSearch}`, 14, y);
+    y += 6;
+  }
+
+
+  if (this.statusSearch) {
+
+    const status =
+      this.statusSearch === 'OutForDelivery'
+        ? L.outForDelivery
+        : this.statusSearch === 'DELIVERED'
+        ? L.delivered
+        : this.statusSearch === 'PENDING'
+        ? L.pending
+        : this.statusSearch;
+
+
+    doc.text(`${L.status}: ${status}`, 14, y);
+    y += 6;
+  }
+
+
+  if (this.startDate) {
+    doc.text(
+      `${L.startDate}: ${new Date(this.startDate).toLocaleDateString()}`,
+      14,
+      y
+    );
+    y += 6;
+  }
+
+
+  if (this.endDate) {
+    doc.text(
+      `${L.endDate}: ${new Date(this.endDate).toLocaleDateString()}`,
+      14,
+      y
+    );
+    y += 6;
+  }
+
+
+  autoTable(doc, {
+
+    startY: y + 5,
+
+    head: [[
+      '#',
+      L.orderId,
+      L.customer,
+      L.driver,
+      L.status,
+      L.date,
+      L.deliveredAt,
+      L.branch
+    ]],
+
+
+    body: this.filteredDeliveries.map((d, index) => {
+
+      let status = L.pending;
+
+      switch (d.status) {
+
+        case 'OutForDelivery':
+          status = L.outForDelivery;
+          break;
+
+        case 'DELIVERED':
+        case 'Delivered':
+          status = L.delivered;
+          break;
+
+        case 'PENDING':
+        case 'Pending':
+          status = L.pending;
+          break;
+
+        default:
+          status = d.status ?? '-';
+      }
+
+
+      return [
+        index + 1,
+        d.order?.orderID ?? '-',
+        d.order?.customerID ?? L.guest,
+        d.employee?.name ?? '-',
+        status,
+        d.assignedAt
+          ? new Date(d.assignedAt).toLocaleString()
+          : '-',
+        d.deliveredAt
+          ? new Date(d.deliveredAt).toLocaleString()
+          : '-',
+        d.order?.branchName ?? '-'
+      ];
+
+    }),
+
+
+    styles: {
+      fontSize: 9,
+      cellPadding: 3,
+      halign: 'center',
+      valign: 'middle'
+    },
+
+
+    headStyles: {
+      fillColor: [255, 90, 0],
+      textColor: [255, 255, 255],
+      fontStyle: 'bold'
+    },
+
+
+    alternateRowStyles: {
+      fillColor: [245, 245, 245]
+    },
+
+
+    didDrawPage: () => {
+
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+
+      doc.setFontSize(9);
+
+      doc.text(
+        `${L.page} ${doc.getCurrentPageInfo().pageNumber}`,
+        pageWidth - 30,
+        pageHeight - 10
+      );
+
+    }
+
+  });
+
+
+  const today = new Date().toISOString().slice(0, 10);
+
+  doc.save(`${L.fileName}_${today}.pdf`);
+
+}
 
   viewComment(comment: string) {
     Swal.fire({

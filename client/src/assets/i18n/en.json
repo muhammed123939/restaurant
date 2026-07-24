@@ -271,6 +271,12 @@
     "EDIT": "Edit",
     "DELETE": "Delete"
   },
+
+"REPORT": {
+  "GENERATED": "Generated",
+  "TOTAL_RECORDS": "Total Records"
+}
+,
   "ORDER_DIALOG": {
     "TITLE": "Order Details",
     "STEP_PREPARING": "Preparing",
@@ -283,13 +289,14 @@
     "CLOSE": "Close"
   },
   "COMMON": {
+  "PAGE": "Page" ,
     "CURRENCY": "EGP",
     "CLOSE": "Close"
   },
   "ORDERS": {
     "ORDER_TYPE": "Order Type",
     "ALL": "All",
-    "RESTAURANT": "Restaurant",
+    "RESTAURANT": "In-Restaurant",
     "TAKEAWAY": "Takeaway",
     "DELIVERY": "Delivery",
     "TITLE": "Orders",
@@ -310,12 +317,13 @@
     "COMMENT": "Comment"
   },
   "DELIVERIES": {
+  "ALL": "All" ,
     "TITLE": "Deliveries",
     "ID": "ID",
     "ORDER": "Order",
     "COMMENT": "Comment",
     "BRANCH": "Branch",
-    "ASSIGNED": "Assigned",
+    "OutForDelivery": "OutForDelivery",
     "DELIVERED": "Delivered",
     "STATUS": "Status",
     "DRIVER": "Driver",
@@ -348,6 +356,9 @@
     "CURRENCY": "EGP"
   },
   "RECEIPT": {
+    "BRANCH": "Branch",
+  "BRANCH_PHONE": "Branch Phone",
+  "BRANCH_ADDRESS": "Branch Address" ,
     "RESTAURANT_NAME": "MY RESTAURANT",
     "ORDER_NUMBER": "Order #",
     "CASHIER": "Cashier",

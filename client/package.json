@@ -30,6 +30,7 @@
     "bootstrap-icons": "^1.13.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
     "ng-apexcharts": "^1.16.0",
     "ng2-file-upload": "^7.0.1",
     "ngx-scrollbar": "^18.0.0",

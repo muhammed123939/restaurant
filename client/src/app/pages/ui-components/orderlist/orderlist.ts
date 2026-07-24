@@ -21,12 +21,15 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatSelectModule } from '@angular/material/select';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-orderlist',
   standalone: true,
   imports: [
-    MatSelectModule , 
+    MatSelectModule,
     FormsModule,
     CommonModule,
     MatTableModule,
@@ -46,8 +49,9 @@ import { MatSelectModule } from '@angular/material/select';
 export class Orderlist implements OnInit {
 
   // Date filters
-  startDate: Date | null = null;
-  endDate: Date | null = null;
+
+  startDate: string = '';
+  endDate: string = '';
   customerIdSearch: number | null = null;
 
   orderIdSearch: number | null = null;
@@ -55,7 +59,6 @@ export class Orderlist implements OnInit {
   // Orders
   orders: Order[] = [];
   filteredOrders: Order[] = [];
-
   // Pagination
   pageSize = 10;
   currentPage = 0;
@@ -64,7 +67,7 @@ export class Orderlist implements OnInit {
   // Table columns
   displayedColumns: string[] = [];
 
-  constructor(
+  constructor(public translate: TranslateService ,
     public authService: AuthService,
     public clientService: ClientService,
     public orderService: OrderService,
@@ -196,6 +199,232 @@ export class Orderlist implements OnInit {
     });
   }
 
+  
+  
+  exportOrdersPdf() {
+
+  const doc = new jsPDF('landscape');
+
+  const isArabic =
+    this.translate.currentLang === 'ar' ||
+    this.translate.getDefaultLang() === 'ar';
+
+    const L = {
+  title: this.translate.instant('ORDERS.TITLE'),
+  generated: this.translate.instant('REPORT.GENERATED'),
+
+  totalOrders: this.translate.instant('REPORT.TOTAL_RECORDS'),
+  grandTotal: this.translate.instant('ORDERS.TOTAL'),
+
+  orderId: this.translate.instant('ORDERS.ORDER_ID'),
+  customerId: this.translate.instant('ORDERS.CUSTOMER_ID'),
+  orderType: this.translate.instant('ORDERS.ORDER_TYPE'),
+
+  startDate: this.translate.instant('ORDERS.START_DATE'),
+  endDate: this.translate.instant('ORDERS.END_DATE'),
+
+  customer: this.translate.instant('ORDERS.CUSTOMER'),
+  guest: this.translate.instant('ORDERS.GUEST'),
+
+  type: this.translate.instant('ORDERS.TYPE'),
+  status: this.translate.instant('ORDERS.STATUS'),
+  table: this.translate.instant('ORDERS.TABLE'),
+  date: this.translate.instant('ORDERS.DATE'),
+  total: this.translate.instant('ORDERS.TOTAL'),
+
+  page: this.translate.instant('COMMON.PAGE'),
+  of: this.translate.currentLang === 'ar' ? 'من' : 'of',
+
+  restaurant: this.translate.instant('ORDERS.RESTAURANT'),
+  takeaway: this.translate.instant('ORDERS.TAKEAWAY'),
+  delivery: this.translate.instant('ORDERS.DELIVERY'),
+
+  fileName: this.translate.currentLang === 'ar'
+    ? 'تقرير_الطلبات'
+    : 'Orders_Report'
+};
+  // ==========================
+  // Header
+  // ==========================
+  doc.setFontSize(18);
+  doc.setTextColor(255, 90, 0);
+  doc.text(L.title, 14, 18);
+
+  doc.setTextColor(0);
+  doc.setFontSize(10);
+
+  doc.text(`${L.generated}: ${new Date().toLocaleString()}`, 14, 26);
+
+  // ==========================
+  // Filters
+  // ==========================
+  let y = 34;
+
+  if (this.orderIdSearch) {
+    doc.text(`${L.orderId}: ${this.orderIdSearch}`, 14, y);
+    y += 6;
+  }
+
+  if (this.customerIdSearch) {
+    doc.text(`${L.customerId}: ${this.customerIdSearch}`, 14, y);
+    y += 6;
+  }
+
+  if (this.orderTypeSearch) {
+
+    let type = this.orderTypeSearch;
+
+    switch (type) {
+      case 'Restaurant':
+        type = L.restaurant;
+        break;
+
+      case 'TakeAway':
+      case 'Takeaway':
+        type = L.takeaway;
+        break;
+
+      case 'Delivery':
+        type = L.delivery;
+        break;
+    }
+
+    doc.text(`${L.orderType}: ${type}`, 14, y);
+    y += 6;
+  }
+
+  if (this.startDate) {
+    doc.text(
+      `${L.startDate}: ${new Date(this.startDate).toLocaleDateString()}`,
+      14,
+      y
+    );
+    y += 6;
+  }
+
+  if (this.endDate) {
+    doc.text(
+      `${L.endDate}: ${new Date(this.endDate).toLocaleDateString()}`,
+      14,
+      y
+    );
+    y += 6;
+  }
+
+  // ==========================
+  // Statistics
+  // ==========================
+  const totalAmount = this.filteredOrders.reduce(
+    (sum, order) => sum + (order.totalAmount ?? 0),
+    0
+  );
+
+  doc.setFontSize(11);
+
+  doc.text(
+    `${L.totalOrders}: ${this.filteredOrders.length}`,
+    170,
+    26
+  );
+
+  doc.text(
+    `${L.grandTotal}: ${totalAmount.toFixed(2)}`,
+    170,
+    32
+  );
+
+  // ==========================
+  // Table
+  // ==========================
+  autoTable(doc, {
+    startY: y + 4,
+
+    head: [[
+      '#',
+      L.orderId,
+      L.customer,
+      L.type,
+      L.status,
+      L.table,
+      L.date,
+      L.total
+    ]],
+
+    body: this.filteredOrders.map((o, index) => {
+
+      let type = o.orderPosition ?? '-';
+
+      switch (type) {
+        case 'Restaurant':
+          type = L.restaurant;
+          break;
+
+        case 'TakeAway':
+        case 'Takeaway':
+          type = L.takeaway;
+          break;
+
+        case 'Delivery':
+          type = L.delivery;
+          break;
+      }
+
+      return [
+        index + 1,
+        o.orderID ?? '-',
+        o.customerID ?? L.guest,
+        type,
+        o.status ?? '-',
+        o.tableNo ?? '-',
+        new Date(o.orderDate).toLocaleString(),
+        (o.totalAmount ?? 0).toFixed(2)
+      ];
+    }),
+
+    styles: {
+      fontSize: 9,
+      cellPadding: 3,
+      halign: 'center',
+      valign: 'middle'
+    },
+
+    headStyles: {
+      fillColor: [255, 90, 0],
+      textColor: 255,
+      fontStyle: 'bold'
+    },
+
+    alternateRowStyles: {
+      fillColor: [245, 245, 245]
+    },
+
+    columnStyles: {
+      0: { cellWidth: 12 },
+      1: { cellWidth: 24 },
+      2: { cellWidth: 26 },
+      3: { cellWidth: 28 },
+      4: { cellWidth: 24 },
+      5: { cellWidth: 18 },
+      6: { cellWidth: 48 },
+      7: { cellWidth: 24 }
+    },
+
+    didDrawPage: () => {
+
+      const pageCount = doc.getNumberOfPages();
+
+      doc.setFontSize(9);
+
+      doc.text(
+        `${L.page} ${doc.getCurrentPageInfo().pageNumber} ${L.of} ${pageCount}`,
+        doc.internal.pageSize.getWidth() - 45,
+        doc.internal.pageSize.getHeight() - 8
+      );
+    }
+  });
+
+  doc.save(`${L.fileName}_${new Date().toISOString().slice(0, 10)}.pdf`);
+}
   // Edit order
   editorder(order: Order) {
     if (!order.orderID) return;
@@ -210,44 +439,55 @@ export class Orderlist implements OnInit {
     this.router.navigate(['/menuview/order', order.orderID]);
   }
 
-filterOrders() {
-  this.filteredOrders = this.orders.filter(order => {
+  filterOrders() {
+    this.filteredOrders = this.orders.filter(order => {
 
-    // Date filter
-    const orderDate = new Date(order.orderDate);
-    const afterStart = this.startDate ? orderDate >= this.startDate : true;
-    const beforeEnd = this.endDate ? orderDate <= this.endDate : true;
+      const orderDate = new Date(order.orderDate);
 
-    // Order ID filter
-    const matchesOrderId =
-      this.orderIdSearch != null
-        ? order.orderID === this.orderIdSearch
-        : true;
+      const start = this.startDate
+        ? new Date(this.startDate)
+        : null;
 
-    // Customer ID filter
-    const matchesCustomerId =
-      this.customerIdSearch != null
-        ? order.customerID === this.customerIdSearch
-        : true;
+      const end = this.endDate
+        ? new Date(this.endDate)
+        : null;
 
-    // Order Type filter (Restaurant / Takeaway / Delivery)
-    const matchesOrderType =
-      this.orderTypeSearch
-        ? order.orderPosition === this.orderTypeSearch
-        : true;
+      // include the entire end day
+      if (end) {
+        end.setHours(23, 59, 59, 999);
+      }
 
-    return (
-      afterStart &&
-      beforeEnd &&
-      matchesOrderId &&
-      matchesCustomerId &&
-      matchesOrderType
-    );
-  });
+      const afterStart = start ? orderDate >= start : true;
+      const beforeEnd = end ? orderDate <= end : true;
 
-  this.currentPage = 0;
-  this.updatePagedOrders();
-}
+      const matchesOrderId =
+        this.orderIdSearch != null
+          ? order.orderID === this.orderIdSearch
+          : true;
+
+      const matchesCustomerId =
+        this.customerIdSearch != null
+          ? order.customerID === this.customerIdSearch
+          : true;
+
+      const matchesOrderType =
+        this.orderTypeSearch
+          ? order.orderPosition === this.orderTypeSearch
+          : true;
+
+      return (
+        afterStart &&
+        beforeEnd &&
+        matchesOrderId &&
+        matchesCustomerId &&
+        matchesOrderType
+      );
+    });
+
+    this.currentPage = 0;
+    this.updatePagedOrders();
+  }
+
   // Open order details
   openDetails(order: Order) {
     this.dialog.open(OrderDetailsDialog, {

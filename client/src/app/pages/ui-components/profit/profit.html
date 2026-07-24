@@ -1,10 +1,19 @@
 <div class="talabat-profit">
 
   <!-- HEADER -->
+   
   <div class="page-header">
     <mat-icon>analytics</mat-icon>
     <h2>{{ 'PROFIT_DASHBOARD.TITLE' | translate }}</h2>
   </div>
+
+    <div>
+
+<button mat-raised-button color="primary" (click)="printProfitReport()">
+  <mat-icon>picture_as_pdf</mat-icon>
+  Export PDF
+</button>
+    </div>
 
   <!-- FILTERS CARD -->
   <div class="filter-card">
@@ -12,17 +21,17 @@
     <div class="filters">
 
       <div class="field">
-        <label style="color:red" >{{ 'PROFIT_DASHBOARD.FROM' | translate }}</label>
+        <label style="color:red">{{ 'PROFIT_DASHBOARD.FROM' | translate }}</label>
         <input type="date" [(ngModel)]="fromDate">
       </div>
 
       <div class="field">
-        <label style="color:red" >{{ 'PROFIT_DASHBOARD.TO' | translate }}</label>
+        <label style="color:red">{{ 'PROFIT_DASHBOARD.TO' | translate }}</label>
         <input type="date" [(ngModel)]="toDate">
       </div>
 
       <div class="field">
-        <label style="color:red" >{{ 'PROFIT_DASHBOARD.BRANCH' | translate }}</label>
+        <label style="color:red">{{ 'PROFIT_DASHBOARD.BRANCH' | translate }}</label>
         <select [(ngModel)]="branchID">
           <option *ngFor="let b of branches" [value]="b.branchID">
             {{ b.name }}

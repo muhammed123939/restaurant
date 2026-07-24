@@ -1,211 +1,380 @@
 <mat-card class="talabat-card">
   <mat-card-content>
 
-    <!-- HEADER -->
+    <!-- ========================= -->
+    <!-- PAGE HEADER -->
+    <!-- ========================= -->
     <div class="page-header">
-      <mat-icon>receipt_long</mat-icon>
-      <h2>{{ 'ORDERS.TITLE' | translate }}</h2>
-      <span class="count">({{ filteredOrders?.length || 0 }})</span>
-    </div>
-
-      <!-- FILTERS (keep same) -->
-      <div class="filters">
-
-        <mat-form-field appearance="outline">
-  <mat-label>{{ 'ORDERS.ORDER_TYPE' | translate }}</mat-label>
-  <mat-select [(ngModel)]="orderTypeSearch" (selectionChange)="filterOrders()">
-    <mat-option value="">{{ 'ORDERS.ALL' | translate }}</mat-option>
-    <mat-option value="in-restaurant">{{ 'ORDERS.RESTAURANT' | translate }}</mat-option>
-    <mat-option value="take-away">{{ 'ORDERS.TAKEAWAY' | translate }}</mat-option>
-    <mat-option value="Delivery">{{ 'ORDERS.DELIVERY' | translate }}</mat-option>
-  </mat-select>
-</mat-form-field>
-
-        <!-- Order ID -->
-        <mat-form-field appearance="outline">
-          <mat-label>{{ 'ORDERS.SEARCH_ORDER_ID' | translate }}</mat-label>
-          <input matInput type="number" [(ngModel)]="orderIdSearch" (input)="filterOrders()">
-        </mat-form-field>
-
-        <!-- Customer ID -->
-        <mat-form-field appearance="outline" *ngIf="authService.isAdminwithPermissionLoggedIn 
-          || authService.isOwnerLoggedIn 
-          || authService.isDeveloperLoggedIn 
-          || authService.isNormalAdminLoggedIn">
-
-          <mat-label>{{ 'ORDERS.CUSTOMER_ID' | translate }}</mat-label>
-          <input matInput type="number" [(ngModel)]="customerIdSearch" (ngModelChange)="filterOrders()">
-        </mat-form-field>
-
-        <!-- Start Date -->
-        <mat-form-field appearance="outline">
-          <mat-label>{{ 'ORDERS.START_DATE' | translate }}</mat-label>
-          <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" (dateChange)="filterOrders()">
-          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-          <mat-datepicker #startPicker></mat-datepicker>
-        </mat-form-field>
-
-        <!-- End Date -->
-        <mat-form-field appearance="outline">
-          <mat-label>{{ 'ORDERS.END_DATE' | translate }}</mat-label>
-          <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" (dateChange)="filterOrders()">
-          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-          <mat-datepicker #endPicker></mat-datepicker>
-        </mat-form-field>
+      <div class="header-left">
+        <mat-icon>receipt_long</mat-icon>
+        <h2>{{ 'ORDERS.TITLE' | translate }}</h2>
       </div>
 
-    <!-- ===================== -->
-    <!-- 🖥 ADMIN TABLE VIEW -->
-    <!-- ===================== -->
+      <span class="count">
+        ({{ filteredOrders?.length || 0 }})
+      </span>
+    </div>
+
+    
+    <div>
+<button mat-raised-button color="primary" (click)="exportOrdersPdf()">
+  <mat-icon>picture_as_pdf</mat-icon>
+  Export PDF
+</button>
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- FILTERS -->
+    <!-- ========================= -->
+    <div class="filters">
+
+      <!-- Order Type -->
+      <mat-form-field appearance="outline" *ngIf="authService.isAdminwithPermissionLoggedIn
+            || authService.isOwnerLoggedIn
+            || authService.isDeveloperLoggedIn
+            || authService.isNormalAdminLoggedIn">
+
+        <mat-label>{{ 'ORDERS.ORDER_TYPE' | translate }}</mat-label>
+
+        <mat-select [(ngModel)]="orderTypeSearch" (selectionChange)="filterOrders()">
+
+          <mat-option value="">
+            {{ 'ORDERS.ALL' | translate }}
+          </mat-option>
+
+          <mat-option value="in-restaurant">
+            {{ 'ORDERS.RESTAURANT' | translate }}
+          </mat-option>
+
+          <mat-option value="take-away">
+            {{ 'ORDERS.TAKEAWAY' | translate }}
+          </mat-option>
+
+          <mat-option value="Delivery">
+            {{ 'ORDERS.DELIVERY' | translate }}
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+      <!-- Order ID -->
+      <mat-form-field appearance="outline">
+
+        <mat-label>{{ 'ORDERS.SEARCH_ORDER_ID' | translate }}</mat-label>
+
+        <input matInput type="number" [(ngModel)]="orderIdSearch" (input)="filterOrders()">
+
+      </mat-form-field>
+
+      <!-- Customer ID -->
+      <mat-form-field appearance="outline" *ngIf="authService.isAdminwithPermissionLoggedIn
+            || authService.isOwnerLoggedIn
+            || authService.isDeveloperLoggedIn
+            || authService.isNormalAdminLoggedIn">
+
+        <mat-label>{{ 'ORDERS.CUSTOMER_ID' | translate }}</mat-label>
+
+        <input matInput type="number" [(ngModel)]="customerIdSearch" (input)="filterOrders()">
+
+      </mat-form-field>
+
+      <!-- Start Date -->
+      <mat-form-field appearance="outline">
+
+        <mat-label>{{ 'ORDERS.START_DATE' | translate }}</mat-label>
+
+        <input matInput type="date" [(ngModel)]="startDate" (change)="filterOrders()">
+
+      </mat-form-field>
+
+      <!-- End Date -->
+      <mat-form-field appearance="outline">
+
+        <mat-label>{{ 'ORDERS.END_DATE' | translate }}</mat-label>
+
+        <input matInput type="date" [(ngModel)]="endDate" (change)="filterOrders()">
+
+      </mat-form-field>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- ADMIN TABLE -->
+    <!-- ========================= -->
     <div class="table-wrapper" *ngIf="!authService.isClientLoggedIn">
 
       <table mat-table [dataSource]="pagedOrders" class="talabat-table">
 
-        <!-- No -->
+        <!-- Row Number -->
         <ng-container matColumnDef="orderNo">
+
           <th mat-header-cell *matHeaderCellDef>#</th>
-          <td style="color:red" mat-cell *matCellDef="let order; let i = index">
+
+          <td mat-cell *matCellDef="let order; let i = index" style="color:red">
+
             {{ currentPage * pageSize + i + 1 }}
+
           </td>
+
         </ng-container>
 
         <!-- Order ID -->
         <ng-container matColumnDef="orderID">
-          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.ORDER_ID' | translate }}</th>
+
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'ORDERS.ORDER_ID' | translate }}
+          </th>
+
           <td mat-cell *matCellDef="let order">
-            <span style="color:red" class="order-id">#{{ order.orderID }}</span>
+
+            <span class="order-id" style="color:red">
+              #{{ order.orderID }}
+            </span>
+
           </td>
+
         </ng-container>
 
         <!-- Customer -->
         <ng-container matColumnDef="customerID">
-          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.CUSTOMER' | translate }}</th>
+
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'ORDERS.CUSTOMER' | translate }}
+          </th>
+
           <td mat-cell *matCellDef="let order">
 
-            <span style="color:red" *ngIf="order.customerID; else guest">
-              {{ order.customerID }}
+            <ng-container *ngIf="order.customerID; else guestUser">
 
-              <button style="color:red" mat-icon-button (click)="openCustomerDetails(order.customerID)">
+              <span style="color:red">
+                {{ order.customerID }}
+              </span>
+
+              <button mat-icon-button style="color:red" (click)="openCustomerDetails(order.customerID)">
+
                 <mat-icon>person</mat-icon>
+
               </button>
 
-            </span>
+            </ng-container>
 
-            <ng-template #guest>
-              <span class="badge gray">{{ 'ORDERS.GUEST' | translate }}</span>
+            <ng-template #guestUser>
+
+              <span class="badge gray">
+                {{ 'ORDERS.GUEST' | translate }}
+              </span>
+
             </ng-template>
 
           </td>
+
         </ng-container>
 
         <!-- Date -->
         <ng-container matColumnDef="orderDate">
-          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.DATE' | translate }}</th>
+
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'ORDERS.DATE' | translate }}
+          </th>
+
           <td mat-cell *matCellDef="let order">
             {{ order.orderDate | date:'yyyy-MM-dd HH:mm' }}
           </td>
+
         </ng-container>
 
         <!-- Total -->
         <ng-container matColumnDef="totalAmount">
-          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.TOTAL' | translate }}</th>
-          <td mat-cell *matCellDef="let order">
-            <span class="price">{{ order.totalAmount }} {{ 'COMMON.CURRENCY' | translate }}</span>
-          </td>
-        </ng-container>
 
-        <!-- Details -->
-        <ng-container matColumnDef="details">
-          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.DETAILS' | translate }}</th>
-          <td mat-cell *matCellDef="let order">
-            <button mat-icon-button (click)="openDetails(order)">
-              <mat-icon style="color:red">visibility</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'ORDERS.TOTAL' | translate }}
+          </th>
 
-        <!-- Actions -->
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.ACTIONS' | translate }}</th>
           <td mat-cell *matCellDef="let order">
 
-            <button class="edit-btn" mat-icon-button (click)="editorder(order)">
-              <mat-icon>edit</mat-icon>
-            </button>
-
-            <button class="delete-btn" mat-icon-button color="warn" (click)="deleteOrder(order.orderID)">
-              <mat-icon>delete</mat-icon>
-            </button>
+            <span class="price">
+              {{ order.totalAmount }}
+              {{ 'COMMON.CURRENCY' | translate }}
+            </span>
 
           </td>
+
         </ng-container>
 
-        <!-- Type -->
+        <!-- Order Type -->
         <ng-container matColumnDef="orderPosition">
-          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.TYPE' | translate }}</th>
+
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'ORDERS.TYPE' | translate }}
+          </th>
+
           <td mat-cell *matCellDef="let order">
-            <span class="badge orange">{{ order.orderPosition }}</span>
+
+            <span class="badge orange">
+              {{ order.orderPosition }}
+            </span>
+
           </td>
+
         </ng-container>
 
         <!-- Table -->
         <ng-container matColumnDef="tableNo">
-          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.TABLE' | translate }}</th>
+
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'ORDERS.TABLE' | translate }}
+          </th>
+
           <td mat-cell *matCellDef="let order">
-            <span class="badge red">{{ order.tableNo || '-' }}</span>
+
+            <span class="badge red">
+              {{ order.tableNo || '-' }}
+            </span>
+
           </td>
+
         </ng-container>
 
         <!-- Status -->
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.STATUS' | translate }}</th>
+
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'ORDERS.STATUS' | translate }}
+          </th>
+
           <td mat-cell *matCellDef="let order">
-            <span class="badge green">{{ order.status }}</span>
+
+            <span class="badge green">
+              {{ order.status }}
+            </span>
+
           </td>
+
         </ng-container>
 
         <!-- Comment -->
         <ng-container matColumnDef="comment">
-          <th mat-header-cell *matHeaderCellDef>{{ 'ORDERS.COMMENT' | translate }}</th>
+
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'ORDERS.COMMENT' | translate }}
+          </th>
+
           <td mat-cell *matCellDef="let order">
-            <button *ngIf="order.comment" (click)="viewComment(order.comment)">
+
+            <button *ngIf="order.comment" mat-icon-button (click)="viewComment(order.comment)">
+
               💬
+
             </button>
+
           </td>
+
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <!-- Details -->
+        <ng-container matColumnDef="details">
+
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'ORDERS.DETAILS' | translate }}
+          </th>
+
+          <td mat-cell *matCellDef="let order">
+
+            <button mat-icon-button (click)="openDetails(order)">
+
+              <mat-icon style="color:red">
+                visibility
+              </mat-icon>
+
+            </button>
+
+          </td>
+
+        </ng-container>
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'ORDERS.ACTIONS' | translate }}
+          </th>
+
+          <td mat-cell *matCellDef="let order">
+
+            <button class="edit-btn" mat-icon-button (click)="editorder(order)">
+
+              <mat-icon>edit</mat-icon>
+
+            </button>
+
+            <button class="delete-btn" mat-icon-button color="warn" (click)="deleteOrder(order.orderID)">
+
+              <mat-icon>delete</mat-icon>
+
+            </button>
+
+          </td>
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns">
+        </tr>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns">
+        </tr>
 
       </table>
-      <mat-paginator *ngIf="!authService.isClientLoggedIn" [length]="filteredOrders.length" [pageSize]="pageSize"
-        [pageIndex]="currentPage" [pageSizeOptions]="[5,10,20,50]" (page)="onPageChange($event)" showFirstLastButtons>
+
+      <mat-paginator [length]="filteredOrders.length" [pageSize]="pageSize" [pageIndex]="currentPage"
+        [pageSizeOptions]="[5,10,20,50]" showFirstLastButtons (page)="onPageChange($event)">
       </mat-paginator>
+
     </div>
 
-    <!-- ===================== -->
-    <!-- 📱 CLIENT CARD VIEW -->
-    <!-- ===================== -->
+    <!-- ========================= -->
+    <!-- CLIENT MOBILE CARDS -->
+    <!-- ========================= -->
     <div class="client-orders" *ngIf="authService.isClientLoggedIn">
 
       <div class="order-card" [class.last-card]="last" *ngFor="let order of pagedOrders; let last = last">
 
-
         <div class="order-top">
-          <div class="order-id">#{{ order.orderID }}</div>
-          <div class="badge orange">{{ order.orderPosition }}</div>
+
+          <div class="order-id">
+            #{{ order.orderID }}
+          </div>
+
+          <span class="badge orange">
+            {{ order.orderPosition }}
+          </span>
+
         </div>
 
         <div class="order-body">
-          <div><strong>{{ 'ORDERS.DATE' | translate }}: </strong> {{ order.orderDate | date:'short' }}</div>
-          <div><strong>{{ 'ORDERS.TOTAL' | translate }}</strong> {{ order.totalAmount }} {{ 'COMMON.CURRENCY' |
-            translate }}</div>
+
+          <div>
+            <strong>{{ 'ORDERS.DATE' | translate }}:</strong>
+            {{ order.orderDate | date:'short' }}
+          </div>
+
+          <div>
+            <strong>{{ 'ORDERS.TOTAL' | translate }}:</strong>
+            {{ order.totalAmount }}
+            {{ 'COMMON.CURRENCY' | translate }}
+          </div>
+
         </div>
 
         <div class="order-actions">
+
           <button mat-icon-button (click)="openDetails(order)">
+
             <mat-icon>visibility</mat-icon>
+
           </button>
+
         </div>
 
       </div>

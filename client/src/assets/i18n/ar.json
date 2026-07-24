@@ -282,6 +282,7 @@
     "CLOSE": "إغلاق"
   },
   "COMMON": {
+     "PAGE": "الصفحة" ,
     "CURRENCY": "جنيه",
     "CLOSE": "إغلاق"
   },
@@ -308,13 +309,18 @@
     "STATUS": "الحالة",
     "COMMENT": "تعليق"
   },
+  "REPORT": {
+  "GENERATED": "تاريخ الإنشاء",
+  "TOTAL_RECORDS": "إجمالي السجلات"
+},
   "DELIVERIES": {
+  "ALL": "الكل" ,
     "TITLE": "التوصيلات",
     "ID": "الرقم",
     "ORDER": "الطلب",
     "COMMENT": "تعليق",
     "BRANCH": "الفرع",
-    "ASSIGNED": "تم التعيين",
+    "OutForDelivery": "جاري التوصيل",
     "DELIVERED": "تم التوصيل",
     "STATUS": "الحالة",
     "DRIVER": "السائق",
@@ -347,6 +353,9 @@
     "CURRENCY": "جنيه"
   },
   "RECEIPT": {
+      "BRANCH": "الفرع",
+  "BRANCH_PHONE": "هاتف الفرع",
+  "BRANCH_ADDRESS": "عنوان الفرع" ,
     "RESTAURANT_NAME": "مطعمي",
     "ORDER_NUMBER": "رقم الطلب",
     "CASHIER": "الكاشير",

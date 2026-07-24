@@ -6,20 +6,38 @@
     <h3>{{ 'RECEIPT.RESTAURANT_NAME' | translate }}</h3>
 
     <p>
-      {{ 'RECEIPT.ORDER_NUMBER' | translate }}: {{ receipt.orderNumber }}
+      <strong>{{ 'RECEIPT.ORDER_NUMBER' | translate }}:</strong>
+      {{ receipt.orderNumber }}
     </p>
 
     <p>{{ receipt.date | date:'short' }}</p>
 
     <p>
-      {{ 'RECEIPT.CASHIER' | translate }}:
+      <strong>{{ 'RECEIPT.CASHIER' | translate }}:</strong>
       {{ employee?.name || ('RECEIPT.NOT_AVAILABLE' | translate) }}
     </p>
 
     <p>
-      {{ 'RECEIPT.ORDER_TYPE' | translate }} :
+      <strong>{{ 'RECEIPT.ORDER_TYPE' | translate }}:</strong>
       {{ receipt.orderPosition }}
     </p>
+
+    <ng-container *ngIf="receipt.branchName">
+      <p>
+        <strong>{{ 'RECEIPT.BRANCH' | translate }}:</strong>
+        {{ receipt.branchName }}
+      </p>
+
+      <p *ngIf="receipt.branchPhone">
+        <strong>{{ 'RECEIPT.BRANCH_PHONE' | translate }}:</strong>
+        {{ receipt.branchPhone }}
+      </p>
+
+      <p *ngIf="receipt.branchAddress">
+        <strong>{{ 'RECEIPT.BRANCH_ADDRESS' | translate }}:</strong>
+        {{ receipt.branchAddress }}
+      </p>
+    </ng-container>
 
     <ng-container *ngIf="receipt.tableNo">
       <p>
@@ -29,7 +47,6 @@
     </ng-container>
 
     <ng-container *ngIf="receipt.customerName">
-
       <p>
         <strong>{{ 'RECEIPT.CUSTOMER' | translate }}:</strong>
         {{ receipt.customerName }}
@@ -39,105 +56,93 @@
         <strong>{{ 'RECEIPT.PHONE' | translate }}:</strong>
         {{ receipt.customerPhone }}
       </p>
-
     </ng-container>
 
     <ng-container *ngIf="receipt.orderComment">
-
       <p>
         <strong>{{ 'RECEIPT.ORDER_COMMENT' | translate }}:</strong>
         {{ receipt.orderComment }}
       </p>
-
     </ng-container>
 
     <ng-container *ngIf="receipt.deliveryComment">
-
       <p>
         <strong>{{ 'RECEIPT.DELIVERY_COMMENT' | translate }}:</strong>
         {{ receipt.deliveryComment }}
       </p>
-
     </ng-container>
 
     <ng-container *ngIf="receipt.building">
-
       <p>
         <strong>{{ 'RECEIPT.ADDRESS' | translate }}:</strong>
       </p>
 
       <p>
-        {{ 'RECEIPT.STREET' | translate }}: {{ receipt.street }}
-        -
-        {{ 'RECEIPT.BUILDING' | translate }}: {{ receipt.building }}
-        -
-        {{ 'RECEIPT.APARTMENT' | translate }}: {{ receipt.appartment }}
-        -
-        {{ 'RECEIPT.FLOOR' | translate }}: {{ receipt.floor }}
-        -
-        {{ 'RECEIPT.CITY' | translate }}: {{ receipt.city }}
+        <strong>{{ 'RECEIPT.STREET' | translate }}:</strong> {{ receipt.street }} -
+        <strong>{{ 'RECEIPT.BUILDING' | translate }}:</strong> {{ receipt.building }} -
+        <strong>{{ 'RECEIPT.APARTMENT' | translate }}:</strong> {{ receipt.appartment }} -
+        <strong>{{ 'RECEIPT.FLOOR' | translate }}:</strong> {{ receipt.floor }} -
+        <strong>{{ 'RECEIPT.CITY' | translate }}:</strong> {{ receipt.city }}
       </p>
-
     </ng-container>
 
   </div>
 
-  <hr />
+  <hr>
 
   <!-- ITEMS -->
   <div class="items">
 
     <div class="row title">
-      <span>{{ 'RECEIPT.ITEM' | translate }}</span>
-      <span>{{ 'RECEIPT.QTY' | translate }}</span>
-      <span>{{ 'RECEIPT.TOTAL_COLUMN' | translate }}</span>
+      <span><strong>{{ 'RECEIPT.ITEM' | translate }}</strong></span>
+      <span><strong>{{ 'RECEIPT.QTY' | translate }}</strong></span>
+      <span><strong>{{ 'RECEIPT.TOTAL_COLUMN' | translate }}</strong></span>
     </div>
 
     <div class="row" *ngFor="let item of receipt.items">
       <span class="name">{{ item.name }}</span>
       <span>{{ item.quantity }}</span>
-      <span>{{ (item.quantity * item.price) | number:'1.2-2' }}</span>
+      <span>{{ item.quantity * item.price | number:'1.2-2' }}</span>
     </div>
 
   </div>
 
-  <hr />
+  <hr>
 
   <!-- SUMMARY -->
   <div class="summary">
 
-    <p>
-      {{ 'RECEIPT.ORDER_COMMENT_LABEL' | translate }}:
-      {{ receipt.ordercomment }}
+    <p *ngIf="receipt.orderComment">
+      <strong>{{ 'RECEIPT.ORDER_COMMENT_LABEL' | translate }}:</strong>
+      {{ receipt.orderComment }}
     </p>
 
     <p>
-      {{ 'RECEIPT.SUBTOTAL' | translate }}:
+      <strong>{{ 'RECEIPT.SUBTOTAL' | translate }}:</strong>
       {{ receipt.subTotal }}
     </p>
 
     <p>
-      {{ 'RECEIPT.TAX' | translate }}:
+      <strong>{{ 'RECEIPT.TAX' | translate }}:</strong>
       {{ receipt.tax }}
     </p>
 
     <h3>
-      {{ 'RECEIPT.TOTAL' | translate }}:
+      <strong>{{ 'RECEIPT.TOTAL' | translate }}:</strong>
       {{ receipt.total }}
     </h3>
 
   </div>
 
-  <hr />
+  <hr>
 
   <!-- FOOTER -->
   <div class="footer">
-    <p>{{ 'RECEIPT.THANK_YOU' | translate }}</p>
+    <strong>{{ 'RECEIPT.THANK_YOU' | translate }}</strong>
   </div>
 
 </div>
 
-<!-- PRINT BUTTON -->
 <button (click)="printReceipt()">
   {{ 'RECEIPT.PRINT' | translate }}
 </button>
