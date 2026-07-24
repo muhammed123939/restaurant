@@ -5,7 +5,7 @@
     <!-- PAGE HEADER -->
     <!-- ========================= -->
     <div class="page-header">
-      <div class="header-left">
+      <div class="header-left"  >
         <mat-icon>receipt_long</mat-icon>
         <h2>{{ 'ORDERS.TITLE' | translate }}</h2>
       </div>
@@ -16,7 +16,10 @@
     </div>
 
     
-    <div>
+    <div *ngIf="authService.isAdminwithPermissionLoggedIn
+            || authService.isOwnerLoggedIn
+            || authService.isDeveloperLoggedIn
+            || authService.isNormalAdminLoggedIn" >
 <button mat-raised-button color="primary" (click)="exportOrdersPdf()">
   <mat-icon>picture_as_pdf</mat-icon>
   Export PDF
