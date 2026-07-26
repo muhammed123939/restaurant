@@ -24,6 +24,7 @@ import { ReceiptPrint } from 'src/app/pages/ui-components/receipt-print/receipt-
 import { AppProfitExpensesComponent } from 'src/app/components/profit-expenses/profit-expenses.component';
 import { Profit } from './profit/profit';
 import { Myhome } from './myhome/myhome';
+import { Homepageinfo } from 'src/app/pages/ui-components/homepageinfo/homepageinfo';
 
 
 export const UiComponentsRoutes: Routes = [
@@ -69,6 +70,7 @@ export const UiComponentsRoutes: Routes = [
       { path: 'editdataemployee/:id', component: Employeedataedit },
       { path: 'editbranch/:id', component: Branchedit },
       { path: 'editTable/:id', component: EditTable },
+      { path: 'homepageinfoEdit', component: Homepageinfo },
       { path: 'register-item', component: RegisteritemComponent },
       { path: 'branchregister', component: Branchregister },
       { path: 'tableRegister/:id', component: TableRegister },

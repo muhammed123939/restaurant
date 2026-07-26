@@ -17,9 +17,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { BranchService } from '../../../_services/branch.service';
 import { MenuService } from '../../../_services/menu.service';
-
-import { PhotoeditorComponent } from '../photoeditor/photoeditor.component';
 import { Menu } from '../../../_models/menu';
+import { PhotoeditorComponent } from '../photoeditor/photoeditor.component';
+
 import { Photo } from '../../../_models/photo';
 import { AuthService } from 'src/app/_services/auth.service';
 import { MatIcon } from '@angular/material/icon';

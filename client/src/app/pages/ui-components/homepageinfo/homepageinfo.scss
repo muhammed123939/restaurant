@@ -1,0 +1,439 @@
+/* =====================================================
+   Home Info Card
+===================================================== */
+
+.home-info-card {
+  max-width: 950px;
+  margin: 30px auto;
+  border-radius: 24px !important;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, .08) !important;
+  background: #fff;
+}
+
+/* =====================================================
+   Header
+===================================================== */
+
+.home-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 24px;
+
+  color: #fff;
+
+  background: linear-gradient(135deg, #ff5a00, #ff7a00);
+}
+
+.header-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,.18);
+}
+
+.header-icon mat-icon {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+}
+
+.header-content {
+  flex: 1;
+}
+
+.header-content h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.header-content p {
+  margin-top: 5px;
+  opacity: .9;
+}
+
+/* =====================================================
+   Card Content
+===================================================== */
+
+mat-card-content {
+  padding: 30px !important;
+}
+
+/* =====================================================
+   Form
+===================================================== */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+/* =====================================================
+   Upload Sections
+===================================================== */
+
+.upload-section {
+  margin-top: 10px;
+}
+
+.upload-section h3 {
+  margin: 0 0 12px;
+  color: #444;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* =====================================================
+   Upload Card
+===================================================== */
+
+.talabat-upload-card {
+
+  border: 1px solid #ededed;
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+  background: #fafafa;
+
+  transition: .25s;
+}
+
+.talabat-upload-card:hover {
+
+  border-color: #ff5a00;
+
+  box-shadow: 0 8px 24px rgba(255,90,0,.08);
+
+}
+
+/* =====================================================
+   Upload Area
+===================================================== */
+
+.upload-area {
+
+  height: 240px;
+
+  border: 2px dashed #ffb185;
+
+  border-radius: 16px;
+
+  background: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition: .25s;
+}
+
+.upload-area:hover {
+
+  border-color: #ff5a00;
+
+  background: #fff8f4;
+
+}
+
+.preview-image {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+}
+
+/* =====================================================
+   Empty Upload
+===================================================== */
+
+.empty-state {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  color: #888;
+
+  padding: 20px;
+
+}
+
+.empty-state mat-icon {
+
+  width: 60px;
+  height: 60px;
+
+  font-size: 60px;
+
+  color: #ff5a00;
+
+  margin-bottom: 10px;
+
+}
+
+.empty-state h5 {
+
+  margin: 8px 0 5px;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+}
+
+.empty-state p {
+
+  margin: 0;
+
+  font-size: 14px;
+
+  color: #777;
+
+}
+
+/* =====================================================
+   Upload Buttons
+===================================================== */
+
+.upload-section button {
+
+  width: 100%;
+
+  margin-top: 16px;
+
+  height: 46px;
+
+  border-radius: 12px !important;
+
+  font-weight: 600;
+
+}
+
+.upload-section button[disabled] {
+
+  opacity: .55;
+
+}
+
+/* =====================================================
+   Progress Bar
+===================================================== */
+
+.progress-wrapper {
+
+  width: 100%;
+
+  height: 8px;
+
+  margin-top: 16px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #ececec;
+
+}
+
+.progress-bar {
+
+  height: 100%;
+
+  border-radius: 20px;
+
+  background: linear-gradient(90deg,#ff5a00,#ff8b3d);
+
+  transition: width .3s ease;
+
+}
+
+/* =====================================================
+   Save Button
+===================================================== */
+
+.actions {
+
+  margin-top: 35px;
+
+  display: flex;
+  justify-content: center;
+
+}
+
+.btn-save {
+
+  min-width: 220px;
+  height: 50px;
+
+  border-radius: 12px !important;
+
+  background: #ff5a00 !important;
+  color: white !important;
+
+  font-weight: 600;
+
+  transition: .2s;
+
+}
+
+.btn-save:hover {
+
+  background: #e65100 !important;
+
+  transform: translateY(-2px);
+
+}
+
+/* =====================================================
+   Tablet
+===================================================== */
+
+@media (max-width: 992px) {
+
+  mat-card-content {
+
+    padding: 24px !important;
+
+  }
+
+  .home-header {
+
+    padding: 20px;
+
+  }
+
+}
+
+/* =====================================================
+   Mobile
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .form-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .home-header {
+
+    flex-direction: column;
+
+    text-align: center;
+
+  }
+
+  .header-icon {
+
+    width: 60px;
+    height: 60px;
+
+  }
+
+  .header-content h2 {
+
+    font-size: 22px;
+
+  }
+
+  .actions {
+
+    flex-direction: column;
+
+  }
+
+  .btn-save {
+
+    width: 100%;
+
+  }
+
+  .upload-area {
+
+    height: 200px;
+
+  }
+
+}
+
+/* =====================================================
+   Small Mobile
+===================================================== */
+
+@media (max-width: 420px) {
+
+  .home-info-card {
+
+    margin: 15px;
+
+  }
+
+  .header-content h2 {
+
+    font-size: 19px;
+
+  }
+
+  .header-content p {
+
+    font-size: 12px;
+
+  }
+
+  .upload-area {
+
+    height: 180px;
+
+  }
+
+  .empty-state mat-icon {
+
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+
+  }
+
+  .btn-save {
+
+    height: 46px;
+
+    font-size: 14px;
+
+  }
+
+}

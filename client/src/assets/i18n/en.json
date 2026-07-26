@@ -6,11 +6,26 @@
   "PROFIT": "Profit",
   "TABLES2": "Tables",
   "BRANCHES2": "Branches",
+  "homepageinfo": "HomePageInfo",
   "CLIENTS2": "Clients",
   "ORDERS2": "Orders",
   "ORDERS_FOR_DELIVERY": "Delivery Orders",
   "LOGIN2": "Login",
   "REGISTER2": "Register",
+  "HOME_INFO": {
+    "TITLE": "Homepage Information",
+    "SUBTITLE": "Manage your restaurant homepage information",
+    "EMAIL": "Email",
+    "PHONE": "Phone Number",
+    "OPENING_TIME": "Opening Time",
+    "CLOSING_TIME": "Closing Time",
+    "LATITUDE": "Latitude",
+    "LONGITUDE": "Longitude",
+    "COVER_IMAGE": "Cover Image URL",
+    "SECOND_IMAGE": "Second Image URL",
+    "SAVE": "Save Changes",
+    "UPDATED": "Homepage information updated successfully."
+  },
   "EMP_LOGIN": {
     "TITLE": "Employee Login",
     "SUBTITLE": "Sign in to access your dashboard",
@@ -25,11 +40,20 @@
     "SIGN_IN": "Sign In"
   },
   "HOME": {
-    "RESTAURANT_NAME": "Talabat Restaurant System",
-    "WELCOME_MESSAGE": "Welcome to your restaurant management dashboard",
-    "SUBTITLE": "Manage orders, tables, and profits easily",
-    "POPULAR_MENU": "🔥 Popular Menu",
-    "POPULAR_MENU_SUBTITLE": "Discover our customers' favorite dishes."
+    "ORDER_NOW": "Order Now",
+    "TITLE": "Welcome to Zacks Burger Restaurant",
+    "TITLE2": "Taste the Difference",
+    "TITLE3": "Follow Us",
+    "BIO": "Order your favorite burger online or visit one of our branches for a fresh and delicious dining experience.",
+    "BIO2": "Every burger is made with premium ingredients, freshly prepared, and grilled to perfection.",
+    "BIO3": "Follow us on social media to stay updated with our latest offers, new menu items, and special events.",
+    "RESTAURANT_NAME": "Zacks",
+    "OPENING_HOURS": "Opening Hours",
+    "CONTACT_US": "Contact Us",
+    "EVERY_DAY": "Every Day",
+    "LOCATION": "Location",
+    "POPULAR_MENU": "Popular Menu",
+    "POPULAR_MENU_SUBTITLE": "Our Best-Selling Items"
   },
   "LOGIN": {
     "WELCOME_BACK": "Welcome Back",
@@ -271,12 +295,10 @@
     "EDIT": "Edit",
     "DELETE": "Delete"
   },
-
-"REPORT": {
-  "GENERATED": "Generated",
-  "TOTAL_RECORDS": "Total Records"
-}
-,
+  "REPORT": {
+    "GENERATED": "Generated",
+    "TOTAL_RECORDS": "Total Records"
+  },
   "ORDER_DIALOG": {
     "TITLE": "Order Details",
     "STEP_PREPARING": "Preparing",
@@ -289,7 +311,7 @@
     "CLOSE": "Close"
   },
   "COMMON": {
-  "PAGE": "Page" ,
+    "PAGE": "Page",
     "CURRENCY": "EGP",
     "CLOSE": "Close"
   },
@@ -317,7 +339,7 @@
     "COMMENT": "Comment"
   },
   "DELIVERIES": {
-  "ALL": "All" ,
+    "ALL": "All",
     "TITLE": "Deliveries",
     "ID": "ID",
     "ORDER": "Order",
@@ -357,8 +379,8 @@
   },
   "RECEIPT": {
     "BRANCH": "Branch",
-  "BRANCH_PHONE": "Branch Phone",
-  "BRANCH_ADDRESS": "Branch Address" ,
+    "BRANCH_PHONE": "Branch Phone",
+    "BRANCH_ADDRESS": "Branch Address",
     "RESTAURANT_NAME": "MY RESTAURANT",
     "ORDER_NUMBER": "Order #",
     "CASHIER": "Cashier",

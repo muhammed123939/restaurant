@@ -84,6 +84,12 @@ const ownerItems: NavItem[] = [
     bgcolor: 'success',
 
   } ,
+  {
+  displayName: 'homepageinfo',
+  iconName: 'bi bi-shop-window',
+  route: '/ui-components/homepageinfoEdit',
+  bgcolor: 'success',
+},
 
    {
     displayName: 'PROFIT',
@@ -111,7 +117,8 @@ const adminItems: NavItem[] = [
     route: '/ui-components/branchlist',
     bgcolor: 'success',
 
-  },
+  }, 
+  
   {
     displayName: 'CLIENTS2',
     iconName: 'bi bi-people-fill',

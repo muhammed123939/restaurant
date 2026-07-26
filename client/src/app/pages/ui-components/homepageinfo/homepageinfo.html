@@ -1,0 +1,264 @@
+<mat-card class="home-info-card">
+
+  <!-- Header -->
+  <div class="home-header">
+
+    <div class="header-icon">
+      <mat-icon>home</mat-icon>
+    </div>
+
+    <div class="header-content">
+      <h2>{{ 'HOME_INFO.TITLE' | translate }}</h2>
+      <p>{{ 'HOME_INFO.SUBTITLE' | translate }}</p>
+    </div>
+
+  </div>
+
+  <mat-card-content>
+
+    <form [formGroup]="form">
+
+      <div class="form-grid">
+
+        <!-- Email -->
+        <mat-form-field appearance="outline">
+
+          <mat-label>{{ 'HOME_INFO.EMAIL' | translate }}</mat-label>
+
+          <mat-icon matPrefix>email</mat-icon>
+
+          <input
+            matInput
+            type="email"
+            formControlName="email">
+
+        </mat-form-field>
+
+        <!-- Phone -->
+        <mat-form-field appearance="outline">
+
+          <mat-label>{{ 'HOME_INFO.PHONE' | translate }}</mat-label>
+
+          <mat-icon matPrefix>phone</mat-icon>
+
+          <input
+            matInput
+            maxlength="11"
+            formControlName="phoneNumber"
+            (input)="onPhoneInput()">
+
+        </mat-form-field>
+
+        <!-- Opening Time -->
+        <mat-form-field appearance="outline">
+
+          <mat-label>{{ 'HOME_INFO.OPENING_TIME' | translate }}</mat-label>
+
+          <mat-icon matPrefix>schedule</mat-icon>
+
+          <input
+            matInput
+            type="time"
+            formControlName="openingTime">
+
+        </mat-form-field>
+
+        <!-- Closing Time -->
+        <mat-form-field appearance="outline">
+
+          <mat-label>{{ 'HOME_INFO.CLOSING_TIME' | translate }}</mat-label>
+
+          <mat-icon matPrefix>schedule</mat-icon>
+
+          <input
+            matInput
+            type="time"
+            formControlName="closingTime">
+
+        </mat-form-field>
+
+        <!-- Latitude -->
+        <mat-form-field appearance="outline">
+
+          <mat-label>{{ 'HOME_INFO.LATITUDE' | translate }}</mat-label>
+
+          <mat-icon matPrefix>place</mat-icon>
+
+          <input
+            matInput
+            type="number"
+            formControlName="latitude">
+
+        </mat-form-field>
+
+        <!-- Longitude -->
+        <mat-form-field appearance="outline">
+
+          <mat-label>{{ 'HOME_INFO.LONGITUDE' | translate }}</mat-label>
+
+          <mat-icon matPrefix>place</mat-icon>
+
+          <input
+            matInput
+            type="number"
+            formControlName="longitude">
+
+        </mat-form-field>
+
+      </div>
+
+      <!-- ================= COVER IMAGE ================= -->
+
+      <div class="upload-section">
+
+        <h3>{{ 'HOME_INFO.COVER_IMAGE' | translate }}</h3>
+
+        <div class="talabat-upload-card">
+
+          <input
+            #coverInput
+            type="file"
+            ng2FileSelect
+            [uploader]="coverUploader"
+            accept="image/*"
+            hidden>
+
+          <div
+            class="upload-area"
+            (click)="coverInput.click()">
+
+            <img
+              *ngIf="coverPreview"
+              [src]="coverPreview"
+              class="preview-image">
+
+            <div
+              *ngIf="!coverPreview"
+              class="empty-state">
+
+              <mat-icon>image</mat-icon>
+
+              <h5>{{ 'HOME_INFO.COVER_IMAGE' | translate }}</h5>
+
+              <p>{{ 'HOME_INFO.SELECT_IMAGE' | translate }}</p>
+
+            </div>
+
+          </div>
+
+          <button
+            mat-flat-button
+            color="primary"
+            type="button"
+            (click)="coverUploader.uploadAll()"
+            [disabled]="coverUploader.getNotUploadedItems().length === 0">
+
+            {{ 'HOME_INFO.UPLOAD_COVER' | translate }}
+
+          </button>
+
+          <div
+            *ngIf="coverUploader.progress > 0"
+            class="progress-wrapper">
+
+            <div
+              class="progress-bar"
+              [style.width.%]="coverUploader.progress">
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================= SECOND IMAGE ================= -->
+
+      <div class="upload-section">
+
+        <h3>{{ 'HOME_INFO.SECOND_IMAGE' | translate }}</h3>
+
+        <div class="talabat-upload-card">
+
+          <input
+            #image2Input
+            type="file"
+            ng2FileSelect
+            [uploader]="image2Uploader"
+            accept="image/*"
+            hidden>
+
+          <div
+            class="upload-area"
+            (click)="image2Input.click()">
+
+            <img
+              *ngIf="image2Preview"
+              [src]="image2Preview"
+              class="preview-image">
+
+            <div
+              *ngIf="!image2Preview"
+              class="empty-state">
+
+              <mat-icon>photo_library</mat-icon>
+
+              <h5>{{ 'HOME_INFO.SECOND_IMAGE' | translate }}</h5>
+
+              <p>{{ 'HOME_INFO.SELECT_IMAGE' | translate }}</p>
+
+            </div>
+
+          </div>
+
+          <button
+            mat-flat-button
+            color="primary"
+            type="button"
+            (click)="image2Uploader.uploadAll()"
+            [disabled]="image2Uploader.getNotUploadedItems().length === 0">
+
+            {{ 'HOME_INFO.UPLOAD_SECOND' | translate }}
+
+          </button>
+
+          <div
+            *ngIf="image2Uploader.progress > 0"
+            class="progress-wrapper">
+
+            <div
+              class="progress-bar"
+              [style.width.%]="image2Uploader.progress">
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Save -->
+
+      <div class="actions">
+
+        <button
+          mat-flat-button
+          class="btn-save"
+          type="button"
+          (click)="save()">
+
+          <mat-icon>save</mat-icon>
+
+          {{ 'HOME_INFO.SAVE' | translate }}
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </mat-card-content>
+
+</mat-card>

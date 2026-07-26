@@ -5,7 +5,7 @@ import { Menu } from 'src/app/_models/menu';
 import { MenuService } from 'src/app/_services/menu.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
-import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-myhome',
@@ -18,7 +18,7 @@ export class Myhome implements OnInit {
 
   topOrderedItems: Menu[] = [];
 
-  constructor(private menuService: MenuService ,   private router: Router , public authService: AuthService) {}
+  constructor(private menuService: MenuService ,   private router: Router , public authService: AuthService ,  private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.loadTopOrderedItems();
@@ -30,12 +30,19 @@ goToMenu(id: number): void {
 
   this.router.navigate(['/menuview', id]);
     }
-    else{
-  Swal.fire({
-        icon: 'error',
-        title: 'Login First To Continue Your Order',
-      });
+ 
+    else {
+  this.snackBar.open(
+    'Please log in first to continue your order.',
+    'Close',
+    {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['error-snackbar']
     }
+  );
+}
 }
 
 loadTopOrderedItems(): void {
