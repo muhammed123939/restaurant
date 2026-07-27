@@ -245,6 +245,39 @@
 ===================================== */
 
 @media (max-width: 992px) {
+  .header_section {
+    position: relative;
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+
+    display: none;
+    z-index: 9999;
+    padding: 15px 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+  }
+
+  .navbar-collapse.show {
+    display: block;
+  }
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-item {
+    margin: 10px 0;
+  }
+
+
+
 
   .welcome-card {
     padding: 30px;

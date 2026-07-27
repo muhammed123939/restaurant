@@ -5,29 +5,14 @@
   autoFocus
   dir="ltr">
 
-  <!-- Hidden sidenav (kept only for header compatibility) -->
-  <mat-sidenav
-    #leftsidenav
-    class="sidebarNav"
-    mode="over"
-    [opened]="false"
-    style="display:none">
-
-    <div class="flex-layout">
-      <app-sidebar
-        (toggleMobileNav)="leftsidenav.toggle()"
-        [showToggle]="false">
-      </app-sidebar>
-    </div>
-
-  </mat-sidenav>
-
-  <!-- MAIN CONTENT -->
-  <mat-sidenav-content class="contentWrapper">
+  <mat-sidenav-content
+    #content
+    class="contentWrapper"
+    (scroll)="onScroll($event)">
 
     <main class="pageWrapper">
 
-      <app-header [drawer]="leftsidenav"></app-header>
+      <app-header></app-header>
 
       <div class="content-area">
         <router-outlet></router-outlet>
@@ -36,24 +21,25 @@
     </main>
 
     <!-- Bottom Navigation -->
-    <nav class="mobile-bottom-nav">
+    <nav
+      class="mobile-bottom-nav"
+      [class.hide-nav]="hideBottomNav">
 
-      @for (item of navItems; track item) {
+      @for (item of navItems; track item.route) {
 
-      <a
-        class="mobile-nav-item"
-        [routerLink]="item.route"
-        routerLinkActive="active"
-        (click)="leftsidenav.close()">
+        <a
+          class="mobile-nav-item"
+          [routerLink]="item.route"
+          routerLinkActive="active">
 
-        <i
-          class="routeIcon"
-          [class]="item.iconName">
-        </i>
-        
-<span>{{ item.displayName | translate }}</span>
+          <i
+            class="routeIcon"
+            [class]="item.iconName">
+          </i>
 
-      </a>
+          <span>{{ item.displayName | translate }}</span>
+
+        </a>
 
       }
 

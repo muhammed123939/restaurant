@@ -45,6 +45,7 @@
   alt="Cover Image">
 
     </div>
+
     <!-- header section strats -->
     <header class="header_section">
       <div class="container">
@@ -55,27 +56,31 @@
             </span>
           </a>
 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class=""> </span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- <ul class="navbar-nav  mx-auto ">
-              <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+<button style="color:white"
+  class="navbar-toggler"
+  type="button"
+  (click)="toggleMenu()">
+  ☰
+</button>
+<div
+  class="navbar-collapse"
+  [class.show]="isMenuOpen">
+            <ul class="navbar-nav  mx-auto ">
+          
+              <li class="nav-item">
+                <a class="nav-link" (click)="scrollTo('popularmenu')">{{ 'HOME.POPULAR_MENU' | translate }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="menu.html">Menu</a>
+                <a class="nav-link" (click)="scrollTo('menu')">{{ 'MENU2' | translate }} </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" (click)="scrollTo('contactus')">{{ 'HOME.CONTACT_US' | translate }}</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="book.html">Book Table</a>
+                            <li class="nav-item">
+                <a class="nav-link" (click)="scrollTo('aboutus')">{{ 'HOME.ABOUT_US' | translate }}</a>
               </li>
-            </ul> -->
-            <div class="user_option">
+            </ul>
+            <!-- <div class="user_option">
               <a href="" class="user_link">
                 <i class="fa fa-user" aria-hidden="true"></i>
               </a>
@@ -143,7 +148,7 @@
               <a href="" class="order_online">
                {{ 'HOME.ORDER_NOW' | translate }}
               </a>
-            </div>
+            </div> -->
           </div>
         </nav>
       </div>
@@ -190,7 +195,7 @@
   </div>
 
 <!-- Popular Menu Section -->
-<section class="offer_section layout_padding-bottom">
+<section class="offer_section layout_padding-bottom" id="popularmenu">
   <div class="offer_container">
     <div class="container">
 
@@ -279,7 +284,7 @@
 
   <!-- food section -->
 
-  <section class="food_section layout_padding-bottom">
+  <section class="food_section layout_padding-bottom" id="menu">
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
@@ -1031,7 +1036,7 @@
 
   <!-- about section -->
 
-  <section class="about_section layout_padding">
+  <section class="about_section layout_padding" id="aboutus" >
     <div class="container  ">
 
       <div class="row">
@@ -1054,9 +1059,9 @@
             <p>
               {{ 'HOME.BIO2' | translate }}
             </p>
-            <a href="">
+            <!-- <a href="">
               Read More
-            </a>
+            </a> -->
           </div>
         </div>
       </div>
@@ -1066,11 +1071,11 @@
   <!-- end about section -->
 
   <!-- book section -->
-  <section class="book_section layout_padding">
+  <section class="book_section layout_padding" id="contactus">
     <div class="container">
       <div class="heading_container">
         <h2>
-          Book A Table
+              {{ 'HOME.CONTACT_US' | translate }}
         </h2>
       </div>
       <div class="row">
@@ -1091,7 +1096,7 @@
               </div>
               <div class="btn_box">
                 <button>
-                  Book Now
+                              {{ 'EMPLOYEES_PAGE.SEND' | translate }}
                 </button>
               </div>
             </form>
@@ -1101,12 +1106,12 @@
           <div class="map_container ">
         
 <iframe
-    *ngIf="mapUrl"
-    width="100%"
-    height="400"
-    loading="lazy"
-    style="border:0"
-    [attr.src]="mapUrl">
+  *ngIf="mapUrl"
+  [src]="mapUrl"
+  width="100%"
+  height="400"
+  style="border:0"
+  loading="lazy">
 </iframe>
           </div>
         </div>

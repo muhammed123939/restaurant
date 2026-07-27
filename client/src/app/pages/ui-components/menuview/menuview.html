@@ -175,7 +175,7 @@
 
             <!-- Cart Menu Popup -->
             <mat-menu #cartMenu="matMenu">
-              <div style="padding:12px;width:220px;" (click)="$event.stopPropagation()">
+              <div style="padding:12px;" (click)="$event.stopPropagation()">
                 <b>{{ selectedItem?.name }}</b>
                 <mat-form-field appearance="outline" class="w-100 mt-2">
                   <mat-label>{{ 'MENU.QUANTITY' | translate }}</mat-label>

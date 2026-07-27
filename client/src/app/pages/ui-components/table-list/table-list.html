@@ -28,6 +28,7 @@
   <!-- Table Card -->
   <div class="table-card mat-elevation-z8">
 
+  <div class="table-wrapper">
     <table mat-table [dataSource]="tables" class="modern-table">
 
       <ng-container matColumnDef="tableID">
@@ -97,5 +98,5 @@
       {{ 'TABLES.NO_TABLES_FOUND' | translate }}
     </mat-card-content>
   </mat-card>
-
+</div>
 </div>

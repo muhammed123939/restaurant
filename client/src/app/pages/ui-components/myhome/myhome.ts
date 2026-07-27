@@ -6,7 +6,6 @@ import { MenuService } from 'src/app/_services/menu.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Homepageinfo } from '../homepageinfo/homepageinfo';
 import { HomePageInfo } from 'src/app/_models/home-page-info';
 import { HomePageInfoService } from 'src/app/_services/home-page-info.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -19,35 +18,45 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrl: './myhome.scss',
 })
 export class Myhome implements OnInit {
-
+isMenuOpen = false;
   topOrderedItems: Menu[] = [];
   homeInfo!: HomePageInfo;
-mapUrl='';
+mapUrl!: SafeResourceUrl;
 
-  constructor( private menuService: MenuService ,private honePageInfoService: HomePageInfoService ,    private router: Router , public authService: AuthService ,  private snackBar: MatSnackBar) {}
+  constructor(  private sanitizer: DomSanitizer ,private menuService: MenuService ,private honePageInfoService: HomePageInfoService ,    private router: Router , public authService: AuthService ,  private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.loadTopOrderedItems();
     this.loadmenuinfo();
   }
- 
+
+  toggleMenu() {
+  this.isMenuOpen = !this.isMenuOpen;
+}
+  scrollTo(sectionId: string): void {
+  const element = document.getElementById(sectionId);
+
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+}
+
+
 loadmenuinfo(): void {
+  this.honePageInfoService.getHomeInfo().subscribe(res => {
+    this.homeInfo = res;
 
-  this.honePageInfoService.getHomeInfo().subscribe({
-
-    next: res => {
-
-      this.homeInfo = res;
-
-      this.mapUrl =
-        `https://www.google.com/maps?q=${res.latitude},${res.longitude}&z=15&output=embed`;
-
-    }
-
+    this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+      `https://maps.google.com/maps?q=${res.latitude},${res.longitude}&z=15&output=embed`
+    );
   });
+  console.log(this.mapUrl);
 
 }
-  
+
 goToMenu(id: number): void {
     if(this.authService.isClientLoggedIn)
     {
