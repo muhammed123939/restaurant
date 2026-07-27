@@ -1,35 +1,69 @@
+/* ===============================
+   LAYOUT
+=============================== */
 
-.mobile-bottom-nav .icon {
-  width: 22px;
-  height: 22px;
-  stroke-width: 1.8;
-  color: inherit;
-  margin-bottom: 2px;
-}
-
-@media (max-width: 768px) {
-  mat-sidenav-content {
-    overflow-y: auto;
-    height: calc(100vh - 65px);
-    -webkit-overflow-scrolling: touch;
-  }
-
-  body {
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     overflow: hidden;
-  }
-}
-.mobile-bottom-nav {
-  display: none;
+    font-family: 'Inter', sans-serif;
 }
 
-@media (max-width: 768px) {
-  .mobile-bottom-nav {
+mat-sidenav-container.mainWrapper {
+    width: 100%;
+    height: 100vh;
+}
+
+/* Hide sidebar completely */
+
+.sidebarNav {
+    display: none !important;
+}
+
+/* ===============================
+   CONTENT
+=============================== */
+
+mat-sidenav-content {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #f8fafc;
+}
+
+.pageWrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-area {
+    flex: 1;
+    padding-bottom: 85px;
+}
+
+.contentWrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===============================
+   BOTTOM NAVIGATION
+=============================== */
+
+.mobile-bottom-nav {
+
     position: fixed;
-    bottom: 0;
+
     left: 0;
     right: 0;
+    bottom: 0;
 
     height: 70px;
+
     background: #ffffff;
 
     display: flex;
@@ -37,227 +71,127 @@
     align-items: center;
 
     border-top: 1px solid #e5e7eb;
-    z-index: 1000;
 
-    padding-bottom: env(safe-area-inset-bottom); /* iPhone safe area */
-  }
+    z-index: 2000;
 
-  .mobile-bottom-nav a {
+    box-shadow: 0 -4px 15px rgba(0,0,0,.08);
+
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ===============================
+   ITEMS
+=============================== */
+
+.mobile-nav-item {
+
     flex: 1;
+
     height: 100%;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+
     justify-content: center;
+    align-items: center;
 
-    gap: 4px;
+    gap: 5px;
 
-    font-size: 11px;
     text-decoration: none;
 
     color: #64748b;
 
-    transition: all 0.2s ease;
+    transition: .25s;
+
+    font-size: 11px;
+
     -webkit-tap-highlight-color: transparent;
-  }
+}
 
-  .mobile-bottom-nav a i-tabler {
-    width: 22px;
-    height: 22px;
-    stroke-width: 1.8;
-  }
+.mobile-nav-item:hover {
 
-  /* ACTIVE STATE */
-  .mobile-bottom-nav a.active {
     color: #2196f3;
-    font-weight: 500;
-  }
 
-  .mobile-bottom-nav a.active i-tabler {
+}
+
+.mobile-nav-item:active {
+
+    transform: scale(.92);
+
+}
+
+/* ===============================
+   ACTIVE
+=============================== */
+
+.mobile-nav-item.active {
+
     color: #2196f3;
-  }
+    font-weight: 600;
 
-  /* TOUCH FEEDBACK */
-  .mobile-bottom-nav a:active {
-    transform: scale(0.95);
-  }
 }
 
+.mobile-nav-item.active .routeIcon {
 
-mat-sidenav-container.mainWrapper {
-  height: 100vh;
-  width: 100%;
-  display: flex;
+    color: #2196f3;
+
 }
 
-/* =====================================
-   FIX CONTENT LAYOUT (IMPORTANT)
-===================================== */
-
-mat-sidenav-content {
-  height: 100vh;
-  flex: 1;              /* 🔴 FIX: removes gap */
-  margin: 0;            /* 🔴 FIX */
-  padding: 0;           /* 🔴 FIX */
-  overflow: auto;
-  display: block;
-}
-
-/* =====================================
-   PAGE WRAPPER
-===================================== */
-
-.pageWrapper {
-  padding: 0;
-  margin: 0;
-  min-height: 100%;
-  box-sizing: border-box;
-}
-
-/* =====================================
-   CONTENT WRAPPER
-===================================== */
-
-.contentWrapper {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* =====================================
-   SIDEBAR BASE
-===================================== */
-
-.sidebarNav {
-  width: 260px !important;
-  background-color: rgba(42, 48, 61, 1) !important;
-  color: #ffffff;
-  transition: all 0.3s ease;
-}
-
-/* =====================================
-   SIDEBAR LIST
-===================================== */
-
-.sidebarNav .sidebar-list {
-  background: transparent !important;
-  padding: 8px 0;
-}
-
-/* =====================================
-   MENU ITEMS
-===================================== */
-
-.sidebarNav .menu-list-item,
-.sidebarNav a.mat-list-item,
-.sidebarNav mat-list-item {
-  color: #ffffff !important;
-  border-radius: 8px;
-  margin: 4px 8px;
-  transition: all 0.2s ease;
-}
-
-/* =====================================
+/* ===============================
    ICONS
-===================================== */
+=============================== */
 
-.sidebarNav .routeIcon {
-  color: #cbd5e1 !important;
-  transition: all 0.2s ease;
+.routeIcon {
+
+    font-size: 24px;
+
+    color: inherit;
+
+    transition: .25s;
+
 }
 
-/* =====================================
-   HOVER STATE
-===================================== */
+/* ===============================
+   OPTIONAL LABEL
+=============================== */
 
-.sidebarNav .menu-list-item:hover,
-.sidebarNav a.mat-list-item:hover,
-.sidebarNav mat-list-item:hover {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #ffffff !important;
-  transform: translateX(2px);
+.mobile-nav-item span {
+
+    font-size: 11px;
+
+    line-height: 1;
+
 }
 
-.sidebarNav .menu-list-item:hover .routeIcon {
-  color: #ffffff !important;
+/* ===============================
+   SCROLLBAR
+=============================== */
+
+::-webkit-scrollbar {
+    width: 8px;
 }
 
-/* =====================================
-   ACTIVE ITEM
-===================================== */
-
-.sidebarNav .activeMenu {
-  background: #2196f3 !important;
-  color: #ffffff !important;
-  border-radius: 8px;
+::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
 }
 
-.sidebarNav .activeMenu .routeIcon {
-  color: #ffffff !important;
-}
+/* ===============================
+   RESPONSIVE
+=============================== */
 
-/* =====================================
-   CAPTION
-===================================== */
+/* Keep the same layout on every screen */
+@media (max-width: 1200px),
+       (max-width: 992px),
+       (max-width: 768px),
+       (max-width: 480px),
+       (max-width: 360px) {
 
-.sidebarNav .nav-caption {
-  color: rgba(255, 255, 255, 0.6) !important;
-  font-size: 12px;
-}
+    .mobile-bottom-nav {
+        display: flex;
+    }
 
-/* =====================================
-   CHIP
-===================================== */
-
-.sidebarNav .item-chip {
-  background: #2196f3;
-  color: #fff;
-}
-
-/* =====================================
-   TABLET
-===================================== */
-
-@media (max-width: 992px) {
-  .sidebarNav {
-    width: 220px !important;
-  }
-}
-
-/* =====================================
-   MOBILE
-===================================== */
-
-@media (max-width: 768px) {
-  .sidebarNav {
-    width: 260px !important;
-  }
-
-  .sidebarNav .menu-list-item,
-  .sidebarNav a.mat-list-item,
-  .sidebarNav mat-list-item {
-    margin: 3px 6px;
-  }
-}
-
-/* =====================================
-   SMALL MOBILE
-===================================== */
-
-@media (max-width: 480px) {
-  .sidebarNav {
-    width: 240px !important;
-  }
-}
-
-/* =====================================
-   VERY SMALL DEVICES
-===================================== */
-
-@media (max-width: 360px) {
-  .sidebarNav {
-    width: 220px !important;
-  }
+    .sidebarNav {
+        display: none !important;
+    }
 }

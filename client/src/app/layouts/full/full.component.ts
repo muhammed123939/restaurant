@@ -85,14 +85,16 @@ export class FullComponent implements OnInit , AfterViewInit {
 
     // Initialize project theme with options
 
-
-    // This is for scroll to top
     this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((e) => {
-        this.content.scrollTo({ top: 0 });
-      });
-  }
+  .pipe(filter(event => event instanceof NavigationEnd))
+  .subscribe(() => {
+    this.content?.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+}
 
   ngAfterViewInit() {
     this.sidenavReady = true;

@@ -21,7 +21,7 @@ import { EditTable } from 'src/app/pages/ui-components/edit-table/edit-table';
 import { TableRegister } from 'src/app/pages/ui-components/table-register/table-register';
 import { TableList } from 'src/app/pages/ui-components/table-list/table-list';
 import { ReceiptPrint } from 'src/app/pages/ui-components/receipt-print/receipt-print';
-import { AppProfitExpensesComponent } from 'src/app/components/profit-expenses/profit-expenses.component';
+// import { AppProfitExpensesComponent } from 'src/app/components/profit-expenses/profit-expenses.component';
 import { Profit } from './profit/profit';
 import { Myhome } from './myhome/myhome';
 import { Homepageinfo } from 'src/app/pages/ui-components/homepageinfo/homepageinfo';

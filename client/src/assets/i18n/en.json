@@ -340,6 +340,7 @@
   },
   "DELIVERIES": {
     "ALL": "All",
+    "ASSIGNED" : "assigned at" , 
     "TITLE": "Deliveries",
     "ID": "ID",
     "ORDER": "Order",

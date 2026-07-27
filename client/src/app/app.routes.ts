@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { BlankComponent } from './layouts/blank/blank.component';
+// import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { authadminGuard } from './_guards/authadmin.guard';
 import { MenuviewComponent } from 'src/app/pages/ui-components/menuview/menuview';
