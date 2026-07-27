@@ -49,34 +49,36 @@
     <!-- header section strats -->
     <header class="header_section">
       <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <nav class="navbar  custom_nav-container ">
           <a class="navbar-brand" href="index.html">
             <span>
               {{ 'HOME.RESTAURANT_NAME' | translate }}
             </span>
           </a>
 
-<button style="color:white"
+<!-- <button style="color:white"
   class="navbar-toggler"
   type="button"
   (click)="toggleMenu()">
   ☰
 </button>
+navbar-expand-lg
+   [class.show]="isMenuOpen"  -->
+
 <div
-  class="navbar-collapse"
-  [class.show]="isMenuOpen">
-            <ul class="navbar-nav  mx-auto ">
+  class="navbar-collapse" >
+            <ul class="navbar-nav navbar-expand mx-auto ">
           
-              <li class="nav-item">
+              <li class="nav-item"  >
                 <a class="nav-link" (click)="scrollTo('popularmenu')">{{ 'HOME.POPULAR_MENU' | translate }}</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item"  >
                 <a class="nav-link" (click)="scrollTo('menu')">{{ 'MENU2' | translate }} </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" >
                 <a class="nav-link" (click)="scrollTo('contactus')">{{ 'HOME.CONTACT_US' | translate }}</a>
               </li>
-                            <li class="nav-item">
+              <li class="nav-item"  >
                 <a class="nav-link" (click)="scrollTo('aboutus')">{{ 'HOME.ABOUT_US' | translate }}</a>
               </li>
             </ul>
@@ -1104,7 +1106,12 @@
         </div>
         <div class="col-md-6">
           <div class="map_container ">
-        
+        <a
+  [href]="'https://www.google.com/maps/search/?api=1&query=' + homeInfo?.latitude + ',' + homeInfo?.longitude"
+  target="_blank"
+  class="btn btn-warning">
+  Open in Google Maps
+</a>
 <iframe
   *ngIf="mapUrl"
   [src]="mapUrl"
@@ -1131,26 +1138,29 @@
             <h4>
               {{ 'HOME.CONTACT_US' | translate }}
             </h4>
-            <div class="contact_link_box">
-              <a href="">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>
-                  {{ 'HOME.LOCATION' | translate }}
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>
-                         {{homeInfo?.phoneNumber}}
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>
-           {{homeInfo?.email}}
-                </span>
-              </a>
-            </div>
+           <div class="contact_link_box">
+
+  <!-- Google Maps -->
+  <a
+    [href]="'https://www.google.com/maps/search/?api=1&query=' + homeInfo?.latitude + ',' + homeInfo?.longitude"
+    target="_blank">
+    <i class="fa fa-map-marker" aria-hidden="true"></i>
+    <span>{{ 'HOME.LOCATION' | translate }}</span>
+  </a>
+
+  <!-- Phone -->
+  <a [href]="'tel:' + homeInfo?.phoneNumber">
+    <i class="fa fa-phone" aria-hidden="true"></i>
+    <span>{{ homeInfo?.phoneNumber }}</span>
+  </a>
+
+  <!-- Email -->
+  <a [href]="'mailto:' + homeInfo?.email">
+    <i class="fa fa-envelope" aria-hidden="true"></i>
+    <span>{{ homeInfo?.email }}</span>
+  </a>
+
+</div>
           </div>
         </div>
         <div class="col-md-4 footer-col">

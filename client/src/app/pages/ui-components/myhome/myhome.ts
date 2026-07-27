@@ -18,7 +18,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrl: './myhome.scss',
 })
 export class Myhome implements OnInit {
-isMenuOpen = false;
   topOrderedItems: Menu[] = [];
   homeInfo!: HomePageInfo;
 mapUrl!: SafeResourceUrl;
@@ -30,9 +29,6 @@ mapUrl!: SafeResourceUrl;
     this.loadmenuinfo();
   }
 
-  toggleMenu() {
-  this.isMenuOpen = !this.isMenuOpen;
-}
   scrollTo(sectionId: string): void {
   const element = document.getElementById(sectionId);
 
@@ -53,7 +49,7 @@ loadmenuinfo(): void {
       `https://maps.google.com/maps?q=${res.latitude},${res.longitude}&z=15&output=embed`
     );
   });
-  console.log(this.mapUrl);
+
 
 }
 
