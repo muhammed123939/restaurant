@@ -34,8 +34,8 @@ export class Branchlist implements OnInit {
   displayedColumns: string[] = [
     'branchID',
     'name',
-    'location',
-    'phone'
+    'address',
+    'phone' 
   ];
 
   constructor(

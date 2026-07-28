@@ -1138,27 +1138,34 @@ navbar-expand-lg
             <h4>
               {{ 'HOME.CONTACT_US' | translate }}
             </h4>
-           <div class="contact_link_box">
+           
+            <div class="contact_link_box">
 
-  <!-- Google Maps -->
-  <a
-    [href]="'https://www.google.com/maps/search/?api=1&query=' + homeInfo?.latitude + ',' + homeInfo?.longitude"
-    target="_blank">
-    <i class="fa fa-map-marker" aria-hidden="true"></i>
-    <span>{{ 'HOME.LOCATION' | translate }}</span>
-  </a>
+  <div *ngFor="let branch of branches">
 
-  <!-- Phone -->
-  <a [href]="'tel:' + homeInfo?.phoneNumber">
-    <i class="fa fa-phone" aria-hidden="true"></i>
-    <span>{{ homeInfo?.phoneNumber }}</span>
-  </a>
+    <!-- Branch Name -->
+    <div class="mb-2">
+      <strong>{{ branch.name }}</strong>
+    </div>
 
-  <!-- Email -->
-  <a [href]="'mailto:' + homeInfo?.email">
-    <i class="fa fa-envelope" aria-hidden="true"></i>
-    <span>{{ homeInfo?.email }}</span>
-  </a>
+    <!-- Google Maps -->
+    <a
+      [href]="'https://www.google.com/maps/search/?api=1&query=' + branch.latitude + ',' + branch.longitude"
+      target="_blank">
+
+      <i class="fa fa-map-marker" aria-hidden="true"></i>
+      <span>{{ branch.address }}</span>
+    </a>
+
+    <!-- Phone -->
+    <a [href]="'tel:' + branch.phone">
+      <i class="fa fa-phone" aria-hidden="true"></i>
+      <span>{{ branch.phone }}</span>
+    </a>
+
+    <hr>
+
+  </div>
 
 </div>
           </div>

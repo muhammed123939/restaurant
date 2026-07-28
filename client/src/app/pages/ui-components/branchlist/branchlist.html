@@ -16,16 +16,20 @@
       <div class="card-header">
         <div>
           <h3>{{ branch.name }}</h3>
-          <span style="color:red"  class="branch-id">#{{ branch.branchID }}</span>
+          <span style="color:red" class="branch-id">#{{ branch.branchID }}</span>
         </div>
 
         <div class="actions">
-          <button class="edit-btn" mat-icon-button color="primary"
+          <button class="edit-btn"
+                  mat-icon-button
+                  color="primary"
                   (click)="edititem(branch)">
             <mat-icon>edit</mat-icon>
           </button>
 
-          <button class="delete-btn" mat-icon-button color="warn"
+          <button class="delete-btn"
+                  mat-icon-button
+                  color="warn"
                   (click)="deleteitem(branch)">
             <mat-icon>delete</mat-icon>
           </button>
@@ -38,26 +42,38 @@
 
         <div class="info-row">
           <mat-icon>badge</mat-icon>
-          <span style=" color: #ff5a00;" >{{ 'BRANCHES.ID' | translate }}:</span>
+          <span style="color:#ff5a00;">{{ 'BRANCHES.ID' | translate }}:</span>
           <strong>{{ branch.branchID }}</strong>
         </div>
 
         <div class="info-row">
           <mat-icon>store</mat-icon>
-          <span style=" color: #ff5a00;" >{{ 'BRANCHES.NAME' | translate }}:</span>
+          <span style="color:#ff5a00;">{{ 'BRANCHES.NAME' | translate }}:</span>
           <strong>{{ branch.name }}</strong>
         </div>
 
         <div class="info-row">
           <mat-icon>phone</mat-icon>
-          <span style=" color: #ff5a00;" >{{ 'BRANCHES.MOBILE' | translate }}:</span>
+          <span style="color:#ff5a00;">{{ 'BRANCHES.MOBILE' | translate }}:</span>
           <strong>{{ branch.phone }}</strong>
         </div>
 
         <div class="info-row">
           <mat-icon>location_on</mat-icon>
-          <span style=" color: #ff5a00;" >{{ 'BRANCHES.LOCATION' | translate }}:</span>
-          <strong>{{ branch.location }}</strong>
+          <span style="color:#ff5a00;">{{ 'BRANCHES.ADDRESS' | translate }}:</span>
+          <strong>{{ branch.address }}</strong>
+        </div>
+
+        <div class="info-row">
+          <mat-icon>my_location</mat-icon>
+          <span style="color:#ff5a00;">{{ 'BRANCH_EDIT.LATITUDE' | translate }}:</span>
+          <strong>{{ branch.latitude }}</strong>
+        </div>
+
+        <div class="info-row">
+          <mat-icon>explore</mat-icon>
+          <span style="color:#ff5a00;">{{ 'BRANCH_EDIT.LONGITUDE' | translate }}:</span>
+          <strong>{{ branch.longitude }}</strong>
         </div>
 
       </div>

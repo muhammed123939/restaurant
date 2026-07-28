@@ -33,7 +33,7 @@
       <div class="form-grid">
 
         <!-- Name -->
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>{{ 'BRANCH_REGISTER.NAME' | translate }}</mat-label>
 
           <mat-icon matPrefix>store</mat-icon>
@@ -48,7 +48,7 @@
         </mat-form-field>
 
         <!-- Phone -->
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>{{ 'BRANCH_REGISTER.PHONE' | translate }}</mat-label>
 
           <mat-icon matPrefix>phone</mat-icon>
@@ -68,18 +68,55 @@
 
         </mat-form-field>
 
-        <!-- Location -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>{{ 'BRANCH_REGISTER.LOCATION' | translate }}</mat-label>
+        <!-- Address -->
+        <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+          <mat-label>{{ 'BRANCH_REGISTER.ADDRESS' | translate }}</mat-label>
 
           <mat-icon matPrefix>location_on</mat-icon>
 
           <input matInput
-                 formControlName="location"
-                 [placeholder]="'BRANCH_REGISTER.LOCATION_PLACEHOLDER' | translate">
+                 formControlName="address"
+                 [placeholder]="'BRANCH_REGISTER.ADDRESS_PLACEHOLDER' | translate">
 
-          <mat-error *ngIf="registerForm.get('location')?.hasError('required')">
-            {{ 'BRANCH_REGISTER.LOCATION_REQUIRED' | translate }}
+          <mat-error *ngIf="registerForm.get('address')?.hasError('required')">
+            {{ 'BRANCH_REGISTER.ADDRESS_REQUIRED' | translate }}
+          </mat-error>
+
+        </mat-form-field>
+
+        <!-- Latitude -->
+
+        <mat-form-field appearance="outline" floatLabel="always" >
+          <mat-label>{{ 'BRANCH_EDIT.LATITUDE' | translate }}</mat-label>
+
+          <mat-icon matPrefix>my_location</mat-icon>
+
+          <input matInput
+                 type="number"
+                 step="any"
+                 formControlName="latitude"
+                 [placeholder]="'BRANCH_REGISTER.LATITUDE_PLACEHOLDER' | translate">
+
+          <mat-error *ngIf="registerForm.get('latitude')?.hasError('required')">
+            {{ 'BRANCH_REGISTER.LATITUDE_REQIURED' | translate }}
+          </mat-error>
+
+        </mat-form-field>
+
+        <!-- Longitude -->
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>{{ 'BRANCH_EDIT.LONGITUDE' | translate }}</mat-label>
+
+          <mat-icon matPrefix>explore</mat-icon>
+
+          <input matInput
+                 type="number"
+                 step="any"
+                 formControlName="longitude"
+                 [placeholder]="'BRANCH_REGISTER.LONGITUDE_PLACEHOLDER' | translate">
+
+          <mat-error *ngIf="registerForm.get('longitude')?.hasError('required')">
+            {{ 'BRANCH_REGISTER.LONGITUDE_REQIURED' | translate }}
           </mat-error>
 
         </mat-form-field>
@@ -89,7 +126,8 @@
       <!-- Buttons -->
       <div class="actions">
 
-        <button mat-flat-button type="submit"
+        <button mat-flat-button
+                type="submit"
                 class="btn-save"
                 [disabled]="registerForm.invalid">
 
@@ -97,7 +135,8 @@
           {{ 'BRANCH_REGISTER.SUBMIT' | translate }}
         </button>
 
-        <button mat-stroked-button type="button"
+        <button mat-stroked-button
+                type="button"
                 class="btn-cancel"
                 (click)="registerForm.reset()">
 

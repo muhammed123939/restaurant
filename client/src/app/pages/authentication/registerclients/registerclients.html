@@ -28,7 +28,7 @@
               class="form">
 
           <!-- Name -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'REGISTER.NAME' | translate }}</mat-label>
             <input matInput formControlName="name"
                    [placeholder]="'REGISTER.ENTER_NAME' | translate" />
@@ -39,14 +39,14 @@
           </mat-form-field>
 
           <!-- Email -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'REGISTER.EMAIL' | translate }}</mat-label>
             <input matInput type="email" formControlName="email"
                    [placeholder]="'REGISTER.ENTER_EMAIL' | translate" />
           </mat-form-field>
 
           <!-- Phone -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'REGISTER.PHONE' | translate }}</mat-label>
             <input matInput type="text" formControlName="phone"
                    maxlength="11" inputmode="numeric"
@@ -57,7 +57,7 @@
           <!-- Branch -->
           <mat-form-field appearance="outline"
                           class="field"
-                          *ngIf="branches.length > 1">
+                          *ngIf="branches.length > 1" floatLabel="always">
 
             <mat-label>{{ 'REGISTER.BRANCH' | translate }}</mat-label>
 
@@ -70,7 +70,7 @@
           </mat-form-field>
 
           <!-- Password -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'REGISTER.PASSWORD' | translate }}</mat-label>
 
             <input matInput
@@ -85,7 +85,7 @@
           </mat-form-field>
 
           <!-- Confirm Password -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</mat-label>
 
             <input matInput

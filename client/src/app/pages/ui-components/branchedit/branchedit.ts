@@ -95,8 +95,10 @@ export class Branchedit implements OnInit {
     const updatedbranch: Branch = {
       branchID: this.selectedbranch!.branchID!,
       name: this.selectedbranch!.name!,
-      location: this.selectedbranch!.location!,
-      phone: this.selectedbranch!.phone
+      address: this.selectedbranch!.address!,
+      phone: this.selectedbranch!.phone , 
+latitude :  this.selectedbranch!.latitude , 
+longitude :  this.selectedbranch!.longitude 
     };
 
     this.branchservice.update(updatedbranch).subscribe({
@@ -114,7 +116,7 @@ export class Branchedit implements OnInit {
   hasChanges(): boolean {
     if (!this.selectedbranch || !this.originalbranch) return false;
 
-    const keys: (keyof Branch)[] = ['branchID', 'name', 'location', 'phone'];
+    const keys: (keyof Branch)[] = ['branchID', 'name', 'address', 'phone' , 'latitude' , 'longitude'];
 
     return keys.some(
       key => this.selectedbranch![key] !== this.originalbranch![key]

@@ -3,14 +3,6 @@ import { Routes } from '@angular/router';
 
 export const PagesRoutes: Routes = [
   {
-    // path: '',
-    // component: StarterComponent,
-    // data: {
-    //   title: 'Starter Page',
-    //   urls: [
-    //     { title: 'Dashboard', url: '/dashboards/dashboard1' },
-    //     { title: 'Starter Page' },
-    //   ],
-    // },
+
   },
 ];

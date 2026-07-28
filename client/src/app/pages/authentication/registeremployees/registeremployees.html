@@ -25,7 +25,7 @@
         <form [formGroup]="registerForm" (ngSubmit)="submit()" class="form">
 
           <!-- Name -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'EMP_REGISTER.NAME' | translate }}</mat-label>
             <input matInput formControlName="name"
                    [placeholder]="'EMP_REGISTER.ENTER_NAME' | translate" />
@@ -36,7 +36,7 @@
           </mat-form-field>
 
           <!-- Email -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'EMP_REGISTER.EMAIL' | translate }}</mat-label>
             <input matInput type="email" formControlName="email" />
 
@@ -46,7 +46,7 @@
           </mat-form-field>
 
           <!-- Phone -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'EMP_REGISTER.PHONE' | translate }}</mat-label>
             <input matInput formControlName="phone"
                    maxlength="11"
@@ -56,7 +56,7 @@
           <!-- Branch -->
           @if(branches.length > 1)
           {
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'EMP_REGISTER.BRANCH' | translate }}</mat-label>
 
             <mat-select formControlName="branchID">
@@ -68,7 +68,7 @@
           }
 
           <!-- Position -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always" >
             <mat-label>{{ 'EMP_REGISTER.POSITION' | translate }}</mat-label>
 
             <mat-select formControlName="position">
@@ -79,13 +79,13 @@
           </mat-form-field>
 
           <!-- Salary -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'EMP_REGISTER.SALARY' | translate }}</mat-label>
             <input matInput type="number" formControlName="salary" />
           </mat-form-field>
 
           <!-- Password -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'EMP_REGISTER.PASSWORD' | translate }}</mat-label>
 
             <input matInput
@@ -99,7 +99,7 @@
           </mat-form-field>
 
           <!-- Confirm Password -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'EMP_REGISTER.CONFIRM_PASSWORD' | translate }}</mat-label>
 
             <input matInput

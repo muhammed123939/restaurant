@@ -1,13 +1,6 @@
 import { Routes } from '@angular/router';
-import { AppBadgeComponent } from './badge/badge.component';
-import { AppChipsComponent } from './chips/chips.component';
-import { AppListsComponent } from './lists/lists.component';
-import { AppMenuComponent } from './menu/menu.component';
-import { AppTooltipsComponent } from './tooltips/tooltips.component';
-import { AppFormsComponent } from './forms/forms.component';
 import { EdititemComponent } from './edititem/edititem';
 import { RegisteritemComponent } from './registeritem/registeritem';
-
 import { Edituser } from './edituser/edituser';
 import { Branchlist } from './branchlist/branchlist';
 import { Branchedit } from './branchedit/branchedit';
@@ -21,7 +14,6 @@ import { EditTable } from 'src/app/pages/ui-components/edit-table/edit-table';
 import { TableRegister } from 'src/app/pages/ui-components/table-register/table-register';
 import { TableList } from 'src/app/pages/ui-components/table-list/table-list';
 import { ReceiptPrint } from 'src/app/pages/ui-components/receipt-print/receipt-print';
-// import { AppProfitExpensesComponent } from 'src/app/components/profit-expenses/profit-expenses.component';
 import { Profit } from './profit/profit';
 import { Myhome } from './myhome/myhome';
 import { Homepageinfo } from 'src/app/pages/ui-components/homepageinfo/homepageinfo';
@@ -31,31 +23,6 @@ export const UiComponentsRoutes: Routes = [
   {
     path: '',
     children: [
-      {
-        path: 'badge',
-        component: AppBadgeComponent,
-      },
-      {
-        path: 'chips',
-        component: AppChipsComponent,
-      },
-      {
-        path: 'lists',
-        component: AppListsComponent,
-      },
-      {
-        path: 'menu',
-        component: AppMenuComponent,
-      },
-      {
-        path: 'tooltips',
-        component: AppTooltipsComponent,
-      },
-      {
-        path: 'forms',
-        component: AppFormsComponent,
-      },
-
       {
         path: 'receipt',
         component: ReceiptPrint,

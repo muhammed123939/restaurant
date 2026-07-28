@@ -49,15 +49,23 @@ export class Branchregister implements OnInit {
       this.errorMessage = 'You do not have permission to add branches.';
     }
   }
-
-  initializeForm() {
-    this.registerForm = this.fb.group({
-      name: ['', Validators.required],
-      location: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-    });
-  }
-
+  
+initializeForm() {
+  this.registerForm = this.fb.group({
+    name: ['', Validators.required],
+    address: ['', Validators.required],
+    phone: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(11),
+        Validators.maxLength(11)
+      ]
+    ],
+    latitude: ['', Validators.required],
+    longitude: ['', Validators.required]
+  });
+}
   register() {
     if (this.registerForm.invalid) return;
 

@@ -24,7 +24,7 @@
         <form [formGroup]="form" (ngSubmit)="submit()" class="form">
 
           <!-- Employee Name -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always" >
             <mat-label>{{ 'EMP_LOGIN.NAME' | translate }}</mat-label>
             <input matInput formControlName="Name"
                    [placeholder]="'EMP_LOGIN.ENTER_NAME' | translate" />
@@ -35,7 +35,7 @@
           </mat-form-field>
 
           <!-- Password -->
-          <mat-form-field appearance="outline" class="field">
+          <mat-form-field appearance="outline" class="field" floatLabel="always">
             <mat-label>{{ 'EMP_LOGIN.PASSWORD' | translate }}</mat-label>
             <input matInput type="password" formControlName="Password"
                    [placeholder]="'EMP_LOGIN.ENTER_PASSWORD' | translate" />

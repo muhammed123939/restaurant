@@ -9,6 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomePageInfo } from 'src/app/_models/home-page-info';
 import { HomePageInfoService } from 'src/app/_services/home-page-info.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { BranchService } from 'src/app/_services/branch.service';
+import { Branch } from 'src/app/_models/branch';
 
 @Component({
   selector: 'app-myhome',
@@ -21,12 +23,16 @@ export class Myhome implements OnInit {
   topOrderedItems: Menu[] = [];
   homeInfo!: HomePageInfo;
 mapUrl!: SafeResourceUrl;
+  branches: Branch[] = [];
 
-  constructor(  private sanitizer: DomSanitizer ,private menuService: MenuService ,private honePageInfoService: HomePageInfoService ,    private router: Router , public authService: AuthService ,  private snackBar: MatSnackBar) {}
+  constructor(     private branchService: BranchService,  private sanitizer: DomSanitizer ,private menuService: MenuService ,private honePageInfoService: HomePageInfoService ,    private router: Router , public authService: AuthService ,  private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.loadTopOrderedItems();
     this.loadmenuinfo();
+    this.branchService.getall().subscribe(res => {
+      this.branches = res;
+    });
   }
 
   scrollTo(sectionId: string): void {

@@ -35,9 +35,10 @@
           <mat-label>{{ 'BRANCH_EDIT.ID' | translate }}</mat-label>
           <mat-icon matPrefix>badge</mat-icon>
 
-          <input matInput
-                 [value]="selectedbranch.branchID"
-                 readonly>
+          <input
+            matInput
+            [value]="selectedbranch.branchID"
+            readonly>
         </mat-form-field>
 
         <!-- Name -->
@@ -45,11 +46,12 @@
           <mat-label>{{ 'BRANCH_EDIT.NAME' | translate }}</mat-label>
           <mat-icon matPrefix>store</mat-icon>
 
-          <input matInput
-                 required
-                 name="name"
-                 [(ngModel)]="selectedbranch.name"
-                 #name="ngModel">
+          <input
+            matInput
+            required
+            name="name"
+            [(ngModel)]="selectedbranch.name"
+            #name="ngModel">
 
           <mat-error *ngIf="name.invalid && name.touched">
             {{ 'BRANCH_EDIT.NAME_REQUIRED' | translate }}
@@ -61,30 +63,70 @@
           <mat-label>{{ 'BRANCH_EDIT.PHONE' | translate }}</mat-label>
           <mat-icon matPrefix>phone</mat-icon>
 
-          <input matInput
-                 required
-                 name="phone"
-                 [(ngModel)]="selectedbranch.phone"
-                 #phone="ngModel">
+          <input
+            matInput
+            required
+            name="phone"
+            [(ngModel)]="selectedbranch.phone"
+            #phone="ngModel">
 
           <mat-error *ngIf="phone.invalid && phone.touched">
             {{ 'BRANCH_EDIT.PHONE_REQUIRED' | translate }}
           </mat-error>
         </mat-form-field>
 
-        <!-- Location -->
+        <!-- Address -->
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>{{ 'BRANCH_EDIT.LOCATION' | translate }}</mat-label>
+          <mat-label>{{ 'BRANCH_EDIT.ADDRESS' | translate }}</mat-label>
           <mat-icon matPrefix>location_on</mat-icon>
 
-          <input matInput
-                 required
-                 name="location"
-                 [(ngModel)]="selectedbranch.location"
-                 #location="ngModel">
+          <input
+            matInput
+            required
+            name="address"
+            [(ngModel)]="selectedbranch.address"
+            #address="ngModel">
 
-          <mat-error *ngIf="location.invalid && location.touched">
-            {{ 'BRANCH_EDIT.LOCATION_REQUIRED' | translate }}
+          <mat-error *ngIf="address.invalid && address.touched">
+            {{ 'BRANCH_EDIT.ADDRESS_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Latitude -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'BRANCH_EDIT.LATITUDE' | translate }}</mat-label>
+          <mat-icon matPrefix>my_location</mat-icon>
+
+          <input
+            matInput
+            type="number"
+            step="any"
+            required
+            name="latitude"
+            [(ngModel)]="selectedbranch.latitude"
+            #latitude="ngModel">
+
+          <mat-error *ngIf="latitude.invalid && latitude.touched">
+            {{ 'BRANCH_EDIT.LATITUDE_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Longitude -->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'BRANCH_EDIT.LONGITUDE' | translate }}</mat-label>
+          <mat-icon matPrefix>explore</mat-icon>
+
+          <input
+            matInput
+            type="number"
+            step="any"
+            required
+            name="longitude"
+            [(ngModel)]="selectedbranch.longitude"
+            #longitude="ngModel">
+
+          <mat-error *ngIf="longitude.invalid && longitude.touched">
+            {{ 'BRANCH_EDIT.LONGITUDE_REQUIRED' | translate }}
           </mat-error>
         </mat-form-field>
 
@@ -105,19 +147,21 @@
       <!-- Actions -->
       <div class="actions">
 
-        <button mat-flat-button
-                type="submit"
-                class="btn-save"
-                [disabled]="!editForm.valid || !editForm.dirty">
+        <button
+          mat-flat-button
+          type="submit"
+          class="btn-save"
+          [disabled]="!editForm.valid || !editForm.dirty">
 
           <mat-icon>save</mat-icon>
           {{ 'BRANCH_EDIT.SAVE' | translate }}
         </button>
 
-        <button mat-stroked-button
-                type="button"
-                class="btn-cancel"
-                (click)="resetForm(editForm)">
+        <button
+          mat-stroked-button
+          type="button"
+          class="btn-cancel"
+          (click)="resetForm(editForm)">
 
           <mat-icon>refresh</mat-icon>
           {{ 'BRANCH_EDIT.RESET' | translate }}

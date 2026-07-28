@@ -22,7 +22,7 @@
     <div class="top-bar">
 
       <!-- Search -->
-      <mat-form-field appearance="outline" class="search-box">
+      <mat-form-field appearance="outline" class="search-box" floatLabel="always">
         <mat-label>{{ 'CLIENTS.SEARCH_LABEL' | translate }}</mat-label>
         <mat-icon matPrefix>search</mat-icon>
 
@@ -44,7 +44,7 @@
     <!-- Offer Section -->
     <form (ngSubmit)="submitOffer()" class="offer-box">
 
-      <mat-form-field appearance="outline" class="offer-input">
+      <mat-form-field appearance="outline" class="offer-input" floatLabel="always">
         <mat-label>{{ 'CLIENTS.OFFER_LABEL' | translate }}</mat-label>
 
         <mat-icon matPrefix>local_offer</mat-icon>
